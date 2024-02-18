@@ -1,0 +1,30 @@
+EMIC:setOutput(TARGET:/asdf.c)
+Soy API TEST
+
+hola .{clave1}.
+
+EMIC:define(local.clave1,valor22)
+
+EMIC:if(clave1==valor22)
+
+clave1 = .{clave1}.
+
+EMIC:endif
+
+EMIC:if(global.clave1==valor1)
+
+El valor es .{global.clave1}.
+
+EMIC:else
+
+El valor NO es valor1 (.{global.clave1}.)
+
+EMIC:endif
+
+
+fin
+
+EMIC:define(c_modules.main,main.c)
+EMIC:define(c_modules.asdf,asdf.c)
+
+EMIC:restoreOutput

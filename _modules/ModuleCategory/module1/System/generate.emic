@@ -1,0 +1,19 @@
+EMIC:setOutput(TARGET:generate.txt)
+
+    //--------------Hardware Config---------------------
+    EMIC:setInput(DEV:_pcb/pcb.emic,pcb=HRD_USB V1.1)
+
+    EMIC:setInput(TARGET:usedFunction.emic)
+    EMIC:setInput(TARGET:usedEvent.emic)
+
+    //------------- Driver Config -----------------------
+    EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=ledAzul,pin=Led1)
+    EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=ledRojo,pin=Led2)
+
+    EMIC:setInput(DEV:_main/baremetal/main.emic)
+
+    EMIC:setOutput(TARGET:nbproject/configurations.xml)
+        EMIC:setInput(DEV:_modules\ModuleCategory\module1\target\nbproject\configurations.xml)
+    EMIC:restoreOutput
+
+EMIC:restoreOutput

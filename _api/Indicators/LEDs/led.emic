@@ -1,0 +1,34 @@
+//RFI TAG:driverName=LEDs
+
+/**
+* @fn void LEDs_.{local.name}._state(uint8_t state);
+* @alias .{name}..state
+* @brief Change the state of the led, 1-on, 0-off, 2-toggle. 
+* @param state 1-on 0-off 2-toggle
+* @return Nothing
+*/
+
+
+/**
+* @fn void LEDs_.{name}._blink(uint16_t timeOn, uint16_t period, uint16_t times);
+* @alias .{name}..blink
+* @brief blink the .{name}. 
+* @param timeOn time that the LED lasts on in each cycle.
+* @param period length of time each cycle lasts.
+* @param times number of cycles.
+* @return Nothing
+*/
+
+
+EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
+EMIC:setInput(DEV:_drivers/SystemTimer/systemTimer.emic)
+
+EMIC:setOutput(TARGET:main.c)
+	EMIC:include(inc\led.h|inc\led_.{name}..h,name=.{name}.,pin=.{pin}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:led_.{name}..c)
+	EMIC:setInput(src\led.c,name=.{name}.,pin=.{pin}.)
+EMIC:restoreOutput
+
+EMIC:define(c_modules.led_.{name}.,led_.{name}..c)

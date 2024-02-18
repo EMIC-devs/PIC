@@ -1,0 +1,31 @@
+//RFI TAG:driverName=SYSTEM
+
+/**
+* @fn extern void onReset();
+* @alias onReset
+* @brief When the module and all its functions are ready. 
+* @return Nothing
+*/
+
+/**
+* @fn extern void SystemConfig();
+* @alias SystemConfig
+* @brief before initializing the drivers, recommended for initializing system variables. 
+* @return Nothing
+*/
+
+EMIC:setOutput(TARGET:main.c)
+
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+//EMIC:setInput(DEV:/_system/systemInclusions.emic)
+
+
+EMIC:setInput(main.c)
+EMIC:define(c_modules.main,main.c)
+
+EMIC:restoreOutput
+

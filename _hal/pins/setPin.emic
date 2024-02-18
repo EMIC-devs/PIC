@@ -1,0 +1,2 @@
+
+EMIC:setInput(DEV:_hard/.{system.ucName}./pins/setPin.{pin}..h,name=.{name}.)	

@@ -1,0 +1,5 @@
+
+
+EMIC:setOutput(TARGET:main.c)
+	EMIC:include(inc\.{pcb}..h)
+EMIC:restoreOutput
