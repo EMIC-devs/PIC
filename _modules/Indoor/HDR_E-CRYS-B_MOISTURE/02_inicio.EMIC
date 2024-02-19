@@ -1,0 +1,24 @@
+#define nombreModulo "HRD_CRYS_B_MOISTURE"
+#addToMacro(UC_FAMILY,pic24fj64ga002)
+
+//--------------Hardware Config---------------------
+#newRFIcode(_pcb\pcb.emic,pcb=HRD_E-CRYS-B)
+
+#setFile codigo.c
+	##include(_pcb\ClickBoard\CLKB_MOISTURE.h)
+#unSetFile
+//---------------------------------------------------
+
+//------------- Driver Config -----------------------
+
+#newRFIcode(_api\Indicators\LEDs\led.emic)
+#newRFIcode(_api\Timer\Timer_API_V1.emic)
+//#newRFIcode(_api\WiredComm\EMICfieldB\EMICfieldBus.emic,puerto=1,baud=9600,bufferIn=512,bufferOut=512)
+#newRFIcode(_api/WiredComm/EMICfieldB/EMICfieldBus.v1.1.0.emic,puerto=1,baud=9600,bufferIn=512,bufferOut=512)
+#newRFIcode(_api\Sensors\SoilMoisture\Moisture.emic)
+
+
+//---------------------------------------------------
+
+//---------------------------------------------------
+#include "_main/baremetal/main.emic"

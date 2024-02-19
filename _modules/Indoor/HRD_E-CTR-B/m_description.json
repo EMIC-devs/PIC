@@ -1,0 +1,80 @@
+{
+"type": "gcc",
+"toolTip":"Communication with 485 port",
+"Descripcion":"Communication module with 485 port. It is used to connect the created device to a 485 line and it has a direct connection to the EMIC bus.",
+"Sizes":"TBD",
+"ImageFile":"blz1.gif",
+"IconFile":"TBD",
+"Mounting":"Holder Riel DIN",
+"Table":[ 
+	{
+		"Name": "VccMax",
+		"Value": "5.5V"
+	},
+	{
+		"Name":"VccMin",
+		"Value":"4.8V"
+	},
+	{
+		"Name":"IccMax",
+		"Value":"50mA"
+	}
+	],
+
+"HardwareDescription":[ 
+	{
+		"PinName": "J4,J5",
+		"PinType": "I2C",
+		"PinDescription": "EMIC connector",
+	},
+	{
+		"PinName": "LED",
+		"PinType": "Led",
+		"PinDescription": "General purpose led",
+	},
+	{
+		"PinName": "GND",
+		"PinType": "485",
+		"PinDescription": "GND pin for the 485 port ",
+	},
+	{
+		"PinName": "A",
+		"PinType": "485",
+		"PinDescription": "A pin for the 485 port ",
+	},
+	{
+		"PinName": "B",
+		"PinType": "485",
+		"PinDescription": "B pin for the 485 port ",
+	},
+	{
+		"PinName": "RX",
+		"PinType": "Led",
+		"PinDescription": "Reception indicator led",
+	},
+	{
+		"PinName": "TX",
+		"PinType": "Led",
+		"PinDescription": "Transmission indicator led",
+	}
+],
+"Simulation":"DRN1285.dll",
+
+"features":[
+				"Emic bus compatible.",
+				"Size:7x2cm",
+				"Mounting type Holder Riel DIN.",
+				"Temperature range -25ºC a 80ºC.",
+				],
+"applications":["Data logger.",
+				"IoT.",
+				"Debuggin.",
+				"Power Supply.",
+				],
+"KeyWord":[
+			"gas",
+			"CO",
+			"NOx",
+			"industrial"
+			]
+}

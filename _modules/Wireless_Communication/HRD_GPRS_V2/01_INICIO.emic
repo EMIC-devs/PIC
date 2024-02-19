@@ -1,0 +1,20 @@
+#define nombreModulo "HRD_Bluetooth"
+#addToMacro(UC_FAMILY,pic24fj64ga002)
+//--------------Hardware Config---------------------
+#newRFIcode(_pcb\pcb.emic,pcb=HRD_SIM800L_V2.0)
+//---------------------------------------------------
+
+#define proveedorGprs claro
+
+//------------- Driver Config -----------------------
+#newRFIcode(_api\Indicators\LEDs\led.emic)
+#newRFIcode(_api\Timer\Timer_API_V1.emic)
+#newRFIcode(_api\EMICbus\emicBus.emic)
+#newRFIcode(_api\Wireless_Communication\GPRS\gprs.v2.0.0.emic,version="SIM800L",puerto=1,socketName=GPRS)
+#newRFIcode(_api\TCP\TCP_Client\TCP_api.v2.0.0.emic,socketName=GPRS)
+#newRFIcode(_api\System\System.emic)
+
+//---------------------------------------------------
+
+#include "_main/baremetal/main.emic"
+

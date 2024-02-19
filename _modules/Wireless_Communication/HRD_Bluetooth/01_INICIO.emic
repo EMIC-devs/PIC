@@ -1,0 +1,16 @@
+#define nombreModulo "HRD_Bluetooth"
+#addToMacro(UC_FAMILY,pic24fj64ga002)
+//--------------Hardware Config---------------------
+#newRFIcode(_pcb\pcb.emic,pcb=HRD_BLUETOOTH_V1.0)
+//---------------------------------------------------
+
+//------------- Driver Config -----------------------
+#newRFIcode(_api\Indicators\LEDs\led.emic)
+#newRFIcode(_api\Timer\Timer_API_V1.emic)
+#newRFIcode(_api\Bluetooth\Bluetooth_v1.0.0.emic,puerto=1,nombre=,baud=38400,bufferIn=512,bufferOut=512,frameLf='\n')
+#newRFIcode(_api\EMICbus\emicBus.emic)
+#newRFIcode(_api\System\System.emic)
+//---------------------------------------------------
+
+#include "_main/baremetal/main.emic"
+

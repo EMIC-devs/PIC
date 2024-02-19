@@ -1,0 +1,14 @@
+#define nombreModulo "HRD_Balanza"
+#addToMacro(UC_FAMILY,pic24fj64ga002)
+//--------------Hardware Config---------------------
+#newRFIcode(_pcb\pcb.emic,pcb=HRD_Celda_V1)
+
+//------------- Driver Config -----------------------
+#newRFIcode(_api\Indicators\LEDs\led.emic)
+#newRFIcode(_api\Timer\Timer_API_V1.emic)
+#newRFIcode(_api\Sensors\LoadCell\v0.4\Balanza.emic)
+#newRFIcode(_api\EMICbus\emicBus.emic)
+#newRFIcode(_api\System\System.emic)
+
+//---------------------------------------------------
+#include "_main/baremetal/main.emic"

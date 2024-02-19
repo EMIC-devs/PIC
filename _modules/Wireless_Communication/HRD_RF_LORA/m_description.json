@@ -1,0 +1,71 @@
+{
+"type":"gcc",
+"toolTip":"Radio transmitter at 434MHz frequency. Modulation LoRa",
+"description":"The HRD_LORA module is a radio frequency transmitter, that allows data transmission over long distances with very good noise immunity.",
+"Sizes":"TBD",
+"ImageFile":"blz1.gif",
+"IconFile":"TBD",
+"Mounting":"Holder Riel DIN",
+"Table":[
+	{
+		"Name": "VccMax",
+		"Value": "7V"
+	},
+	{
+		"Name": "VccTyp",
+		"Value": "5V"
+	},
+	{
+		"Name":"VccMin",
+		"Value":"4V"
+	},
+	{
+		"Name":"IccMax",
+		"Value":"120mA"
+	}
+	],
+
+"HardwareDescription":[
+	{
+		"PinName": "J2,J3",
+		"PinType": "I2C",
+		"PinDescription": "EMIC connector",
+	},
+	{
+		"PinName": "RX",
+		"PinType": "Led",
+		"PinDescription": "Reception indicator led",
+	},
+	{
+		"PinName": "TX",
+		"PinType": "Led",
+		"PinDescription": "Transmission indicator led",
+	},
+	{
+		"PinName": "ANTEN",
+		"PinType": "Antenna",
+		"PinDescription": "SMA 434Mhz antenna connector",
+	}
+],
+
+"Simulation":"DRN1285.dll",
+"features":[
+				"Size: 7x2cm",
+				"EMIC bus compatible.",
+				"+20 dBm - 100 mW Power Output Capability.",
+				"Mountig type Holder Riel DIN.",
+				"Temperature range -25ºC a 80ºC."
+				],
+"applications":[
+				"Industrial wireless communication.",
+				"IOT wireless communication.",
+				"Low power telemetri.",
+				"Industrial remote control."
+				],
+"keyWord":[
+			"RF",
+			"LoRa",
+			"434",
+			"low power"
+			]
+}
