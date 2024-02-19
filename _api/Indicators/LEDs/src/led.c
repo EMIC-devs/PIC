@@ -3,8 +3,6 @@
 #include "inc/gpio.h"
 #include "inc/systemTimer.h"
 
-#define timeStamp getSystemMilis()
-
 void LEDs_.{name}._init (void)
 {
 	HAL_GPIO_PinCfg(.{pin}., GPIO_OUTPUT);
@@ -47,7 +45,7 @@ void LEDs_.{name}._blink(uint16_t timeOn, uint16_t period, uint16_t times)
 	blkLed_timerOn = timeOn; 
 	blkLed_period = period; 
 	blkLed_times = times;
-	blkLed_tStamp = timeStamp;
+	blkLed_tStamp = getSystemMilis();
 }
 EMIC:endif
 
@@ -56,7 +54,7 @@ void LEDs_.{name}._poll ()
 {
 	if (blkLed_period > 0)
 	{
-		if (blkLed_tStamp + blkLed_period < timeStamp)
+		if ( getSystemMilis() - blkLed_tStamp > blkLed_period )
 		{
 			if (blkLed_times > 0)
 			{
@@ -72,7 +70,7 @@ void LEDs_.{name}._poll ()
 				blkLed_tStamp = timeStamp;
 			}
 		}
-		else if (blkLed_tStamp + blkLed_timerOn < timeStamp)
+		else if ( getSystemMilis() - blkLed_tStamp > blkLed_timerOn )
 		{
 			HAL_GPIO_PinSet(.{pin}., GPIO_LOW);
 		}

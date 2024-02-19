@@ -1,0 +1,32 @@
+//RFI TAG:driverName=TIMER
+
+/**
+* @fn void setTime.{name}.(uint16_t time,char mode);
+* @alias setTime.{name}.
+* @brief Time in milliseconds for the event to be generated. 
+* @param time Time in milliseconds.
+* @param mode T:timer, A:auto-reload.
+* @return Nothing
+*/
+
+
+/**
+* @fn extern void etOut.{name}.(void);
+* @alias timeOut.{name}.
+* @brief When the time configured in the timer1 was established. 
+* @return Nothing
+*/
+
+EMIC:setInput(DEV:_drivers/SystemTimer/systemTimer.emic)
+
+EMIC:setOutput(TARGET:main.c)
+	EMIC:include(inc/timer_api.h|inc/timer_api.{name}..h,name=.{name}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:timer_api.{name}..c)
+	EMIC:setInput(src/timer_api.c,name=.{name}.)
+EMIC:restoreOutput
+
+EMIC:define(c_modules.timer_api.{name}.,timer_api.{name}..c)
+
+

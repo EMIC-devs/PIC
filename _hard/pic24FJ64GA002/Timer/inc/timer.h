@@ -18,6 +18,7 @@
 /*==================[external data declaration]==============================*/
 
 typedef void (*Timer4_Callbak_t)(void);
+
 void timer4_init (Timer4_Callbak_t);
 
 /*==================[end of file]============================================*/

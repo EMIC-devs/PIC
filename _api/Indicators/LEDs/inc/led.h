@@ -5,7 +5,7 @@ EMIC:define(inits.LEDs_,LEDs_.{name}._init)
 
 EMIC:ifdef usedFunction.LEDs_.{name}._blink
 void LEDs_.{name}._poll (void);
-EMIC:define(polls.LEDs_,LEDs_.{name}._poll)
+EMIC:define(polls.LEDs_.{name}.,LEDs_.{name}._poll)
 EMIC:endif
 
 EMIC:ifdef usedFunction.LEDs_.{name}._state

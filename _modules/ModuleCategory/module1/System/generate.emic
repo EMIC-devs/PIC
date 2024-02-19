@@ -10,6 +10,10 @@ EMIC:setOutput(TARGET:generate.txt)
     EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=ledAzul,pin=Led1)
     EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=ledRojo,pin=Led2)
 
+    EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
+    EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=2)
+
+    //------------- Driver Config -----------------------
     EMIC:setInput(DEV:_main/baremetal/main.emic)
 
     EMIC:setOutput(TARGET:nbproject/configurations.xml)
