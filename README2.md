@@ -1,7 +1,7 @@
 # Bienvenido al repo de desarrollo colaborativo - EMIC
 ## Una iniciativa para compartir experiencias y mejorar la productividad de programadores de sistemas embebidos.
 
-### ¿Que es EMIC?
+### ¿ Que es EMIC ?
 
 EMIC significa Electrónica Modular Inteligente Colaborativa. Está compuesto por: un conjunto de funciones y drivers, un editor de script simple e intuitivo que junto con un sistema de integración, puede crear código listo para compilar o ejecutar.
 
