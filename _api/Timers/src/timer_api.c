@@ -19,7 +19,7 @@ EMIC:endif
 EMIC:ifdef usedEvent.etOut.{name}.
 void timer.{name}._Poll(void)
 {
-	if ( setPoint_ms > 0 &&  getSystemMilis() - time_mssetPoint_ms)
+	if ( setPoint_ms > 0 &&  getSystemMilis() - time_ms > setPoint_ms)
 	{	
 		if(modo == 'T')
 		{
