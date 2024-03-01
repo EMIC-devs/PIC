@@ -20,7 +20,7 @@ EMIC:setOutput(TARGET:inc/spi.{port}..h)
 EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:src/spi.{port}..c)
-	EMIC:setInput(.{configuracion}./src/spi.c,,port=.{port}.,pin=.{pin}.)
+	EMIC:setInput(.{configuracion}./src/spi.c,port=.{port}.,pin=.{pin}.)
 EMIC:restoreOutput
 
 EMIC:endif

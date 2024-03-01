@@ -23,12 +23,9 @@
 
 /*==================[internal functions declaration]=========================*/
 
-/*==================[internal data definition]===============================*/
-
 /*==================[external data definition]===============================*/
 
 /*==================[internal functions definition]==========================*/
-
 
 /*==================[external functions definition]==========================*/
 #ifdef ISR_SPI.{port}._CALLBACK
