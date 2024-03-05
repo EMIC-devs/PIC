@@ -14,6 +14,8 @@
 /*==================[inclusions]=============================================*/
 #include "inc/gpio.h"
 #include "inc/UART.{port}..h"
+#include "inc/streamIn.h"
+#include "inc/streamOut.h"
 
 /*==================[internal data definition]===============================*/
 static UART_FIFO   UART.{port}._IN_fifo;

@@ -17,6 +17,9 @@ EMIC:define(_PIC_UART.{port}._EMIC,true)
 
 EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
 
+EMIC:setInput(DEV:_system/Stream/streamIn.emic)
+EMIC:setInput(DEV:_system/Stream/streamOut.emic)
+
 EMIC:setOutput(TARGET:inc/UART.{port}..h)
 	EMIC:setInput(inc/UARTX.h,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
 EMIC:restoreOutput

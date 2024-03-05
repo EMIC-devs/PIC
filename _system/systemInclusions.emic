@@ -1,0 +1,13 @@
+EMIC:ifndef SYSTEM_INCLUSIONS_EMIC
+EMIC:define(SYSTEM_INCLUSIONS_EMIC,true)
+
+
+EMIC:setOutput(TARGET:inc/conversionFunctions.h)
+	EMIC:setInput(inc/conversionFunctions.h)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:src\conversionFunctions.c)
+	EMIC:setInput(src\conversionFunctions.c)
+EMIC:restoreOutput
+
+EMIC:endif

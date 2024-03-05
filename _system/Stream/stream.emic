@@ -1,0 +1,12 @@
+EMIC:ifndef _STREAM_EMIC
+EMIC:define(_STREAM_EMIC,true)
+
+EMIC:setOutput(TARGET:inc/stream.h)
+	EMIC:setInput(inc/stream.h)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:src/stream.c)
+	EMIC:setInput(src/stream.c)
+EMIC:restoreOutput
+
+EMIC:endif
