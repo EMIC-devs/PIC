@@ -58,11 +58,11 @@ EMIC:define(_USB_API_EMIC,true)
 EMIC:setInput(DEV:_drivers/USB/.{driver}./.{driver}..emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
 
 EMIC:setOutput(TARGET:inc/USB_API.h)
-	EMIC:setInput(inc/USB_API.h,port=.{port}.,frameLf=.{USBFrameLf}.)
+	EMIC:setInput(inc/USB_API.h,port=.{port}.,frameLf=.{frameLf}.)
 EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:src/USB_API.c)
-	EMIC:setInput(src/USB_API.c,port=.{port}.,frameLf=.{USBFrameLf}.)
+	EMIC:setInput(src/USB_API.c,port=.{port}.,frameLf=.{frameLf}.)
 EMIC:restoreOutput
 
 

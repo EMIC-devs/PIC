@@ -25,7 +25,7 @@ EMIC:define(_EMICBUS_EMIC_,true)
     EMIC:setInput(DEV:_drivers/I2C/I2C_driver.emic,port=.{port}.)
 
     EMIC:setOutput(TARGET:inc/EMICBus.h)
-        EMIC:setInput(inc\EMICBus,port=.{port}.)
+        EMIC:setInput(inc\EMICBus.h,port=.{port}.)
     EMIC:restoreOutput
 
     EMIC:setOutput(TARGET:src/EMICBus.c)

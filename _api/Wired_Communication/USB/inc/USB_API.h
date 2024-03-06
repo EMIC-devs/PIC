@@ -16,7 +16,7 @@
 #define _USB_API_H_
 
 #if USBprot=="EMIC_message"
-    #define USBFrameLf '.{USBFrameLf}.'
+    #define USBFrameLf '.{frameLf}.'
 #endif
 
 void USB_Init(void);

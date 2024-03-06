@@ -1,5 +1,5 @@
-EMIC:ifndef __PIC_I2C.{puerto}._EMIC__
-EMIC:define(__PIC_I2C.{puerto}._EMIC__,true)
+EMIC:ifndef __PIC_I2C.{port}._EMIC__
+EMIC:define(__PIC_I2C.{port}._EMIC__,true)
 
     EMIC:setOutput(TARGET:inc/I2C.{port}..h)
         EMIC:setInput(inc\I2C.h,port=.{port}.)

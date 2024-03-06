@@ -12,7 +12,7 @@
   
  ******************************************************************************/
 #include "inc/gpio.h"
-#include "inc/mcp2200.h"
+#include "inc/MCP2200.h"
 
 void Init_USBDriver()
 {
