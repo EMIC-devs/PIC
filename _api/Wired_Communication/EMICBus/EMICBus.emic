@@ -19,9 +19,9 @@ EMIC:define(_EMICBUS_EMIC_,true)
 * @param msg message payload
 */
 
-    EMIC:setInput(DEV:_system/Stream/stream.emic)
-    EMIC:setInput(DEV:_system/Stream/streamIn.emic)
-    EMIC:setInput(DEV:_system/Stream/streamOut.emic)
+    //EMIC:setInput(DEV:_system/Stream/stream.emic)
+    //EMIC:setInput(DEV:_system/Stream/streamIn.emic)
+    //EMIC:setInput(DEV:_system/Stream/streamOut.emic)
     //EMIC:setInput(DEV:_drivers/I2C/I2C_driver.emic,port=.{port}.,frameID=.{frameID}.)
 
     EMIC:setOutput(TARGET:inc/EMICBus.h)
