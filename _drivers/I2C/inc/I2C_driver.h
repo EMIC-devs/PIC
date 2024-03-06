@@ -32,6 +32,15 @@ enum{
 
 #define i2c_frame_indentifier .{frameID}.
 
+#ifndef MAX_I2C_IN
+#define MAX_I2C_IN     512
+#endif
+#ifndef MAX_I2C_OUT
+#define MAX_I2C_OUT    512
+#endif
+
+#define     FrameQty        16
+
 static unsigned char i2cInDataBuffer[MAX_I2C_IN];
 static unsigned char i2cOutDataBuffer[MAX_I2C_OUT];
 

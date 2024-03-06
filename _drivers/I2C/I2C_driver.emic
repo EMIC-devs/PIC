@@ -1,14 +1,14 @@
-EMIC:ifndef _DRIVER_GPIO_EMIC_
-EMIC:define(_DRIVER_GPIO_EMIC_,true)
+EMIC:ifndef I2C_DRIVER_EMIC_
+EMIC:define(I2C_DRIVER_EMIC_,true)
 
     EMIC:setInput(DEV:_hal/I2C/I2C.emic,port=.{port}.)
 
     EMIC:setOutput(TARGET:inc/I2C.{port}._driver.h)
-        EMIC:setInput(inc\I2C_driver.h,port=.{port}.)
+        EMIC:setInput(inc\I2C_driver.h,port=.{port}.,frameID=.{frameID}.)
     EMIC:restoreOutput
 
     EMIC:setOutput(TARGET:src/I2C.{port}._driver.c)
-        EMIC:setInput(src\I2C_driver.c,port=.{port}.)
+        EMIC:setInput(src\I2C_driver.c,port=.{port}.,frameID=.{frameID}.)
     EMIC:restoreOutput
 
 EMIC:endif
