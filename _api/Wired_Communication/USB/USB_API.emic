@@ -14,44 +14,9 @@
 
  ******************************************************************************/
 EMIC:ifndef _USB_API_EMIC
-EMIC:define(_EMICBUS_EMIC_,true)
+EMIC:define(_USB_API_EMIC,true)
 
-EMIC:define(USBprot,EMIC_message)
 
-/*xRFI JSon
-{
-	'Nombre': 'USBprot',
-	'Tipo' : 'Configurator',
-	'subtype' : 'str',
-	'title': 'Power on Dynamometer',
-	"InnerHTML":"
-	<fieldset>
-		<legend>Select USB Protocol:</legend>
-		<div title='Send and receive EMIC messages'><input type='radio' required name='USBprot' id='USBprot_1' value='`EMIC_message`' checked ><label for='USBprot_1'>EMIC message</label></input></div>
-		<div title='Send and receive lines of text that end with a special character'><input type='radio' required name='USBprot' id='USBprot_2' value='`TEXT_line`'><label for='USBprot_2'>TEXT line</label></input></div>
-		<div style='opacity: 0.4;' title='(not implemented)'><input style='pointer-events: none;' type='radio' required name='USBprot' id='USBprot_3' value='`STREAM`'><label for='USBprot_3'>Binary</label></input></div>
-	</fieldset>
-	"
-}
-*/
-
-EMIC:if(USBprot=="TEXT_line")
-/*RFI JSon
-{
-	'Nombre': 'USB end line',
-	'Tipo' : 'ConfigDynamic',
-	'title': 'set uart end line',
-	"InnerHTML":"
-	<fieldset>
-		<legend>USB rcv. end line:</legend>
-		<input type='text' required name='USBFrameLf' value='0x0A'>
-	</fieldset>
-	"
-}
-*/
-EMIC:endif
-
-EMIC:if(USBprot=="EMIC_message")
 /**
 * @fn printf pUSB(concat tag,concat msg);
 * @alias Send
@@ -61,46 +26,6 @@ EMIC:if(USBprot=="EMIC_message")
 * @param msg Contenido del mensaje
 */
 
-EMIC:else
-/*RFI JSon
-{
-	'Nombre': 'pUSB',
-	'NombreToolBox': 'Send',
-	'Tipo' : 'SistemFnc',
-	'title': 'Send a TEXT Line through the USB port',
-	'returnInfo': {'type':'','tooltip':'Nothing'},
-	'parameters': [
-					{'name': 'Msg',
-					'tooltip': 'String to send',
-					'required': 'true',
-					'type': 'str'}],
-	'InnerHTML':"
-		<div class='lineaDeCodigo' originalclass='funcion' originalid='pUSB' draggable='true' ondragstart='drag_linea(event)'>
-			USB_.send(<div title='String to send' class='parametroDiv'></div>)
-		</div>"
-}
-*/
-EMIC:endif
-
-EMIC:if(USBprot=="STREAM")
-
-/*RFI JSon
-{
-	'Nombre': 'gUSB',
-	'NombreToolBox': 'Read',
-	'Tipo' : 'SistemFnc',
-	'title': 'Read a string received from USB port',
-	'returnInfo': {'type':'string','tooltip':'Value read from USB port'},
-	'parameters': [],
-	'InnerHTML':"
-		<div class='lineaDeCodigo' originalclass='funcion' originalid='gUSB' draggable='true' ondragstart='drag_linea(event)'>
-			USB.read()
-		</div>"
-}
-*/
-EMIC:endif
-
-EMIC:if(USBprot=="EMIC_message")
 
 /**
 * @fn extern void eUSB(char* tag,const streamIn_t* const msg);
@@ -110,26 +35,6 @@ EMIC:if(USBprot=="EMIC_message")
 * @param tag Tag to identify the message
 * @param msg message payload
 */
-
-EMIC:endif
-
-EMIC:if(USBprot=="TEXT_line")
-/*RFI JSon
-{
-	'Nombre': 'eUSB',
-	'NombreToolBox': 'Reception',
-	'Tipo' : 'SistemEvt',
-	'title': 'When it receives a string from USB port',
-	'returnInfo': {'type':'','tooltip':'Nothing'},
-	'parameters': [],
-	'instancia':'{
-		"NombreWorkBox":"Event.USB.Reception",
-		"definir":"event_eUSB_active",
-		"parametros": [{"value":"Message","title":"message payload"}]
-		}'
-}
-*/
-EMIC:endif
 
 /*RFI JSon
 {
