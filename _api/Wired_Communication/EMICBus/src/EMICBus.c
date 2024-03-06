@@ -9,6 +9,7 @@
 
   @version  v0.0.1
  ******************************************************************************/
+ #include "inc/EMICBus.h"
  #include "inc/I2C_driver.h"
  #include "inc/streamIn.h"
  #include "inc/stream.h"
