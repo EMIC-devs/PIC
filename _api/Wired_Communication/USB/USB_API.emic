@@ -14,9 +14,11 @@
 
  ******************************************************************************/
 EMIC:ifndef _USB_API_EMIC
-EMIC:define(_USB_API_EMIC,true)
+EMIC:define(_EMICBUS_EMIC_,true)
 
-/*RFI JSon
+EMIC:define(USBprot,EMIC_message)
+
+/*xRFI JSon
 {
 	'Nombre': 'USBprot',
 	'Tipo' : 'Configurator',
