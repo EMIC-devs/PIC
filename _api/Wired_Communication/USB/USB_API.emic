@@ -148,7 +148,7 @@ EMIC:endif
 	EMIC:setInput(DEV:_system/Stream/stream.emic)
     EMIC:setInput(DEV:_system/Stream/streamIn.emic)
     EMIC:setInput(DEV:_system/Stream/streamOut.emic)
-EMIC:setInput(DEV:_drivers/USB/_{driver}_/_{driver}_.emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
+EMIC:setInput(DEV:_drivers/USB/.{driver}./.{driver}..emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
 
 EMIC:setOutput(TARGET:inc/USB_API.h)
 	EMIC:setInput(inc/USB_API.h,port=.{port}.,frameLf=.{USBFrameLf}.)
