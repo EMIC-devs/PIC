@@ -1,3 +1,5 @@
+//RFI TAG:driverName=EMICBus
+
 EMIC:ifndef _EMICBUS_EMIC_
 EMIC:define(_EMICBUS_EMIC_,true)
 
@@ -24,11 +26,11 @@ EMIC:define(_EMICBUS_EMIC_,true)
     EMIC:setInput(DEV:_system/Stream/streamOut.emic)
     EMIC:setInput(DEV:_drivers/I2C/I2C_driver.emic,port=.{port}.,frameID=.{frameID}.)
 
-    EMIC:setOutput(TARGET:inc/EMICBus.h)
+    EMIC:setOutput(TARGET:main.c)
         EMIC:setInput(inc\EMICBus.h,port=.{port}.)
     EMIC:restoreOutput
 
-    EMIC:setOutput(TARGET:src/EMICBus.c)
+    EMIC:setOutput(TARGET:EMICBus.c)
         EMIC:setInput(src\EMICBus.c,port=.{port}.)
     EMIC:restoreOutput
 

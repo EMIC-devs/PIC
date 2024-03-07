@@ -4,11 +4,12 @@ EMIC:define(I2C_DRIVER_EMIC_,true)
     EMIC:setInput(DEV:_hal/I2C/I2C.emic,port=.{port}.)
 
     EMIC:setOutput(TARGET:inc/I2C.{port}._driver.h)
-        EMIC:setInput(inc\I2C_driver.h,port=.{port}.,frameID=.{frameID}.)
+        EMIC:include(inc\I2C_driver.h|inc/I2C.{port}._driver.h,port=.{port}.,frameID=.{frameID}.)
     EMIC:restoreOutput
 
-    EMIC:setOutput(TARGET:src/I2C.{port}._driver.c)
+    EMIC:setOutput(TARGET:I2C.{port}._driver.c)
         EMIC:setInput(src\I2C_driver.c,port=.{port}.,frameID=.{frameID}.)
     EMIC:restoreOutput
 
+EMIC:define(c_modules.I2C.{port}._driver,I2C.{port}._driver.c)
 EMIC:endif
