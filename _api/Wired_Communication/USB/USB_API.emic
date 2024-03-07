@@ -61,7 +61,7 @@ EMIC:setOutput(TARGET:main.c)
 	EMIC:include(inc/USB_API.h,port=.{port}.,frameLf=.{frameLf}.)
 EMIC:restoreOutput
 
-EMIC:setOutput(TARGET:src/USB_API.c)
+EMIC:setOutput(TARGET:USB_API.c)
 	EMIC:setInput(src/USB_API.c,port=.{port}.,frameLf=.{frameLf}.)
 EMIC:restoreOutput
 

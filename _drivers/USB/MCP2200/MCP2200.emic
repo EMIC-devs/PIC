@@ -8,7 +8,7 @@ EMIC:setOutput(TARGET:inc/MCP2200.h)
 	EMIC:setInput(inc/mcp2200.h,port=.{port}.)
 EMIC:restoreOutput
 
-EMIC:setOutput(TARGET:src/MCP2200.c)
+EMIC:setOutput(TARGET:MCP2200.c)
 	EMIC:setInput(src/mcp2200.c,port=.{port}.)
 EMIC:restoreOutput
 

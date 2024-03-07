@@ -24,7 +24,7 @@ EMIC:setOutput(TARGET:main.c)
 	EMIC:include(inc/UARTX.h|inc/UART.{port}..h,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
 EMIC:restoreOutput
 
-EMIC:setOutput(TARGET:src/UART.{port}..c)
+EMIC:setOutput(TARGET:UART.{port}..c)
 	EMIC:setInput(src/UARTX.c,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
 EMIC:restoreOutput
 
