@@ -13,6 +13,8 @@
 #ifndef _UART.{port}._H_
 #define _UART.{port}._H_
 
+#include "inc/streamIn.h"
+#include "inc/streamOut.h"
 /*==================[macros and definitions]=================================*/
 #define UART.{port}._MAX_BUFFER_SIZE .{BufferSize}.
 
@@ -47,6 +49,13 @@ void UART.{port}._ON(void);
 void UART.{port}._Poll(void);
 EMIC:define(polls.UART.{port}._Poll,UART.{port}._Poll)
 
+char UART.{port}._IN_pop(void);
+
+uint16_t UART.{port}._IN_count(void);
+
+void UART.{port}._OUT_push(char d);
+
+uint16_t UART.{port}._OUT_count(void);
 
 const streamIn_t  streamIn_Uart.{port}.  = {UART.{port}._IN_pop, UART.{port}._IN_count};
 const streamOut_t streamOut_Uart.{port}. = {UART.{port}._OUT_push, UART.{port}._OUT_count};

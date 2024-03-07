@@ -14,8 +14,7 @@
 /*==================[inclusions]=============================================*/
 #include "inc/gpio.h"
 #include "inc/UART.{port}..h"
-#include "inc/streamIn.h"
-#include "inc/streamOut.h"
+#include <xc.h>
 
 /*==================[internal data definition]===============================*/
 static UART_FIFO   UART.{port}._IN_fifo;
@@ -235,15 +234,15 @@ void UART.{port}._init(void)
 	__builtin_write_OSCCONL(OSCCON & 0xBF);
 	/* Configure Input Functions (Table 10-2)) */
 
-    RPOUT_U.{port}._TX =_RPOUT_U.{port}.TX;
-    _U.{port}.RXR = RPIN_U.{port}._RX;
+    RPOUT_.{name}._TX =_RPOUT_U.{port}.TX;
+    _U.{port}.RXR = RPIN_.{name}._RX;
 
-	#ifdef RPIN_U.{port}.CTS
-		_U.{port}.CTSR = RPIN_U.{port}._CTS
+	#ifdef RPIN_.{name}._CTS
+		_U.{port}.CTSR = RPIN_.{name}._CTS
 	#endif
 
-	#ifdef RPOUT_U.{port}.RTS
-		RPOUT_U.{port}._RTS = _RPOUT_U.{port}.RTS
+	#ifdef RPOUT_.{name}._RTS
+		RPOUT_.{name}._RTS = _RPOUT_U.{port}.RTS
 	#endif
 
 	/* Configure Output Functions (Table 10-3) */

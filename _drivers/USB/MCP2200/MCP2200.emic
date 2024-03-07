@@ -2,7 +2,7 @@ EMIC:ifndef _MCP2200_EMIC
 EMIC:define(_MCP2200_EMIC,true)
 
 EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
-EMIC:setInput(DEV:_hal/UART/UART.emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
+EMIC:setInput(DEV:_hal/UART/UART.emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=.{name}.)
 
 EMIC:setOutput(TARGET:inc/MCP2200.h)
 	EMIC:setInput(inc/mcp2200.h,port=.{port}.)

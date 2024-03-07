@@ -21,10 +21,6 @@
 #define RPIN_U.{port}._CTS 	RPIN_MCP2200_CTS
 #define RPOUT_U.{port}._RTS	RPOUT_MCP2200_RTS
 
-#if USBprot=="EMIC_message"
-    #define USBFrameLf '\n'
-#endif
-
 void Init_USBDriver(void);
 void Poll_USBDriver(void);
 

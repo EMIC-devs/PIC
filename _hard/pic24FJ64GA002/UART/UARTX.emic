@@ -21,11 +21,11 @@ EMIC:setInput(DEV:_system/Stream/streamIn.emic)
 EMIC:setInput(DEV:_system/Stream/streamOut.emic)
 
 EMIC:setOutput(TARGET:main.c)
-	EMIC:include(inc/UARTX.h|inc/UART.{port}..h,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
+	EMIC:include(inc/UARTX.h|inc/UART.{port}..h,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=.{name}.)
 EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:UART.{port}..c)
-	EMIC:setInput(src/UARTX.c,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
+	EMIC:setInput(src/UARTX.c,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=.{name}.)
 EMIC:restoreOutput
 
 EMIC:define(c_modules.UART.{port}.,UART.{port}..c)

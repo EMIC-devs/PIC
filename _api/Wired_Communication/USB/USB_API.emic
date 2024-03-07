@@ -16,6 +16,7 @@
 EMIC:ifndef _USB_API_EMIC
 EMIC:define(_USB_API_EMIC,true)
 
+EMIC:define(USBprot,EMIC_message)
 
 /**
 * @fn printf pUSB(concat tag,concat msg);
@@ -55,7 +56,7 @@ EMIC:define(_USB_API_EMIC,true)
 	EMIC:setInput(DEV:_system/Stream/stream.emic)
     EMIC:setInput(DEV:_system/Stream/streamIn.emic)
     EMIC:setInput(DEV:_system/Stream/streamOut.emic)
-EMIC:setInput(DEV:_drivers/USB/.{driver}./.{driver}..emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.)
+EMIC:setInput(DEV:_drivers/USB/.{driver}./.{driver}..emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=.{name}.)
 
 EMIC:setOutput(TARGET:main.c)
 	EMIC:include(inc/USB_API.h,port=.{port}.,frameLf=.{frameLf}.)
