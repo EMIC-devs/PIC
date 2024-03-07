@@ -22,7 +22,7 @@ void USB_Init()
 	Init_USBDriver();
 }
 
-#if USBprot=="EMIC_message"
+// #if USBprot=="EMIC_message"
 
 void pUSB(char* format,...)
 {
@@ -37,18 +37,18 @@ void pUSB(char* format,...)
 }
 
 
-#else
-void pUSB(char* msg)
-{
-	char *r;
+// #else
+// void pUSB(char* msg)
+// {
+// 	char *r;
 	
-	for (r = char* msg;*r > 0; r++) 
-	{
-		UARTX.{port}._OUT_push(*r);
-	}
-	UARTX.{port}._OUT_push(USBFrameLf);
-}
-#endif
+// 	for (r = char* msg;*r > 0; r++) 
+// 	{
+// 		UARTX.{port}._OUT_push(*r);
+// 	}
+// 	UARTX.{port}._OUT_push(USBFrameLf);
+// }
+// #endif
 
 void Poll_USB(void)
 {
@@ -57,7 +57,7 @@ void Poll_USB(void)
 
 	if (UART.{port}._peek(&UART.{port}._IN_fifo) == USBFrameLf)
 	{
-		#if USBprot=="EMIC_message"
+		// #if USBprot=="EMIC_message"
 		char tag[20];
 		char d;
 		uint8_t i = 0;
@@ -72,7 +72,7 @@ void Poll_USB(void)
 		tag[i] = 0;
 		
 		eUSB(tag,&streamIn_Uart.{port}.);
-		#endif
+		// #endif
 		
 		
 		

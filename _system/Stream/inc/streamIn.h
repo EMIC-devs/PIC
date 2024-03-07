@@ -14,6 +14,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <xc.h>
+#include "inc/streamOut.h"
+
 typedef struct streamIn_S
 {
   char (*get)(void);
