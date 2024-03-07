@@ -13,7 +13,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
-
+#include <xc.h>
 typedef struct streamIn_S
 {
   char (*get)(void);

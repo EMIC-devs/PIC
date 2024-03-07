@@ -1,6 +1,6 @@
 #include <stdarg.h>
 #include <stdio.h>
-
+#include <xc.h>
 typedef struct streamOut_S
 {
     void (*put)(char);
