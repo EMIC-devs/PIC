@@ -1,12 +1,15 @@
 EMIC:ifndef _STREAMIN_EMIC
 EMIC:define(_STREAMIN_EMIC,true)
 
+EMIC:setInput(DEV:_system/systemInclusions.emic)
+
 EMIC:setOutput(TARGET:inc/streamIn.h)
-	EMIC:setInput(inc/streamIn.h)
+	EMIC:include(inc/streamIn.h)
 EMIC:restoreOutput
 
-EMIC:setOutput(TARGET:src/streamIn.c)
+EMIC:setOutput(TARGET:streamIn.c)
 	EMIC:setInput(src/streamIn.c)
 EMIC:restoreOutput
 
+EMIC:define(c_modules.streamIn,streamIn.c)
 EMIC:endif

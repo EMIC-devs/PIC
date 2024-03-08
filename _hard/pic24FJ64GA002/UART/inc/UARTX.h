@@ -13,8 +13,8 @@
 #ifndef _UART.{port}._H_
 #define _UART.{port}._H_
 
-#include "inc/streamIn.h"
-#include "inc/streamOut.h"
+#include "streamIn.h"
+#include "streamOut.h"
 /*==================[macros and definitions]=================================*/
 #define UART.{port}._MAX_BUFFER_SIZE .{BufferSize}.
 

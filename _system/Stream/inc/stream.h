@@ -1,3 +1,5 @@
+#ifndef _STREAM_H_
+#define _STREAM_H_
 /*************************************************************************//**
 
   @file     stream.h
@@ -10,6 +12,7 @@
 
   @version  v0.0.1   Initial release.
  ******************************************************************************/
+
 #include <xc.h>
 
 typedef struct stream_S
@@ -38,3 +41,5 @@ void streamOpenWriteFrame(stream_t* stream);
 void streamOpenReadFrame(stream_t* stream);
 void streamReOpenReadFrame(stream_t* stream);
 void streamCloseReadFrame(stream_t* stream);
+
+#endif

@@ -12,9 +12,10 @@
  ******************************************************************************/
 
 /*==================[inclusions]=============================================*/
+#include <xc.h>
 #include "inc/gpio.h"
 #include "inc/UART.{port}..h"
-#include <xc.h>
+
 
 /*==================[internal data definition]===============================*/
 static UART_FIFO   UART.{port}._IN_fifo;
@@ -314,7 +315,7 @@ void UART.{port}._ON(void)
  */
 void UART.{port}._Poll(void)
 {
-    if(!UART.{port}._is_empty(&UART.{port}._OUT_fifo) && !U_{puerto}_STAbits.UTXBF)
+    if(!UART.{port}._is_empty(&UART.{port}._OUT_fifo) && !U.{port}.STAbits.UTXBF)
     {
         U.{port}.TXREG = UART.{port}._pop(&UART.{port}._OUT_fifo);
     }

@@ -1,3 +1,5 @@
+#ifndef _STREAMIN_H_
+#define _STREAMIN_H_
 /*************************************************************************//**
 
   @file     stream.h
@@ -14,7 +16,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <xc.h>
-#include "inc/streamOut.h"
+#include "streamOut.h"
+#include "conversionFunctions.h"
 
 typedef struct streamIn_S
 {
@@ -40,3 +43,4 @@ void streamIn_t_ptr_to_ascii(streamIn_t*,char*,int);
 
 void sendDataToStream(const streamOut_t* stream, char* format_,va_list arg);
 
+#endif

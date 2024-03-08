@@ -13,6 +13,7 @@
  ******************************************************************************/
 #include "inc/gpio.h"
 #include "inc/MCP2200.h"
+#include "inc/UART.{port}..h"
 
 void Init_USBDriver()
 {
@@ -22,7 +23,7 @@ void Init_USBDriver()
     HAL_GPIO_PinCfg(MCP2200_RST,GPIO_OUTPUT);
     HAL_GPIO_PinSet(MCP2200_RST,GPIO_HIGH);
 	#endif
-	UARTX.{port}._init();
+	UART.{port}._init();
 }
 
 
