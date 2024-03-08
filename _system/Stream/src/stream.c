@@ -1,3 +1,4 @@
+#include <xc.h>
 #include "inc/stream.h"
 
 void streamPushCtr(stream_t* stream, unsigned char dato)

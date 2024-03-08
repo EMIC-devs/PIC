@@ -13,7 +13,7 @@
   @version  v0.0.1   Initial release.
  ******************************************************************************/
 
-#include <xc.h>
+
 
 typedef struct stream_S
 {

@@ -13,12 +13,6 @@
   @version  v0.0.1   Initial release.
  ******************************************************************************/
 
-#include <stdarg.h>
-#include <stdio.h>
-#include <xc.h>
-#include "streamOut.h"
-#include "conversionFunctions.h"
-
 typedef struct streamIn_S
 {
   char (*get)(void);
