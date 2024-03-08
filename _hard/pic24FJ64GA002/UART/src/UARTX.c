@@ -18,8 +18,7 @@
 
 
 /*==================[internal data definition]===============================*/
-static UART_FIFO   UART.{port}._IN_fifo;
-static UART_FIFO   UART.{port}._OUT_fifo;
+
 
 /*==================[public functions definition]==========================*/
 /**
@@ -29,7 +28,7 @@ static UART_FIFO   UART.{port}._OUT_fifo;
  *
  * @param fifo Pointer to the UART FIFO to be initialized.
  */
-void UART.{port}._init_fifo(const UART_FIFO *fifo) 
+void UART.{port}._init_fifo(UART_FIFO *fifo) 
 {
     fifo->start = 0;
     fifo->end = 0;
@@ -44,7 +43,7 @@ void UART.{port}._init_fifo(const UART_FIFO *fifo)
  * @param fifo Pointer to the UART FIFO to be checked.
  * @return Returns 1 if the FIFO is empty, 0 otherwise.
  */
-uint16_t UART.{port}._is_empty(const UART_FIFO *fifo)
+uint16_t UART.{port}._is_empty(UART_FIFO *fifo)
 {
     return (fifo->count == 0);
 }
@@ -57,7 +56,7 @@ uint16_t UART.{port}._is_empty(const UART_FIFO *fifo)
  * @param fifo Pointer to the UART FIFO to be checked.
  * @return Returns 1 if the FIFO is full, 0 otherwise.
  */
-uint8_t UART.{port}._is_full(const UART_FIFO *fifo) 
+uint8_t UART.{port}._is_full(UART_FIFO *fifo) 
 {
     return (fifo->count == UART.{port}._MAX_BUFFER_SIZE);
 }
@@ -70,7 +69,7 @@ uint8_t UART.{port}._is_full(const UART_FIFO *fifo)
  * @param fifo Pointer to the UART FIFO from which the count will be obtained.
  * @return Number of elements in the UART FIFO.
  */
-uint16_t UART.{port}._count(const UART_FIFO *fifo)
+uint16_t UART.{port}._count(UART_FIFO *fifo)
 {
 	return fifo->count;
 }
@@ -83,7 +82,7 @@ uint16_t UART.{port}._count(const UART_FIFO *fifo)
  * @param fifo Pointer to the UART FIFO where the data will be pushed.
  * @param data The byte of data to be pushed into the FIFO.
  */
-void UART.{port}._push(const UART_FIFO *fifo, char data)
+void UART.{port}._push(UART_FIFO *fifo, char data)
 {
     _U.{port}.RXIE = 0;
     _U.{port}.TXIE = 0;
@@ -106,7 +105,7 @@ void UART.{port}._push(const UART_FIFO *fifo, char data)
  * @param fifo Pointer to the UART FIFO from which the data will be popped.
  * @return The byte of data popped from the FIFO.
  */
-char UART.{port}._pop(const UART_FIFO *fifo) 
+char UART.{port}._pop(UART_FIFO *fifo) 
 {
     _U.{port}.RXIE = 0;
     _U.{port}.TXIE = 0;
@@ -127,7 +126,7 @@ char UART.{port}._pop(const UART_FIFO *fifo)
  *
  * @return The last received value in the UART input FIFO.
  */
-char UART.{port}._peek(const UART_FIFO *fifo)
+char UART.{port}._peek(UART_FIFO *fifo)
 {
     // Calculate the index of the last element in the FIFO
     uint16_t last_index = (fifo->start + fifo->count - 1) % UART.{port}._MAX_BUFFER_SIZE;
@@ -239,11 +238,11 @@ void UART.{port}._init(void)
     _U.{port}.RXR = RPIN_.{name}._RX;
 
 	#ifdef RPIN_.{name}._CTS
-		_U.{port}.CTSR = RPIN_.{name}._CTS
+		_U.{port}.CTSR = RPIN_.{name}._CTS;
 	#endif
 
 	#ifdef RPOUT_.{name}._RTS
-		RPOUT_.{name}._RTS = _RPOUT_U.{port}.RTS
+		RPOUT_.{name}._RTS = _RPOUT_U.{port}.RTS;
 	#endif
 
 	/* Configure Output Functions (Table 10-3) */

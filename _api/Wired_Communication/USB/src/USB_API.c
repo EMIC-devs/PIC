@@ -14,6 +14,7 @@
 #include "inc/USB_API.h"
 #include "inc/streamIn.h"
 #include "inc/UART.{port}..h"
+#include "inc/.{driver}.h"
 
 #include <stdarg.h>
 
@@ -32,7 +33,7 @@ void pUSB(char* format,...)
 	sendDataToStream(&streamOut_Uart.{port}.,format,arg);
 
 	va_end(arg);
-	UARTX.{port}._OUT_push(USBFrameLf); 
+	UART.{port}._OUT_push(USBFrameLf); 
 
 }
 
@@ -62,11 +63,11 @@ void Poll_USB(void)
 		char d;
 		uint8_t i = 0;
 	
-		d = UARTX.{port}._IN_pop();
+		d = UART.{port}._IN_pop();
 		while (!UART.{port}._is_empty(&UART.{port}._IN_fifo) && d != '\t' && i < 20)
 		{
 			tag[i++] = d;
-			d = UARTX.{port}._IN_pop();
+			d = UART.{port}._IN_pop();
 		}
 		
 		tag[i] = 0;

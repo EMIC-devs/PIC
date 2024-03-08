@@ -29,15 +29,18 @@ typedef struct {
 uint8_t     UART.{port}._flowControlVar = 0;
 uint8_t     UART.{port}._inverted       = 0;
 
+static UART_FIFO   UART.{port}._IN_fifo;
+static UART_FIFO   UART.{port}._OUT_fifo;
+
 /*==================[public functions definition]==========================*/
 
-uint16_t UART.{port}._count(const UART_FIFO *fifo);
-uint16_t UART.{port}._is_empty(const UART_FIFO *fifo);
-uint8_t UART.{port}._is_full(const UART_FIFO *fifo);
-void UART.{port}._init_fifo(const UART_FIFO *fifo);
-void UART.{port}._push(const UART_FIFO *fifo, char data);
-char UART.{port}._pop(const UART_FIFO *fifo);
-char UART.{port}._peek(const UART_FIFO *fifo);
+uint16_t UART.{port}._count(UART_FIFO *fifo);
+uint16_t UART.{port}._is_empty(UART_FIFO *fifo);
+uint8_t UART.{port}._is_full(UART_FIFO *fifo);
+void UART.{port}._init_fifo(UART_FIFO *fifo);
+void UART.{port}._push(UART_FIFO *fifo, char data);
+char UART.{port}._pop(UART_FIFO *fifo);
+char UART.{port}._peek(UART_FIFO *fifo);
 void UART.{port}._simplexMode(void);
 void UART.{port}._flowControl(uint8_t enabled);
 void UART.{port}._invert(uint8_t invert);

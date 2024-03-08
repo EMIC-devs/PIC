@@ -1,6 +1,7 @@
 #ifndef __CONVERSIONFUNCTIONS_C__
 #define __CONVERSIONFUNCTIONS_C__
 
+#include <xc.h>
 #include "inc/conversionFunctions.h"
 
 float ato_float(char* number)
