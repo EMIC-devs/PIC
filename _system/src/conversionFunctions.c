@@ -2,6 +2,10 @@
 #define __CONVERSIONFUNCTIONS_C__
 
 #include <xc.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
 #include "inc/conversionFunctions.h"
 
 float ato_float(char* number)

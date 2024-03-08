@@ -15,6 +15,7 @@
 #include <xc.h>
 #include "inc/gpio.h"
 #include "inc/UART.{port}..h"
+#include "inc/system.h"
 
 
 /*==================[internal data definition]===============================*/
@@ -330,7 +331,7 @@ void UART.{port}._Poll(void)
 void __attribute__((interrupt(auto_psv))) _U.{port}.TXInterrupt( void )
 {
 	/* Clear TX interrupt flag */
-	U.{port}.TXIF = 0;
+	_U.{port}.TXIF = 0;
 
 	while(UART.{port}._OUT_fifo.count)
 	{
@@ -352,13 +353,13 @@ void __attribute__((interrupt(auto_psv))) _U.{port}.RXInterrupt( void )
 {
 	char d;
    /* Clear RX interrupt flag */
-    U.{port}.TXIF = 0;
+    _U.{port}.TXIF = 0;
 	if(U.{port}.STAbits.OERR)			//If an overflow occurred, clean the flag, otherwise RXREG doesn't update
     {
         U.{port}.STAbits.OERR = 0;	    //TODO: generar evento de error
     } 
 
-	while (U_.{port}.STAbits.URXDA)	    //While there is still data in the register
+	while (U.{port}.STAbits.URXDA)	    //While there is still data in the register
 	{
 		d = U.{port}.RXREG ;  
 		UART.{port}._push(&UART.{port}._IN_fifo, d) ;		//Push data into the input buffer

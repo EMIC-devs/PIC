@@ -14,7 +14,7 @@
 #include "inc/USB_API.h"
 #include "inc/streamIn.h"
 #include "inc/UART.{port}..h"
-#include "inc/.{driver}.h"
+#include "inc/.{driver}..h"
 
 #include <stdarg.h>
 
