@@ -12,7 +12,9 @@
 
  ******************************************************************************/
 #include "inc/USB_API.h"
-#include "inc/streamIn.h"
+#include <xc.h>
+#include "streamOut.h"
+#include "streamIn.h"
 #include "inc/UART.{port}..h"
 #include "inc/.{driver}..h"
 

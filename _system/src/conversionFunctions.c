@@ -2,6 +2,7 @@
 #define __CONVERSIONFUNCTIONS_C__
 
 #include <xc.h>
+#include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>

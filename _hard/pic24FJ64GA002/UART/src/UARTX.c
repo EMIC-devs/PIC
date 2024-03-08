@@ -14,6 +14,8 @@
 /*==================[inclusions]=============================================*/
 #include <xc.h>
 #include "inc/gpio.h"
+#include "streamOut.h"
+#include "streamIn.h"
 #include "inc/UART.{port}..h"
 #include "inc/system.h"
 
@@ -219,7 +221,7 @@ void UART.{port}._bd(uint32_t uartSpeed)
 #endif
 #endif
         default:
-            U.{port}.BRG = ((FCY / (16 * 9600)) - 1);
+            U.{port}.BRG = ((FCY / ((uint16_t)16 * 9600)) - 1);
         break;
     }
 }

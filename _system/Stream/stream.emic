@@ -5,7 +5,7 @@ EMIC:setOutput(TARGET:inc/stream.h)
 	EMIC:include(inc/stream.h)
 EMIC:restoreOutput
 
-EMIC:setOutput(TARGET: stream.c)
+EMIC:setOutput(TARGET:stream.c)
 	EMIC:setInput(src/stream.c)
 EMIC:restoreOutput
 
