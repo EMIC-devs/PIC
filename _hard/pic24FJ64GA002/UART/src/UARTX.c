@@ -14,14 +14,21 @@
 /*==================[inclusions]=============================================*/
 #include <xc.h>
 #include "inc/gpio.h"
-#include "streamOut.h"
-#include "streamIn.h"
+#include "inc/streamOut.h"
+#include "inc/streamIn.h"
 #include "inc/UART.{port}..h"
 #include "inc/system.h"
 
 
 /*==================[internal data definition]===============================*/
+const streamIn_t  streamIn_Uart.{port}.  = {UART.{port}._IN_pop, UART.{port}._IN_count};
+const streamOut_t streamOut_Uart.{port}. = {UART.{port}._OUT_push, UART.{port}._OUT_count};
 
+uint8_t     UART.{port}._flowControlVar = 0;
+uint8_t     UART.{port}._inverted       = 0;
+
+static UART_FIFO   UART.{port}._IN_fifo;
+static UART_FIFO   UART.{port}._OUT_fifo;
 
 /*==================[public functions definition]==========================*/
 /**

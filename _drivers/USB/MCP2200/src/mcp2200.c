@@ -13,8 +13,8 @@
  ******************************************************************************/
 #include "inc/gpio.h"
 #include "inc/MCP2200.h"
-#include "streamOut.h"
-#include "streamIn.h"
+#include "inc/streamOut.h"
+#include "inc/streamIn.h"
 #include "inc/UART.{port}..h"
 
 void Init_USBDriver()

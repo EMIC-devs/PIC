@@ -24,11 +24,11 @@ typedef struct {
 } UART_FIFO;
 
 /*==================[external data definition]===============================*/
-uint8_t     UART.{port}._flowControlVar = 0;
-uint8_t     UART.{port}._inverted       = 0;
+extern uint8_t     UART.{port}._flowControlVar;
+extern uint8_t     UART.{port}._inverted;
 
-static UART_FIFO   UART.{port}._IN_fifo;
-static UART_FIFO   UART.{port}._OUT_fifo;
+extern  UART_FIFO   UART.{port}._IN_fifo;
+extern  UART_FIFO   UART.{port}._OUT_fifo;
 
 /*==================[public functions definition]==========================*/
 
@@ -58,7 +58,7 @@ void UART.{port}._OUT_push(char d);
 
 uint16_t UART.{port}._OUT_count(void);
 
-const streamIn_t  streamIn_Uart.{port}.  = {UART.{port}._IN_pop, UART.{port}._IN_count};
-const streamOut_t streamOut_Uart.{port}. = {UART.{port}._OUT_push, UART.{port}._OUT_count};
+extern const streamIn_t  streamIn_Uart.{port}.;
+extern const streamOut_t streamOut_Uart.{port}.;
 
 #endif 
