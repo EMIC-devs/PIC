@@ -17,8 +17,13 @@ EMIC:setOutput(TARGET:generate.txt)
     //------------- Driver Config -----------------------
     EMIC:setInput(DEV:_main/baremetal/main.emic)
 
+    EMIC:setOutput(TARGET:inc/userFncFile.h)
+        EMIC:setInput(SYS:inc/userFncFile.h)
+    EMIC:restoreOutput
+
     EMIC:setOutput(TARGET:nbproject/configurations.xml)
         EMIC:setInput(DEV:_modules\ModuleCategory\module1\target\nbproject\configurations.xml)
     EMIC:restoreOutput
+
 
 EMIC:restoreOutput
