@@ -20,6 +20,7 @@
 #include "inc/streamIn.h"
 #include "inc/UART.{port}..h"
 #include <stdarg.h>
+ #include "inc/userFncFile.h"
 
 static frameFlag = 0;
 

@@ -15,6 +15,7 @@
  #include "inc/streamOut.h"
  #include "inc/streamIn.h"
  #include "inc/stream.h"
+ #include "inc/userFncFile.h"
 
 #ifndef i2c_frame_indentifier
 #define i2c_frame_indentifier .{frameID}.

@@ -3,8 +3,8 @@ EMIC:define(_STREAMIN_EMIC,true)
 
 EMIC:setInput(DEV:_system/systemInclusions.emic)
 
-EMIC:setOutput(TARGET:main.c)
-	EMIC:include(inc/streamIn.h)
+EMIC:setOutput(TARGET:inc/streamIn.h)
+	EMIC:setInput(inc/streamIn.h)
 EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:streamIn.c)

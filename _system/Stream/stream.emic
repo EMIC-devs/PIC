@@ -2,7 +2,7 @@ EMIC:ifndef _STREAM_EMIC
 EMIC:define(_STREAM_EMIC,true)
 
 EMIC:setOutput(TARGET:inc/stream.h)
-	EMIC:include(inc/stream.h)
+	EMIC:setInput(inc/stream.h)
 EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:stream.c)

@@ -18,7 +18,6 @@
 //#if USBprot=="EMIC_message"
     #define USBFrameLf '.{frameLf}.'
 //#endif
-#define ISR_UART.{port}._CALLBACK
 
 /*==================[public functions definition]==========================*/
 void USB_Init(void);

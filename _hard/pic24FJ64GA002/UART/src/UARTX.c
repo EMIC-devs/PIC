@@ -255,9 +255,9 @@ void __attribute__((interrupt(auto_psv))) _U.{port}.RXInterrupt( void )
 		d = U.{port}.RXREG ;  
 		UART.{port}._push(&UART.{port}._IN_fifo, d) ;		//Push data into the input buffer
 	}
-    #ifdef ISR_UART.{port}._CALLBACK
+    EMIC:ifdef(UART.{port}._CALLBACK_RX)
     ISR_UART.{port}._CALLBACK(d);
-    #endif
+    EMIC:endif
 	return;
 }
 

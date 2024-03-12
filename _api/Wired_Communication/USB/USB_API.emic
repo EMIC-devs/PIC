@@ -17,6 +17,7 @@ EMIC:ifndef _USB_API_EMIC
 EMIC:define(_USB_API_EMIC,true)
 
 EMIC:define(USBprot,EMIC_message)
+EMIC:define(UART.{port}._CALLBACK_RX,true)
 
 /**
 * @fn printf pUSB(concat tag,concat msg);
