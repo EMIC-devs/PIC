@@ -1,0 +1,27 @@
+/*************************************************************************//**
+
+  @file     spi.emic
+
+  @brief    Hardware Library to use SPI
+
+  @author   Luciano Rottoli (based on Tomas Pentacolo)
+  @date     29/02/2024
+
+  @version  v0.0.1 - Initial release.
+ 
+ ******************************************************************************/
+EMIC:ifndef _PIC_SPI.{port}._EMIC
+EMIC:define(_PIC_SPI.{port}._EMIC,true)
+
+EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
+
+EMIC:setOutput(TARGET:inc/spi.{port}..h)
+	EMIC:setInput(.{configuracion}./inc/spi.h,port=.{port}.,pin=.{pin}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:spi.{port}..c)
+	EMIC:setInput(.{configuracion}./src/spi.c,port=.{port}.,pin=.{pin}.)
+EMIC:restoreOutput
+
+EMIC:define(c_modules.spi.{port}.,spi.{port}..c)
+EMIC:endif

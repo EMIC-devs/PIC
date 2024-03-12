@@ -1,0 +1,1 @@
+EMIC:setInput(DEV:_hard/.{system.ucName}./SPI/.{configuration}./spi.emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=.{name}.)
