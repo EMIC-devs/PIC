@@ -14,15 +14,85 @@
 #define __DRIVER_I2C.{port}._C__
 
 /*==================[inclusions]=============================================*/
+#include <xc.h>
 #include "inc/I2C.{port}..h"
 #include <inc/I2C.{port}._driver.h>
 #include <inc/stream.h>
-#include "inc/streamIn.h"
 #include "inc/streamOut.h"
+#include "inc/streamIn.h"
 
 /*==================[internal data declaration]==============================*/
+#ifndef i2c_frame_indentifier
+#define i2c_frame_indentifier .{frameID}.
+#endif
 
+#ifndef MAX_I2C_IN
+#define MAX_I2C_IN     512
+#endif
+#ifndef MAX_I2C_OUT
+#define MAX_I2C_OUT    512
+#endif
 
+#define     FrameQty        16
+
+static unsigned char i2cInDataBuffer[MAX_I2C_IN];
+static unsigned char i2cOutDataBuffer[MAX_I2C_OUT];
+
+static uint16_t i2cInFrameBuffer[FrameQty];
+static uint16_t i2cOutFrameBuffer[FrameQty];
+
+stream_t i2c.{port}.InStream = 
+{
+	.data_idx_entr = 0,
+	.data_idx_sal = 0,
+	.data_idx_sal_aux = 0,
+	.data_count_entr = 0,
+	.data_count_sal = 0,
+	.data_count_sal_aux = 0,
+	.frame_idx_entr = 0,
+	.frame_idx_sal = 0,
+	.frame_count = 0,
+	.frame_fifo 	= i2cInFrameBuffer,
+	.data_fifo 	= i2cInDataBuffer,
+	.frame_indentifier = i2c_frame_indentifier,
+	.data_idx_mask = MAX_I2C_IN-1,
+	.frame_idx_mask = FrameQty-1
+};
+
+stream_t i2c.{port}.OutStream = 
+{
+	.data_idx_entr = 0,
+	.data_idx_sal = 0,
+	.data_idx_sal_aux = 0,
+	.data_count_entr = 0,
+	.data_count_sal = 0,
+	.data_count_sal_aux = 0,
+	.frame_idx_entr = 0,
+	.frame_idx_sal = 0,
+	.frame_count = 0,
+	.frame_fifo 	= i2cOutFrameBuffer,
+	.data_fifo 	= i2cOutDataBuffer,
+	.frame_indentifier = i2c_frame_indentifier,
+	.data_idx_mask = MAX_I2C_OUT-1,
+	.frame_idx_mask = FrameQty-1
+};
+
+const i2c_config_t i2c_init_structure = {
+    .mode = 1,                  //master mode
+    .frec = 400,                //400 KHz
+    .address = 'M',             //Own address
+    .i2c_channel = .{port}.,    //i2c_channel
+    .en_interrupt = 1,          //enable interrupt
+    .pull_up = 0                //disable pull up
+};
+
+static char i2crfi_estado = I2C_ESTADO_IDLE;
+static char i2crfi_estado_rcv = I2C_ESTADO_RCV_IDLE;
+static char i2crfi_indice = 0; // to send the frame head
+static uint8_t stopflag = 0;
+
+const streamIn_t  streamIn_I2C = {getI2cStreamIn,countI2cStreamIn};
+const streamOut_t streamOut_I2C = {setI2cStreamOut,getAvailable_out_count}; //Count not tested
 
 /*==================[internal functions implementations]======================*/
 

@@ -15,11 +15,11 @@
 #ifndef _mcp2200_H_
 #define _mcp2200_H_
 
-#define RPOUT_U.{port}._TX	RPOUT_MCP2200_TX
-#define RPIN_U.{port}._RX		RPIN_MCP2200_RX
+// #define RPOUT_U.{port}._TX	RPOUT_MCP2200_TX
+// #define RPIN_U.{port}._RX		RPIN_MCP2200_RX
 
-#define RPIN_U.{port}._CTS 	RPIN_MCP2200_CTS
-#define RPOUT_U.{port}._RTS	RPOUT_MCP2200_RTS
+// #define RPIN_U.{port}._CTS 	RPIN_MCP2200_CTS
+// #define RPOUT_U.{port}._RTS	RPOUT_MCP2200_RTS
 
 void Init_USBDriver(void);
 void Poll_USBDriver(void);

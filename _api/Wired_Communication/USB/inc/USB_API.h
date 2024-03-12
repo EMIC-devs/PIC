@@ -18,7 +18,9 @@
 //#if USBprot=="EMIC_message"
     #define USBFrameLf '.{frameLf}.'
 //#endif
+#define ISR_UART.{port}._CALLBACK
 
+/*==================[public functions definition]==========================*/
 void USB_Init(void);
 EMIC:define(inits.USB_Init,USB_Init)
 
@@ -27,5 +29,7 @@ void pUSB(char* format,...);
 
 void Poll_USB(void);
 EMIC:define(polls.Poll_USB,Poll_USB)
+
+void ISR_UART.{port}._CALLBACK(char d);
 
 #endif

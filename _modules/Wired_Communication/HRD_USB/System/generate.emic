@@ -12,7 +12,7 @@ EMIC:setOutput(TARGET:generate.txt)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=2)
     EMIC:setInput(DEV:_api/Wired_Communication/USB/USB_API.emic,driver=MCP2200,port=1,BufferSize=512,baud=9600,frameLf=\n,name=MCP2200)
-    //EMIC:setInput(DEV:_api/Wired_Communication/EMICBus/EMICBus.emic,port=2,frameID=.{frameID}.)
+    EMIC:setInput(DEV:_api/Wired_Communication/EMICBus/EMICBus.emic,port=2,frameID=0)
 
     //------------- Driver Config -----------------------
     EMIC:setInput(DEV:_main/baremetal/main.emic)

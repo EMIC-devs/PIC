@@ -11,8 +11,14 @@
  ******************************************************************************/
  #include "inc/EMICBus.h"
  #include "inc/I2C_driver.h"
+ #include "inc/I2C.{port}..h"
+ #include "inc/streamOut.h"
  #include "inc/streamIn.h"
  #include "inc/stream.h"
+
+#ifndef i2c_frame_indentifier
+#define i2c_frame_indentifier .{frameID}.
+#endif
 
  enum
 {
