@@ -15,9 +15,10 @@
 
 /*==================[inclusions]=============================================*/
 #include <xc.h>
-#include "inc/streamOut.h"
-#include "inc/streamIn.h"
-#include "inc/I2C.{port}..h"
+#include "stream.h"
+#include "streamOut.h"
+#include "streamIn.h"
+#include "I2C.{port}..h"
 /*==================[typedef]================================================*/
 
 enum{
@@ -34,11 +35,11 @@ enum{
 };
 extern stream_t i2c.{port}.InStream;
 extern stream_t i2c.{port}.OutStream;
-extern i2c_config_t i2c_init_structure;
+extern const i2c_config_t i2c_init_structure;
 extern uint8_t stopflag;
 
-extern streamIn_t  streamIn_I2C;
-extern streamOut_t streamOut_I2C; //Count not tested
+extern const streamIn_t  streamIn_I2C;
+extern const streamOut_t streamOut_I2C; //Count not tested
 
 /*==================[internal functions declaration]===========================*/
 

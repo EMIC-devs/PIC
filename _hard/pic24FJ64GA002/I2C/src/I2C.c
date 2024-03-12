@@ -15,7 +15,7 @@
 
 /*==================[inclusions]=============================================*/
 #include <xc.h>
-#include <inc/I2C.{port}..h>
+#include "inc/I2C.{port}..h"
 #include "inc/system.h"
 
 /*==================[function implementation]================================*/

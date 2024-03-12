@@ -16,10 +16,11 @@
 /*==================[inclusions]=============================================*/
 #include <xc.h>
 #include "inc/I2C.{port}..h"
-#include <inc/I2C.{port}._driver.h>
-#include <inc/stream.h>
+#include "inc/I2C.{port}._driver.h"
+#include "inc/stream.h"
 #include "inc/streamOut.h"
 #include "inc/streamIn.h"
+#include "inc/myId.h"
 
 /*==================[internal data declaration]==============================*/
 #ifndef i2c_frame_indentifier
@@ -34,6 +35,12 @@
 #endif
 
 #define     FrameQty        16
+
+#ifdef _I2C_ID
+char I2C_ID = _I2C_ID;
+#else
+#error _I2C_ID no definido
+#endif
 
 static unsigned char i2cInDataBuffer[MAX_I2C_IN];
 static unsigned char i2cOutDataBuffer[MAX_I2C_OUT];
@@ -86,10 +93,10 @@ const i2c_config_t i2c_init_structure = {
     .pull_up = 0                //disable pull up
 };
 
-static char i2crfi_estado = I2C_ESTADO_IDLE;
-static char i2crfi_estado_rcv = I2C_ESTADO_RCV_IDLE;
-static char i2crfi_indice = 0; // to send the frame head
-static uint8_t stopflag = 0;
+char i2crfi_estado = I2C_ESTADO_IDLE;
+char i2crfi_estado_rcv = I2C_ESTADO_RCV_IDLE;
+char i2crfi_indice = 0; // to send the frame head
+uint8_t stopflag = 0;
 
 const streamIn_t  streamIn_I2C = {getI2cStreamIn,countI2cStreamIn};
 const streamOut_t streamOut_I2C = {setI2cStreamOut,getAvailable_out_count}; //Count not tested
@@ -122,7 +129,7 @@ void Init_I2C_Driver(void)
  */
 uint16_t getAvailable_out_count(void) //Not Tested
 {
-    return MAX_I2C_OUT - ( (MAX_I2C_OUT-1) & (i2cOutStream.data_idx_sal - i2cOutStream.data_idx_entr ) );
+    return MAX_I2C_OUT - ( (MAX_I2C_OUT-1) & (i2c.{port}.OutStream.data_idx_sal - i2c.{port}.OutStream.data_idx_entr ) );
 }
 
 /**
