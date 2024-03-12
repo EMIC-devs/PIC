@@ -217,5 +217,5 @@ extern const streamOut_t streamOut_Uart.{port}.;
  * The actual behavior of the callback is determined by the user's implementation.
  * To enable the callback, it should be defined and associated with the corresponding UART receive ISR.
  */
-extern ISR_UART.{port}._CALLBACK(char d);
+extern void ISR_UART.{port}._CALLBACK(char d);
 #endif 
