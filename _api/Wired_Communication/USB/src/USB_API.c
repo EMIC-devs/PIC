@@ -11,14 +11,17 @@
   @date		04/03/2024   
 
  ******************************************************************************/
+
+/*==================[inclusions]=============================================*/
 #include "inc/USB_API.h"
 #include <xc.h>
+#include "inc/.{driver}..h"
 #include "inc/streamOut.h"
 #include "inc/streamIn.h"
 #include "inc/UART.{port}..h"
-#include "inc/.{driver}..h"
-
 #include <stdarg.h>
+
+static frameFlag = 0;
 
 void USB_Init()
 {
@@ -58,8 +61,10 @@ void Poll_USB(void)
 
 	#ifdef event_eUSB_active 
 
-	if (UART.{port}._peek(&UART.{port}._IN_fifo) == USBFrameLf)
+	// if (UART.{port}._peek(&UART.{port}._IN_fifo) == USBFrameLf)
+	if(frameFlag)
 	{
+		frameFlag = 0;
 		// #if USBprot=="EMIC_message"
 		char tag[20];
 		char d;
@@ -91,6 +96,15 @@ void Poll_USB(void)
 	}
 #endif
 }
+
+void ISR_UART.{port}._CALLBACK(char d)
+{
+	if(d == USBFrameLf)
+	{
+		frameFlag = 1;
+	}
+}
+
 
 uint16_t USB_sendCount(void)
 {

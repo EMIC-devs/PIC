@@ -2,7 +2,7 @@ EMIC:ifndef __PIC_I2C.{port}._EMIC__
 EMIC:define(__PIC_I2C.{port}._EMIC__,true)
 
     EMIC:setOutput(TARGET:inc/I2C.{port}..h)
-        EMIC:include(inc\I2C.h|inc/I2C.{port}..h,port=.{port}.)
+        EMIC:setInput(inc\I2C.h,port=.{port}.)
     EMIC:restoreOutput
 
     EMIC:setOutput(TARGET:I2C.{port}..c)

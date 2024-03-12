@@ -12,27 +12,25 @@
  
  ******************************************************************************/
 
-/******************************************
+/************************ USE
  * How to Include the SPI Driver:
  * 
  * To include and use the SPI driver, use the following syntax:
  * 
- * #newRFIcode(_hal/.(UC_FAMILY)./_hard/SPI/spi.emic, port=.{port}., configuracion=.{configuracion}, pin=.{pin}.)        //No RFI scan           
- * 
+ * EMIC:setInput(DEV:_hal/SPI/spi.emic, port=.{port}., configuracion=.{configuracion}, pin=.{pin}.)           //No RFI scan    
  * Replace the placeholders:
- * - {UC_FAMILY}: Specify the microcontroller family.
  * - {port}: Specify the desired port for the SPI communication.
  * - {configuracion}: Specify the desired configuration for the SPI.
  * - {pin}: Specify the pin names for the SPI communication.
  * 
  * Note: In the hardware configuration file, pins should be defined as PIN_MISO, PIN_MOSI, PIN_CLK.
- * Use the defined name (PIN) in place of .{pin}..                                                                          //No RFI scan            
+ * Use the defined name (PIN) in place of .{pin}..                                                            //No RFI scan            
  * 
  * Example:
  * 
- * #newRFIcode(_hal/pic24fj64gc002/_hard/SPI/spi.emic, port=1, configuracion=Master, pin=RF)                                //No RFI scan           
+ * EMIC:setInput(DEV:_hal//SPI/spi.emic, port=1, configuracion=Master, pin=RF)                                //No RFI scan           
  * 
- * This example includes the SPI driver for a PIC microcontroller, using port 1,
+ * This example includes the SPI driver using port 1,
  * configured as a master, and with the SPI communication on the RF pins.
  * 
  * 
@@ -41,6 +39,7 @@
 #ifndef _PIC_SPI.{port}._MASTER_H_
 #define _PIC_SPI.{port}._MASTER_H_
 
+#include <xc.h>
 
 /*******************************************************************************//**
  * @brief Initializes the SPI module for communication.
