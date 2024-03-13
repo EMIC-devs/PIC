@@ -1,8 +1,8 @@
 /*****************************************************************************
 
-  @file     USB_API.c
+  @file     mesh_API.c
 
-  @brief    USB interface
+  @brief    mesh interface
 
   @author   Rottoli Luciano (based on Tomas Pentacolo)
 
@@ -13,7 +13,7 @@
  ******************************************************************************/
 
 /*==================[inclusions]=============================================*/
-#include "inc/USB_API.h"
+#include "inc/mesh_API.h"
 #include <xc.h>
 #include "inc/.{driver}..h"
 #include "inc/streamOut.h"
@@ -24,14 +24,14 @@
 
 static frameFlag = 0;
 
-void USB_Init()
+void mesh_Init()
 {
-	Init_USBDriver();
+	Init_meshDriver();
 }
 
-// #if USBprot=="EMIC_message"
+// #if meshprot=="EMIC_message"
 
-void pUSB(char* format,...)
+void pMesh(char* format,...)
 {
 	va_list arg;
     va_start(arg, format);
@@ -39,34 +39,20 @@ void pUSB(char* format,...)
 	sendDataToStream(&streamOut_Uart.{port}.,format,arg);
 
 	va_end(arg);
-	UART.{port}._OUT_push(USBFrameLf); 
+	UART.{port}._OUT_push(meshFrameLf); 
 
 }
 
 
-// #else
-// void pUSB(char* msg)
-// {
-// 	char *r;
-	
-// 	for (r = char* msg;*r > 0; r++) 
-// 	{
-// 		UARTX.{port}._OUT_push(*r);
-// 	}
-// 	UARTX.{port}._OUT_push(USBFrameLf);
-// }
-// #endif
 
-void Poll_USB(void)
+void Poll_mesh(void)
 {
 
-	#ifdef event_eUSB_active // deberia ser EMIC:ifdef usedEvent.eUSB
+	EMIC:ifdef usedEvent.eMesh
 
-	// if (UART.{port}._peek(&UART.{port}._IN_fifo) == USBFrameLf)
 	if(frameFlag)
 	{
 		frameFlag = 0;
-		// #if USBprot=="EMIC_message"
 		char tag[20];
 		char d;
 		uint8_t i = 0;
@@ -79,35 +65,21 @@ void Poll_USB(void)
 		}
 		
 		tag[i] = 0;
-		
-		eUSB(tag,&streamIn_Uart.{port}.);
-		// #endif
-		
-		
-		
+		eMesh(tag,&streamIn_Uart.{port}.);
 	}
-	#endif // deberia ser EMIC:endif
-
-#ifdef event_eBeUSB_active
-	if(UART.{port}._is_empty(&UART.{port}._OUT_fifo)) 
-	{
-		//UARTX_{puerto}__bufferEmpty=0;
-		eBeUSB();
-		//puts_f("#eBeUSB;\r"); //se vacio el buffer tx
-	}
-#endif
+	EMIC:endif
 }
 
 void ISR_UART.{port}._CALLBACK(char d)
 {
-	if(d == USBFrameLf)
+	if(d == meshFrameLf)
 	{
 		frameFlag = 1;
 	}
 }
 
 
-uint16_t USB_sendCount(void)
+uint16_t mesh_sendCount(void)
 {
 	return UART.{port}._count(&UART.{port}._OUT_fifo);
 }

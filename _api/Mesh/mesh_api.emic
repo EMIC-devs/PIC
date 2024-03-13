@@ -1,0 +1,59 @@
+//RFI TAG:driverName=MESH
+
+/*****************************************************************************
+
+  @file     mesh_api.emic
+
+  @brief    mesh interface
+
+  @author   Rottoli Luciano (based on Tomas Pentacolo)
+
+  @version  v0.0.1  
+
+  @date		04/03/2024   
+
+ ******************************************************************************/
+EMIC:ifndef _mesh_api_EMIC
+EMIC:define(_mesh_api_EMIC,true)
+
+EMIC:define(meshprot,EMIC_message)
+EMIC:define(UART.{port}._CALLBACK_RX,true)
+
+/**
+* @fn printf pMesh(concat tag,concat msg);
+* @alias Send
+* @brief Send a EMIC message through the mesh port
+* @return Nothing
+* @param tag Etiqueta que identifica el mensaje
+* @param msg Contenido del mensaje
+*/
+
+
+/**
+* @fn extern void eMesh(char* tag,const streamIn_t* const msg);
+* @alias Reception
+* @brief When it receives a string through the mesh port
+* @return Nothing
+* @param tag Tag to identify the message
+* @param msg message payload
+*/
+
+
+EMIC:setInput(DEV:_system/Stream/stream.emic)
+EMIC:setInput(DEV:_system/Stream/streamOut.emic)
+EMIC:setInput(DEV:_system/Stream/streamIn.emic)
+//EMIC:setInput(DEV:_drivers/mesh/.{driver}./.{driver}..emic,port=.{port}.,BufferSize=.{BufferSize}.,driver=LoRa)
+
+EMIC:setOutput(TARGET:inc/mesh_api.h)
+	EMIC:include(inc/mesh_api.h,port=.{port}.,frameLf=.{frameLf}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:mesh_api.c)
+	EMIC:setInput(src/mesh_api.c,port=.{port}.,frameLf=.{frameLf}.,driver=.{driver}.)
+EMIC:restoreOutput
+
+EMIC:define(main_includes.mesh_api,mesh_api)
+EMIC:define(c_modules.mesh_api,mesh_api.c)
+
+/*==================[end of file]============================================*/
+EMIC:endif
