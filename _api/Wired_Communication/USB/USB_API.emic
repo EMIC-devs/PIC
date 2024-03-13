@@ -54,12 +54,12 @@ EMIC:define(UART.{port}._CALLBACK_RX,true)
 }
 */
 
-	EMIC:setInput(DEV:_system/Stream/stream.emic)
-	EMIC:setInput(DEV:_system/Stream/streamOut.emic)
-    EMIC:setInput(DEV:_system/Stream/streamIn.emic)
+EMIC:setInput(DEV:_system/Stream/stream.emic)
+EMIC:setInput(DEV:_system/Stream/streamOut.emic)
+EMIC:setInput(DEV:_system/Stream/streamIn.emic)
 EMIC:setInput(DEV:_drivers/USB/.{driver}./.{driver}..emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=MCP2200)
 
-EMIC:setOutput(TARGET:main.c)
+EMIC:setOutput(TARGET:inc/USB_API.h)
 	EMIC:include(inc/USB_API.h,port=.{port}.,frameLf=.{frameLf}.)
 EMIC:restoreOutput
 
@@ -67,7 +67,7 @@ EMIC:setOutput(TARGET:USB_API.c)
 	EMIC:setInput(src/USB_API.c,port=.{port}.,frameLf=.{frameLf}.,driver=.{driver}.)
 EMIC:restoreOutput
 
-
+EMIC:define(main_includes.USB_API,USB_API)
 EMIC:define(c_modules.USB_API,USB_API.c)
 
 /*==================[end of file]============================================*/

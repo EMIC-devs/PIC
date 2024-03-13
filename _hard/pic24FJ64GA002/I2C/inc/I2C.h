@@ -19,8 +19,8 @@
 
 /*==================[macros]=================================================*/
 
-#define ISR_I2C.{port}._SLAVE_CALLBACK	__attribute__((interrupt(auto_psv))) _SI2C.{port}._Interrupt
-#define ISR_I2C.{port}._MASTER_CALLBACK	__attribute__((interrupt(auto_psv))) _MI2C.{port}._Interrupt
+#define ISR_I2C.{port}._SLAVE_CALLBACK	__attribute__((interrupt(auto_psv))) _SI2C.{port}.Interrupt
+#define ISR_I2C.{port}._MASTER_CALLBACK	__attribute__((interrupt(auto_psv))) _MI2C.{port}.Interrupt
 
 /*==================[typedef]================================================*/
 

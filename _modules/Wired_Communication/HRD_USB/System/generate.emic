@@ -21,6 +21,12 @@ EMIC:setOutput(TARGET:generate.txt)
         EMIC:setInput(SYS:inc/userFncFile.h)
     EMIC:restoreOutput
 
+    EMIC:setOutput(TARGET:userFncFile.c)
+        EMIC:setInput(SYS:userFncFile.c)
+    EMIC:restoreOutput
+
+    EMIC:define(c_modules.userFncFile,userFncFile.c)
+
     EMIC:setOutput(TARGET:nbproject/configurations.xml)
         EMIC:setInput(DEV:_modules\ModuleCategory\module1\target\nbproject\configurations.xml)
     EMIC:restoreOutput

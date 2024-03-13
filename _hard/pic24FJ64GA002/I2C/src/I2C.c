@@ -159,5 +159,14 @@ uint8_t Read_I2C(i2c_config_t config, uint8_t Ack)
     return(data);				//Return data in buffer
 }
 
+//void __attribute__((interrupt(auto_psv))) _SI2C2Interrupt(void)
+//{
+//
+//}
+//void __attribute__((interrupt(auto_psv))) _MI2C2Interrupt(void)
+//{
+//
+//}
+
 /*==================[end of file]============================================*/
 #endif

@@ -15,17 +15,8 @@
 */
 
 EMIC:setOutput(TARGET:main.c)
-
-#include <stdint.h>
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
-
-//EMIC:setInput(DEV:/_system/systemInclusions.emic)
-
-
-EMIC:setInput(main.c)
-EMIC:define(c_modules.main,main.c)
-
+    EMIC:setInput(main.c)
 EMIC:restoreOutput
+
+EMIC:define(c_modules.main,main.c)
 

@@ -10,7 +10,7 @@
   @version  v0.0.1
  ******************************************************************************/
  #include "inc/EMICBus.h"
- #include "inc/I2C_driver.h"
+ #include "inc/I2C.{port}._driver.h"
  #include "inc/I2C.{port}..h"
  #include "inc/streamOut.h"
  #include "inc/streamIn.h"
@@ -43,6 +43,10 @@ void pI2C(char* format_,...)
 	push_I2C_OUT(i2c_frame_indentifier);
 }
 
+void emicBus_init()
+{
+
+}
 
 /**
  * @brief	emicBus poll function
@@ -63,7 +67,7 @@ void poll_emicBus(void)
 		switch(d)
 		{
 			case tipoTrama_mensaje:;
-			#ifdef event_I2CsetModoReceiveMensajeEvent_active				
+			EMIC:ifdef usedEvent.eI2C	
 				if (i2c.{port}.InStream.data_count_sal > 0)
 				{
 					char tag[20];
@@ -82,12 +86,12 @@ void poll_emicBus(void)
 						pop_I2C_IN();
 					}		
 				}
-			#else
+			EMIC:else
 			while (i2c.{port}.InStream.data_count_sal)
 			{
 				pop_I2C_IN();
 			}
-			#endif
+			EMIC:endif
 				break;
 			case tipoTrama_control:;
 			if (i2c.{port}.InStream.data_count_sal > 0)
