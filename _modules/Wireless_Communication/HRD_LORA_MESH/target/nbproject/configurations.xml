@@ -4,6 +4,13 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>inc/common.h</itemPath>
+      <itemPath>inc/nr_constants.h</itemPath>
+      <itemPath>inc/phy.h</itemPath>
+      <itemPath>inc/x16.h</itemPath>
+      <itemPath>inc/nf.h</itemPath>
+      <itemPath>inc/nx.h</itemPath>
+      <itemPath>inc/.{h_files.*}..h</itemPath>				   
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -12,6 +19,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>x16.c</itemPath>
       <itemPath>.{c_modules.*}.</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -44,6 +52,8 @@
       <compileType>
         <linkerTool>
           <linkerLibItems>
+            <linkerLibFileItem>libs/nf.X.a</linkerLibFileItem>
+            <linkerLibFileItem>libs/nx.X.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
