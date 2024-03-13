@@ -42,7 +42,7 @@ EMIC:define(UART.{port}._CALLBACK_RX,true)
 EMIC:setInput(DEV:_system/Stream/stream.emic)
 EMIC:setInput(DEV:_system/Stream/streamOut.emic)
 EMIC:setInput(DEV:_system/Stream/streamIn.emic)
-//EMIC:setInput(DEV:_drivers/mesh/.{driver}./.{driver}..emic,port=.{port}.,BufferSize=.{BufferSize}.,driver=LoRa)
+EMIC:setInput(DEV:_drivers/Mesh/mesh.emic)
 
 EMIC:setOutput(TARGET:inc/mesh_api.h)
 	EMIC:include(inc/mesh_api.h,port=.{port}.,frameLf=.{frameLf}.)

@@ -1,0 +1,18 @@
+EMIC:ifndef _MESH_EMIC
+EMIC:define(_MESH_EMIC,true)
+
+//EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
+//EMIC:setInput(DEV:_hal/UART/UART.emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=.{name}.)
+
+EMIC:setOutput(TARGET:inc/mesh.h)
+	EMIC:setInput(inc/mesh.h,port=.{port}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:mesh.c)
+	EMIC:setInput(src/mesh.c,port=.{port}.)
+EMIC:restoreOutput
+
+EMIC:define(h_files.mesh,mesh.c)
+EMIC:define(c_modules.mesh,mesh.c)
+/*==================[end of file]============================================*/
+EMIC:endif

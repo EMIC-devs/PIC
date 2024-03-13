@@ -29,7 +29,7 @@ EMIC:setOutput(TARGET:generate.txt)
     EMIC:define(c_modules.userFncFile,userFncFile.c)
 
     EMIC:setOutput(TARGET:nbproject/configurations.xml)
-        EMIC:setInput(DEV:_modules\ModuleCategory\module1\target\nbproject\configurations.xml)
+        EMIC:setInput(DEV:_modules/Wireless_Communication/HRD_LORA_MESH/target/nbproject/configurations.xml)
     EMIC:restoreOutput
 
 
