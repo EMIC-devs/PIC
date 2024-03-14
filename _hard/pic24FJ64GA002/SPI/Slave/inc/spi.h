@@ -26,8 +26,6 @@
 
 /*==================[external functions declaration]=========================*/
 
-void __attribute__((__interrupt__)) _SPI.{port}.Interrupt( void );	
-
 /**
  * @brief Inicializacion del bus SPI
  * @param void
@@ -51,6 +49,9 @@ void SPI.{port}._enable();
 */
 unsigned short writeSPI.{port}.( unsigned short data );
 
+EMIC:ifdef(SPI.{port}._CALLBACK)
+extern void ISR_SPI.{port}._CALLBACK(data);
+EMIC:endif
 /** @} doxygen end group definition */
 /*==================[end of file]============================================*/
 #endif 

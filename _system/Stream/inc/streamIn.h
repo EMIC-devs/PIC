@@ -12,6 +12,9 @@
 
   @version  v0.0.1   Initial release.
  ******************************************************************************/
+#include <xc.h>
+#include <stdarg.h>
+#include "streamOut.h"
 
 typedef struct streamIn_S
 {

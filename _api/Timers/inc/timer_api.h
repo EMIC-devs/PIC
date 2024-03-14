@@ -2,7 +2,7 @@
 #ifndef _TIMER_.{name}._API_H_
 #define _TIMER_.{name}._API_H_
 
-
+#include <xc.h>
 
 EMIC:ifdef usedFunction.setTime.{name}.
 void setTime.{name}.(uint32_t setPoint, char l_modo);

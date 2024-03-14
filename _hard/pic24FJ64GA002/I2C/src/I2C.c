@@ -159,14 +159,21 @@ uint8_t Read_I2C(i2c_config_t config, uint8_t Ack)
     return(data);				//Return data in buffer
 }
 
-//void __attribute__((interrupt(auto_psv))) _SI2C2Interrupt(void)
-//{
-//
-//}
-//void __attribute__((interrupt(auto_psv))) _MI2C2Interrupt(void)
-//{
-//
-//}
+void __attribute__((interrupt(auto_psv))) _SI2C.{port}.Interrupt( void )
+{
+    _SI2C.{port}.IF = 0;
+    EMIC:ifdef(I2C.{port}._CALLBACK_SLAVE)
+    ISR_I2C.{port}._CALLBACK_SLAVE();
+    EMIC:endif
+}
+
+void __attribute__((interrupt(auto_psv))) _MI2C.{port}.Interrupt( void )
+{
+    _MI2C.{port}.IF = 0;
+    EMIC:ifdef(I2C.{port}._CALLBACK_MASTER)
+    ISR_I2C.{port}._CALLBACK_MASTER();
+    EMIC:endif
+}
 
 /*==================[end of file]============================================*/
 #endif

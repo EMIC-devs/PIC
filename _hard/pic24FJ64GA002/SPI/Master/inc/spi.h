@@ -28,7 +28,7 @@
  * 
  * Example:
  * 
- * EMIC:setInput(DEV:_hal//SPI/spi.emic, port=1, configuracion=Master, pin=RF)                                //No RFI scan           
+ * EMIC:setInput(DEV:_hal/SPI/spi.emic, port=1, configuracion=Master, pin=RF)                                //No RFI scan           
  * 
  * This example includes the SPI driver using port 1,
  * configured as a master, and with the SPI communication on the RF pins.

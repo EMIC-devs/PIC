@@ -16,12 +16,14 @@
 #include "inc/USB_API.h"
 #include <xc.h>
 #include "inc/.{driver}..h"
-#include "inc/streamOut.h"
 #include "inc/streamIn.h"
 #include "inc/UART.{port}..h"
 #include <stdarg.h>
  #include "inc/userFncFile.h"
 
+//#if USBprot=="EMIC_message"
+    #define USBFrameLf '.{frameLf}.'
+//#endif
 static frameFlag = 0;
 
 void USB_Init()

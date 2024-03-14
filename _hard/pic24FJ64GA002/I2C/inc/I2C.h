@@ -19,8 +19,6 @@
 
 /*==================[macros]=================================================*/
 
-#define ISR_I2C.{port}._SLAVE_CALLBACK	__attribute__((interrupt(auto_psv))) _SI2C.{port}.Interrupt
-#define ISR_I2C.{port}._MASTER_CALLBACK	__attribute__((interrupt(auto_psv))) _MI2C.{port}.Interrupt
 
 /*==================[typedef]================================================*/
 
@@ -145,6 +143,9 @@ uint8_t IsI2cDataOrAddress(i2c_config_t config);
  * @return 1 if overflow is detected, 0 otherwise.
  */
 uint8_t IsI2cReceiveOverflow(i2c_config_t config);
+
+extern void ISR_I2C.{port}._CALLBACK_SLAVE(void);
+extern void ISR_I2C.{port}._CALLBACK_MASTER(void);
 
 /*==================[end of file]============================================*/
 #endif

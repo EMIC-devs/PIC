@@ -1,5 +1,7 @@
 
 
-EMIC:setOutput(TARGET:main.c)
-	EMIC:include(inc\.{pcb}..h)
+EMIC:setOutput(TARGET:inc\.{pcb}..h)
+	EMIC:setInput(inc\.{pcb}..h)
 EMIC:restoreOutput
+
+EMIC:define(main_includes..{pcb}.,.{pcb}.)

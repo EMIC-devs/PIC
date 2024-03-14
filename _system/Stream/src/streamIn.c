@@ -1,9 +1,9 @@
 #include <xc.h>
 #include <stdlib.h>
-#include "inc/streamOut.h"
-#include "inc/streamIn.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include "inc/streamIn.h"
+#include "inc/streamOut.h"
 #include "inc/conversionFunctions.h"
 
 float streamIn_t_ptr_to_float(streamIn_t* dataIn)
