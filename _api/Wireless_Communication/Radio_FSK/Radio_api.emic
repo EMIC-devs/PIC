@@ -1,0 +1,97 @@
+//RFI TAG:driverName=Radio
+
+/*****************************************************************************
+
+  @file     Radio_api.emic
+
+  @brief    Radio FSK interface
+
+  @author   Pentacolo Tomas (based on Rottoli Luciano)
+
+  @version  v0.0.1  
+
+  @date		014/03/2024   
+
+ ******************************************************************************/
+EMIC:ifndef _RADIO_API_EMIC
+EMIC:define(_RADIO_API_EMIC,true)
+
+/**
+* @fn void pFSKM(char* message);
+* @alias Send message
+* @brief Sends message through fsk radio
+* @return Nothing
+* @param message message payload
+*/
+
+/**
+* @fn void pFSKD();
+* @alias Send chart
+* @brief Sends charts through fsk radio
+* @return Nothing
+*/
+
+/**
+* @fn void RadioSleep(void);
+* @alias Sleep
+* @brief Puts the radio module to sleep
+* @return Nothing
+*/
+
+/**
+* @fn void RadioWakeUp(void);
+* @alias WakeUp
+* @brief Puts the radio module to wakeup
+* @return Nothing
+*/
+
+/**
+* @fn extern void eFSKM(char* message);
+* @alias Message Reception
+* @brief When it receives a string through the FSK radio
+* @return Nothing
+* @param message message payload
+*/
+
+/**
+* @fn extern void eFSKD();
+* @alias Chart Reception
+* @brief When it receives a chart through the FSK radio
+* @return Nothing
+*/
+
+/**
+* @fn extern void errorFSK();
+* @alias Error
+* @brief When it cannot send a chart
+* @return Nothing
+*/
+
+/**
+* @fn extern void wakeupFSK();
+* @alias WakeUpSuccess
+* @brief When the radio module actually wakes up
+* @return Nothing
+*/
+
+/**
+* @fn extern void sleepFSK();
+* @alias SleepSuccess
+* @brief When the radio module really fell asleep
+* @return Nothing
+*/
+
+EMIC:setInput(DEV:_drivers/FSK/FSK.emic)
+
+EMIC:setOutput(TARGET:main.c)
+	EMIC:include(inc/Radio_api.h)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:Radio_api.c)
+	EMIC:setInput(src/Radio_api.c)
+EMIC:restoreOutput
+
+EMIC:define(c_modules.Radio_api,Radio_api.c)
+
+/*==================[end of file]============================================*/
+EMIC:endif
