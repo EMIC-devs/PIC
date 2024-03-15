@@ -1,5 +1,6 @@
+#include <xc.h>
 #include "inc/systemTimer.h"
-#include "userFncFile.h"
+#include "inc/userFncFile.h"
 
 static uint32_t time_ms = 0; 
 static uint32_t setPoint_ms = 0; 
@@ -19,7 +20,7 @@ EMIC:endif
 EMIC:ifdef usedEvent.etOut.{name}.
 void timer.{name}._Poll(void)
 {
-	if ( setPoint_ms > 0 &&  getSystemMilis() - time_mssetPoint_ms)
+	if ( setPoint_ms > 0 &&  getSystemMilis() - time_ms > setPoint_ms)
 	{	
 		if(modo == 'T')
 		{

@@ -1,0 +1,32 @@
+/*************************************************************************//**
+
+  @file     UARTX.emic
+
+  @brief    Hardware Library to use UART
+
+  @author   Rottoli Luciano
+
+  @version  v0.0.1  
+
+  @date		01/03/2024    
+
+ ******************************************************************************/
+
+EMIC:ifndef _PIC_UART.{port}._EMIC
+EMIC:define(_PIC_UART.{port}._EMIC,true)
+
+EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
+
+EMIC:setInput(DEV:_system/Stream/streamIn.emic)
+EMIC:setInput(DEV:_system/Stream/streamOut.emic)
+
+EMIC:setOutput(TARGET:inc/UART.{port}..h)
+	EMIC:setInput(inc/UARTX.h,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=.{name}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:UART.{port}..c)
+	EMIC:setInput(src/UARTX.c,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=.{name}.)
+EMIC:restoreOutput
+
+EMIC:define(c_modules.UART.{port}.,UART.{port}..c)
+EMIC:endif

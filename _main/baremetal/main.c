@@ -1,9 +1,11 @@
 #include <xc.h>
 
-#include "userFncFile.h"  //No RFI scan
-#include "userVars.h"  //No RFI scan
+#include "inc/.{main_includes.*}..h"
 
-#include "userFncFile.c"  //No RFI scan
+#include "inc/userFncFile.h"
+#include "inc/userVars.h"
+
+//#include "userFncFile.c"
 
 // #newRFIcode(_hal/system/init.emic) 
 

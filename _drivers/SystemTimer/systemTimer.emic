@@ -3,14 +3,15 @@ EMIC:define(_DIVER_SYSTEM_TIMER_EMIC_,true)
 
 EMIC:setInput(DEV:_hal/Timer/timer.emic)
 
-EMIC:setOutput(TARGET:main.c)
-	EMIC:include(inc/systemTimer.h)
+EMIC:setOutput(TARGET:inc/systemTimer.h)
+	EMIC:setInput(inc/systemTimer.h)
 EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:systemTimer.c)
 	EMIC:setInput(src/systemTimer.c)
 EMIC:restoreOutput
 
+EMIC:define(main_includes.systemTimer,systemTimer)
 EMIC:define(c_modules.systemTimer,systemTimer.c)
 
 EMIC:endif

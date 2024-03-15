@@ -1,0 +1,74 @@
+//RFI TAG:driverName=USB
+
+/*****************************************************************************
+
+  @file     USB_API.emic
+
+  @brief    USB interface
+
+  @author   Rottoli Luciano (based on Tomas Pentacolo)
+
+  @version  v0.0.1  
+
+  @date		04/03/2024   
+
+ ******************************************************************************/
+EMIC:ifndef _USB_API_EMIC
+EMIC:define(_USB_API_EMIC,true)
+
+EMIC:define(USBprot,EMIC_message)
+EMIC:define(UART.{port}._CALLBACK_RX,true)
+
+/**
+* @fn printf pUSB(concat tag,concat msg);
+* @alias Send
+* @brief Send a EMIC message through the USB port
+* @return Nothing
+* @param tag Etiqueta que identifica el mensaje
+* @param msg Contenido del mensaje
+*/
+
+
+/**
+* @fn extern void eUSB(char* tag,const streamIn_t* const msg);
+* @alias Reception
+* @brief When it receives a string through the USB port
+* @return Nothing
+* @param tag Tag to identify the message
+* @param msg message payload
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eBeUSB',
+	'NombreToolBox': 'endSend',
+	'Tipo' : 'SistemEvt',
+	'title': 'When finish send data by USB port',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox": "Event.USB.endSend",
+		"definir":"event_eBeUSB_active",
+		"parametros": []
+		}'
+}
+*/
+
+EMIC:setInput(DEV:_system/Stream/stream.emic)
+EMIC:setInput(DEV:_system/Stream/streamOut.emic)
+EMIC:setInput(DEV:_system/Stream/streamIn.emic)
+EMIC:setInput(DEV:_drivers/USB/.{driver}./.{driver}..emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=MCP2200)
+
+EMIC:setOutput(TARGET:inc/USB_API.h)
+	EMIC:setInput(inc/USB_API.h,port=.{port}.,frameLf=.{frameLf}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:USB_API.c)
+	EMIC:setInput(src/USB_API.c,port=.{port}.,frameLf=.{frameLf}.,driver=.{driver}.)
+EMIC:restoreOutput
+
+EMIC:define(main_includes.USB_API,USB_API)
+EMIC:define(c_modules.USB_API,USB_API.c)
+
+/*==================[end of file]============================================*/
+EMIC:endif

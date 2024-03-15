@@ -37,14 +37,13 @@ EMIC:setOutput(TARGET:inc/pins.h)
 
 EMIC:define(system.ucName,pic24FJ64GA002)
 
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B14,name=MCP2200_RST)		
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B14,name=MCP2200_RST)
 
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B13,name=MCP2200_SSPND)		
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B13,name=MCP2200_SSPND)
 
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B12,name=MCP2200_USBCFG)		
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B12,name=MCP2200_USBCFG)
 
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B6,name=Led1)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B6,name=Led2)
 
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B10,name=MCP2200_TX)
 

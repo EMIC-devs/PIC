@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "nr_constants.h": "c",
+        "nx_common.h": "c",
+        "common.h": "c"
+    }
+}

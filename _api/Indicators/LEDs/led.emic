@@ -23,12 +23,13 @@
 EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
 EMIC:setInput(DEV:_drivers/SystemTimer/systemTimer.emic)
 
-EMIC:setOutput(TARGET:main.c)
-	EMIC:include(inc\led.h|inc\led_.{name}..h,name=.{name}.,pin=.{pin}.)
+EMIC:setOutput(TARGET:inc/led_.{name}..h)
+	EMIC:setInput(inc/led.h,name=.{name}.,pin=.{pin}.)
 EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:led_.{name}..c)
 	EMIC:setInput(src\led.c,name=.{name}.,pin=.{pin}.)
 EMIC:restoreOutput
 
+EMIC:define(main_includes.led_.{name}.,led_.{name}.)
 EMIC:define(c_modules.led_.{name}.,led_.{name}..c)

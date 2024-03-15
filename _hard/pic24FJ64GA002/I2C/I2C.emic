@@ -1,0 +1,13 @@
+EMIC:ifndef __PIC_I2C.{port}._EMIC__
+EMIC:define(__PIC_I2C.{port}._EMIC__,true)
+
+    EMIC:setOutput(TARGET:inc/I2C.{port}..h)
+        EMIC:setInput(inc\I2C.h,port=.{port}.)
+    EMIC:restoreOutput
+
+    EMIC:setOutput(TARGET:I2C.{port}..c)
+        EMIC:setInput(src\I2C.c,port=.{port}.)
+    EMIC:restoreOutput
+
+EMIC:define(c_modules.I2C.{port}.,I2C.{port}..c)
+EMIC:endif

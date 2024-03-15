@@ -1,0 +1,40 @@
+//RFI TAG:driverName=EMICBus
+
+EMIC:ifndef _EMICBUS_EMIC_
+EMIC:define(_EMICBUS_EMIC_,true)
+
+/**
+* @fn printf pI2C(concat tag,concat msg);
+* @alias Send
+* @brief Send a EMIC message through the EMIC bus
+* @return Nothing
+* @param tag Etiqueta que identifica el mensaje
+* @param msg Contenido del mensaje
+*/
+
+/**
+* @fn extern void eI2C(char* tag,const streamIn_t* const msg);
+* @alias Reception
+* @brief When it receives a string through the EMIC port
+* @return Nothing
+* @param tag Tag to identify the message
+* @param msg message payload
+*/
+
+EMIC:setInput(DEV:_system/Stream/stream.emic)
+EMIC:setInput(DEV:_system/Stream/streamOut.emic)
+EMIC:setInput(DEV:_system/Stream/streamIn.emic)
+EMIC:setInput(DEV:_drivers/I2C/I2C_driver.emic,port=.{port}.,frameID=.{frameID}.)
+
+EMIC:setOutput(TARGET:inc\EMICBus.h)
+    EMIC:setInput(inc\EMICBus.h,port=.{port}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:EMICBus.c)
+    EMIC:setInput(src\EMICBus.c,port=.{port}.,frameID=.{frameID}.)
+EMIC:restoreOutput
+
+EMIC:define(main_includes.EmicBus,EMICBus)
+EMIC:define(c_modules.EmicBus,EMICBus.c)
+
+EMIC:endif

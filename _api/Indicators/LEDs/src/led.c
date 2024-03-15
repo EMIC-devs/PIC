@@ -1,4 +1,4 @@
-
+#include <xc.h>
 #include "inc/led_.{name}..h"
 #include "inc/gpio.h"
 #include "inc/systemTimer.h"
@@ -67,7 +67,7 @@ void LEDs_.{name}._poll ()
 			if (blkLed_period > 0)
 			{
 				HAL_GPIO_PinSet(.{pin}., GPIO_HIGH);
-				blkLed_tStamp = timeStamp;
+				blkLed_tStamp = getSystemMilis();
 			}
 		}
 		else if ( getSystemMilis() - blkLed_tStamp > blkLed_timerOn )

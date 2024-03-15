@@ -1,0 +1,1 @@
+EMIC:setInput(DEV:_hard/.{system.ucName}./I2C/I2C.emic,port=.{port}.)	
