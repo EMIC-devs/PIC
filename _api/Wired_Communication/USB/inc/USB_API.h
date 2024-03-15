@@ -15,10 +15,6 @@
 #ifndef _USB_API_H_
 #define _USB_API_H_
 
-//#if USBprot=="EMIC_message"
-    #define USBFrameLf '.{frameLf}.'
-//#endif
-
 /*==================[public functions definition]==========================*/
 void USB_Init(void);
 EMIC:define(inits.USB_Init,USB_Init)

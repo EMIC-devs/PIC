@@ -403,12 +403,9 @@ void i2cOpenReadFrame(stream_t* stream)
  *
  * @return None
  */
-void ISR_I2C.{port}._SLAVE_CALLBACK(void)
+void ISR_I2C.{port}._CALLBACK_SLAVE(void)
 {
 	uint8_t d;
-
-	_SI2C.{port}.IF = 0;
-
 	if (IsI2cReceiveBufferFull(i2c_init_structure))
 	{
 		d = Read_I2C(i2c_init_structure,0);
@@ -445,10 +442,8 @@ void ISR_I2C.{port}._SLAVE_CALLBACK(void)
  *
  * @return None
  */
-void ISR_I2C.{port}._MASTER_CALLBACK(void)
+void ISR_I2C.{port}._CALLBACK_MASTER(void)
 {
-	_MI2C.{port}.IF = 0;
-
 	if (IsI2cCollisionDetect(i2c_init_structure))
 	{
 		CollisionReset_I2C(i2c_init_structure);

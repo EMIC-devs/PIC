@@ -204,14 +204,6 @@ void UART.{port}._ON(void)
     UART.{port}._init_fifo(&UART.{port}._OUT_fifo);
 }
 
-void UART.{port}._Poll(void)
-{
-    if(!UART.{port}._is_empty(&UART.{port}._OUT_fifo) && !U.{port}.STAbits.UTXBF)
-    {
-        U.{port}.TXREG = UART.{port}._pop(&UART.{port}._OUT_fifo);
-    }
-}
-
 /**
  * @brief UART Transmit Interrupt Service Routine.
  *
@@ -229,7 +221,9 @@ void __attribute__((interrupt(auto_psv))) _U.{port}.TXInterrupt( void )
 		if(!U.{port}.STAbits.UTXBF)
 			U.{port}.TXREG = UART.{port}._pop(&UART.{port}._OUT_fifo);
 		else
-			return;
+        {
+            return;
+        }
 	}
 }
 

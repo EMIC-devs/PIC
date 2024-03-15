@@ -171,21 +171,6 @@ void UART.{port}._OFF(void);
  */
 void UART.{port}._ON(void);
 
-/**
- * @brief Polls the UART for transmitting data.
- *
- * This function checks if the output FIFO is not empty and the UART
- * transmit buffer is not full. If both conditions are met, it initiates
- * the transmission by sending data from the output FIFO to the UART transmit register.
- * The actual transmission process may continue in the UART transmit interrupt service routine (ISR).
- *
- * @note This function is a polling mechanism for initiating data transmission.
- * Subsequent data transmission may occur in the UART transmit ISR.
- * It should be called periodically to ensure timely data transmission.
- */
-void UART.{port}._Poll(void);
-EMIC:define(polls.UART.{port}._Poll,UART.{port}._Poll)
-
 char UART.{port}._IN_pop(void);
 
 uint16_t UART.{port}._IN_count(void);
@@ -217,5 +202,7 @@ extern const streamOut_t streamOut_Uart.{port}.;
  * The actual behavior of the callback is determined by the user's implementation.
  * To enable the callback, it should be defined and associated with the corresponding UART receive ISR.
  */
+EMIC:ifdef(UART.{port}._CALLBACK_RX)
 extern void ISR_UART.{port}._CALLBACK(char d);
+EMIC:endif
 #endif 

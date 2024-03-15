@@ -9,10 +9,10 @@
 
   @version  v0.0.1
  ******************************************************************************/
+ #include <xc.h>
  #include "inc/EMICBus.h"
  #include "inc/I2C.{port}._driver.h"
  #include "inc/I2C.{port}..h"
- #include "inc/streamOut.h"
  #include "inc/streamIn.h"
  #include "inc/stream.h"
  #include "inc/userFncFile.h"
@@ -45,7 +45,10 @@ void pI2C(char* format_,...)
 
 void emicBus_init()
 {
-
+	Init_I2C_Driver();
+	ini_I2C_IN();				//not needed?
+	ini_I2C_OUT();				//not needed?
+	ini_I2C_OUT_FM();			//not needed?
 }
 
 /**

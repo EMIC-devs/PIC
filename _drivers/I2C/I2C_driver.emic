@@ -1,6 +1,8 @@
 EMIC:ifndef I2C_DRIVER_EMIC_
 EMIC:define(I2C_DRIVER_EMIC_,true)
 
+    EMIC:define(I2C.{port}._CALLBACK_SLAVE,true)
+    EMIC:define(I2C.{port}._CALLBACK_MASTER,true)
     EMIC:setInput(DEV:_hal/I2C/I2C.emic,port=.{port}.)
 
     EMIC:setOutput(TARGET:inc/I2C.{port}._driver.h)

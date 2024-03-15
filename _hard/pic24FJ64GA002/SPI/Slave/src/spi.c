@@ -29,15 +29,17 @@
 /*==================[internal functions definition]==========================*/
 
 /*==================[external functions definition]==========================*/
-#ifdef ISR_SPI.{port}._CALLBACK
+
 void __attribute__((__interrupt__)) _SPI.{port}.Interrupt( void )	
-		{
+{
 	_SPI.{port}.IF      = 0;             //Clear flag interrupt
 	uint16_t data = 0;
 	data = SPI.{port}.BUF;
+	EMIC:ifdef(SPI.{port}._CALLBACK)
 	ISR_SPI.{port}._CALLBACK(data);
-		}
-#endif
+	EMIC:endif
+}
+
 
 void SPI.{port}._init (uint8_t mode16, uint8_t spi_mode)
 {

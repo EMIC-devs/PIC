@@ -60,7 +60,7 @@ EMIC:setInput(DEV:_system/Stream/streamIn.emic)
 EMIC:setInput(DEV:_drivers/USB/.{driver}./.{driver}..emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=MCP2200)
 
 EMIC:setOutput(TARGET:inc/USB_API.h)
-	EMIC:include(inc/USB_API.h,port=.{port}.,frameLf=.{frameLf}.)
+	EMIC:setInput(inc/USB_API.h,port=.{port}.,frameLf=.{frameLf}.)
 EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:USB_API.c)

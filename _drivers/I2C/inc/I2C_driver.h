@@ -43,8 +43,8 @@ extern const streamOut_t streamOut_I2C; //Count not tested
 
 /*==================[internal functions declaration]===========================*/
 
-void ISR_I2C.{port}._SLAVE_CALLBACK(void);
-void ISR_I2C.{port}._MASTER_CALLBACK(void);
+void ISR_I2C.{port}._CALLBACK_SLAVE(void);
+void ISR_I2C.{port}._CALLBACK_MASTER(void);
 
 void 		Init_I2C_Driver(void);
 void 		ini_I2C_IN(void);
@@ -64,7 +64,6 @@ uint16_t 	getAvailable_out_count(void);
 
 void i2cCloseWriteFrame(stream_t* stream);
 void i2cOpenReadFrame(stream_t* stream);
-
 
 
 /*==================[end of file]============================================*/
