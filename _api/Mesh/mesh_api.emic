@@ -28,6 +28,15 @@ EMIC:define(UART.{port}._CALLBACK_RX,true)
 * @param msg Contenido del mensaje
 */
 
+/**
+* @fn void Mesh_set(uint16_t myID,uint16_t targetID);
+* @alias set
+* @brief Send a EMIC message through the mesh port
+* @return Nothing
+* @param myID ID local
+* @param targetID ID de destino
+*/
+
 
 /**
 * @fn extern void eMesh(char* tag,const streamIn_t* const msg);
@@ -45,12 +54,17 @@ EMIC:setInput(DEV:_system/Stream/streamIn.emic)
 EMIC:setInput(DEV:_drivers/Mesh/mesh.emic)
 
 EMIC:setOutput(TARGET:inc/mesh_api.h)
-	EMIC:include(inc/mesh_api.h,port=.{port}.,frameLf=.{frameLf}.)
+	EMIC:include(inc/mesh_api.h)
 EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:mesh_api.c)
-	EMIC:setInput(src/mesh_api.c,port=.{port}.,frameLf=.{frameLf}.,driver=.{driver}.)
+	EMIC:setInput(src/mesh_api.c)
 EMIC:restoreOutput
+
+
+EMIC:define(inits.mesh,init_mesh)
+EMIC:define(polls.mesh,poll_mesh)
+
 
 EMIC:define(main_includes.mesh_api,mesh_api)
 EMIC:define(c_modules.mesh_api,mesh_api.c)

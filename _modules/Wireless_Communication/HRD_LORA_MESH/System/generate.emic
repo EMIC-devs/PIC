@@ -2,20 +2,19 @@ EMIC:setOutput(TARGET:generate.txt)
 
     //--------------Hardware Config---------------------
     EMIC:setInput(DEV:_pcb/pcb.emic,pcb=HRD_USB V1.1)
-
+    
     EMIC:setInput(TARGET:usedFunction.emic)
     EMIC:setInput(TARGET:usedEvent.emic)
 
     //------------- Driver Config -----------------------
-    EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=ledTX,pin=Led1)
-    //EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=ledRX,pin=Led2)
-
+    //  EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=ledTX,pin=Led1)
+    //  //EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=ledRX,pin=Led2)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
-    EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=2)
+    //  EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=2)
     EMIC:setInput(DEV:_api/Mesh/mesh_api.emic,driver=LoRa,port=1,BufferSize=512,baud=9600,frameLf=\n,name=LoRa)
-    //EMIC:setInput(DEV:_api/Wired_Communication/EMICBus/EMICBus.emic,port=2,frameID=0)
+    //  //EMIC:setInput(DEV:_api/Wired_Communication/EMICBus/EMICBus.emic,port=2,frameID=0)
 
-    //------------- Driver Config -----------------------
+    //  //------------- Driver Config -----------------------
     EMIC:setInput(DEV:_main/baremetal/main.emic)
 
     EMIC:setOutput(TARGET:inc/userFncFile.h)

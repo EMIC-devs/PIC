@@ -1,4 +1,4 @@
-#include "inc/x16.h"
+#include "x16.h"
 
 void trace(const char *func, char *msg, int loglevel)
 {

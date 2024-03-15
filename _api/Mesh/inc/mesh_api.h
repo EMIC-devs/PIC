@@ -12,23 +12,16 @@
 
  ******************************************************************************/
 
+
 #ifndef _Mesh_api_H_
 #define _Mesh_api_H_
 
-//#if Meshprot=="EMIC_message"
-    #define MeshFrameLf '.{frameLf}.'
-//#endif
+#define MeshFrameLf '\n'
 
 /*==================[public functions definition]==========================*/
-void Mesh_Init(void);
-EMIC:define(inits.Mesh_Init,Mesh_Init)
-
-
+void init_mesh(void);
 void pMesh(char* format,...);
-
-void Poll_Mesh(void);
-EMIC:define(polls.Poll_Mesh,Poll_Mesh)
-
-void ISR_UART.{port}._CALLBACK(char d);
+void poll_mesh(void);
+void Mesh_set(uint16_t myID,uint16_t targetID);
 
 #endif
