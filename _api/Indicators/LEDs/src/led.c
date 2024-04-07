@@ -14,7 +14,7 @@ void LEDs_.{name}._state(uint8_t status)
 	switch (status)
 	{
 		case 0:
-			HAL_GPIO_PinSet(.{pin}., GPIO_LOW);
+			HAL_GPIO_PinSet(.{pin}., GPIO_LOW); // es mal
 			break;
 		case 1:
 			HAL_GPIO_PinSet(.{pin}., GPIO_HIGH);
