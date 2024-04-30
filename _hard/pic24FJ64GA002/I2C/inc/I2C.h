@@ -22,21 +22,6 @@
 
 /*==================[typedef]================================================*/
 
-enum
-{
-    I2C_SLAVE_MODE,
-    I2C_MASTER_MODE
-};
-
-typedef struct
-{
-    const uint8_t mode;             // 0 = slave mode; 1 = master mode
-    const uint16_t frec;            // In KHz
-    const uint8_t address;          // own address
-    const uint8_t i2c_channel;      // 1 = I2C; 2 = I2C2
-    const uint8_t en_interrupt;     // 0 = no interrupt; 1 = interrupt enable
-    const uint8_t pull_up;          // 0 = pull up disable; 1 = pull up enable
-} i2c_config_t;
 
 /*==================[internal function declaration]==========================*/
 
@@ -48,7 +33,7 @@ typedef struct
  * @param config The configuration structure for the I2C module.
  * @return None
  */
-void Init_I2C(i2c_config_t config);
+void Init_Master_I2C.{port}.(uint16_t frec,uint8_t address);
 
 /**
  * @brief Resets the collision flag in the I2C module.
@@ -144,8 +129,8 @@ uint8_t IsDataOrAddressI2c.{port}.();
  */
 uint8_t IsReceiveOverflowI2c.{port}.();
 
-extern void ISR_I2C.{port}._CALLBACK_SLAVE(void);
-extern void ISR_I2C.{port}._CALLBACK_MASTER(void);
+extern inline void .{client}._callback_slave(void);
+extern inline void .{client}._callback_master(void);
 
 /*==================[end of file]============================================*/
 #endif

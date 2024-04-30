@@ -12,6 +12,6 @@ EMIC:setOutput(TARGET:systemTimer.c)
 EMIC:restoreOutput
 
 EMIC:define(main_includes.systemTimer,systemTimer)
-EMIC:define(c_modules.systemTimer,systemTimer.c)
+EMIC:define(c_modules.systemTimer,systemTimer)
 
 EMIC:endif

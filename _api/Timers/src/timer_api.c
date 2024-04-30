@@ -2,20 +2,19 @@
 #include "inc/systemTimer.h"
 #include "inc/userFncFile.h"
 
+EMIC:ifdef usedFunction.setTime.{name}.
+
 static uint32_t time_ms = 0; 
 static uint32_t setPoint_ms = 0; 
 static char modo;
 
 
-
-EMIC:ifdef usedFunction.setTime.{name}.
 void setTime.{name}.(uint32_t setPoint, char l_modo)
 {
 	setPoint_ms = setPoint;
 	modo = l_modo;
 	time_ms =  getSystemMilis();
 }
-EMIC:endif
 
 EMIC:ifdef usedEvent.etOut.{name}.
 void timer.{name}._Poll(void)
@@ -35,3 +34,4 @@ void timer.{name}._Poll(void)
 }
 EMIC:endif
 
+EMIC:endif

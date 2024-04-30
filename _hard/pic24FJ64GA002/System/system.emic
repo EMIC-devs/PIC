@@ -1,0 +1,10 @@
+EMIC:ifndef(_INIT_EMIC)
+EMIC:define(_INIT_EMIC)
+
+	EMIC:copy(inc/system.h > TARGET:inc/system.h)
+	EMIC:define(includes_head.init,init)
+
+	EMIC:copy(src/system.c > TARGET:system.c)
+	EMIC:define(includes_src.system,system)
+
+EMIC:endif

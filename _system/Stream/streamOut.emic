@@ -5,6 +5,6 @@ EMIC:setOutput(TARGET:inc/streamOut.h)
 	EMIC:setInput(inc/streamOut.h)
 EMIC:restoreOutput
 
-EMIC:define(user_includes.streamOut,streamOut.h)
+EMIC:define(user_includes.streamOut,streamOut)
 EMIC:endif
 

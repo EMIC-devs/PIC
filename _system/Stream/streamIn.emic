@@ -11,6 +11,6 @@ EMIC:setOutput(TARGET:streamIn.c)
 	EMIC:setInput(src/streamIn.c)
 EMIC:restoreOutput
 
-EMIC:define(c_modules.streamIn,streamIn.c)
-EMIC:define(user_includes.streamIn,streamIn.h)
+EMIC:define(c_modules.streamIn,streamIn)
+EMIC:define(user_includes.streamIn,streamIn)
 EMIC:endif

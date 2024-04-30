@@ -1,4 +1,9 @@
+EMIC:copy(inc/.{pcb}..h > TARGET:inc/.{pcb}..h)
 
-EMIC:copy(inc\.{pcb}..h > TARGET:inc\.{pcb}..h)
+//Define la primera posicion de la memoria persistente
+#define presist_ __attribute__((section(".presist")))
+char presist_ persistInit;
 
-EMIC:define(main_includes..{pcb}.,.{pcb}.)
+#define presistArray_ __attribute__((section(".presistArray")))
+char presistArray_ persistArrayInit[2];
+
