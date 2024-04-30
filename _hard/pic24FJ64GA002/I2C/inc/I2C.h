@@ -58,7 +58,7 @@ void Init_I2C(i2c_config_t config);
  * @param config The configuration structure for the I2C module.
  * @return None
  */
-void CollisionReset_I2C(i2c_config_t config);
+void CollisionReset_I2C.{port}.();
 
 /**
  * @brief Resets the overflow flag in the I2C module.
@@ -68,10 +68,10 @@ void CollisionReset_I2C(i2c_config_t config);
  * @param config The configuration structure for the I2C module.
  * @return None
  */
-void OverflowReset_I2C(i2c_config_t config);
-void Start_I2C(i2c_config_t config);
-void Stop_I2C(i2c_config_t config);
-void Write_I2C(unsigned char byte, i2c_config_t config);
+void OverflowReset_I2C.{port}.();
+void Start_I2C.{port}.();
+void Stop_I2C.{port}.();
+void Write_I2C.{port}.(unsigned char byte);
 
 /**
  * @brief Reads data from the I2C module.
@@ -82,7 +82,7 @@ void Write_I2C(unsigned char byte, i2c_config_t config);
  * @param Ack Flag to indicate whether to send an acknowledgment or not after receiving data.
  * @return The data read from the I2C module.
  */
-uint8_t Read_I2C(i2c_config_t config,uint8_t Ack);
+uint8_t Read_I2C.{port}.(uint8_t Ack);
 
 /**
  * @brief Checks if the I2C bus is in the start condition.
@@ -92,7 +92,7 @@ uint8_t Read_I2C(i2c_config_t config,uint8_t Ack);
  * @param config The configuration structure for the I2C module.
  * @return 1 if the start condition is detected, 0 otherwise.
  */
-uint8_t IsI2cStart(i2c_config_t config);
+uint8_t IsStartI2c.{port}.();
 
 /**
  * @brief Checks if collision is detected in the I2C module.
@@ -102,7 +102,7 @@ uint8_t IsI2cStart(i2c_config_t config);
  * @param config The configuration structure for the I2C module.
  * @return 1 if collision is detected, 0 otherwise.
  */
-uint8_t IsI2cCollisionDetect(i2c_config_t config);
+uint8_t IsCollisionDetectI2c.{port}.();
 
 /**
  * @brief Checks if the I2C bus is in the stop condition.
@@ -112,7 +112,7 @@ uint8_t IsI2cCollisionDetect(i2c_config_t config);
  * @param config The configuration structure for the I2C module.
  * @return 1 if the stop condition is detected, 0 otherwise.
  */
-uint8_t IsI2cStop(i2c_config_t config);
+uint8_t IsStopI2c.{port}.();
 
 /**
  * @brief Checks if the I2C receive buffer is full.
@@ -122,7 +122,7 @@ uint8_t IsI2cStop(i2c_config_t config);
  * @param config The configuration structure for the I2C module.
  * @return 1 if the receive buffer is full, 0 otherwise.
  */
-uint8_t IsI2cReceiveBufferFull(i2c_config_t config);
+uint8_t IsReceiveBufferFullI2c.{port}.();
 
 /**
  * @brief Checks if the received data is a data byte or an address byte.
@@ -132,7 +132,7 @@ uint8_t IsI2cReceiveBufferFull(i2c_config_t config);
  * @param config The configuration structure for the I2C module.
  * @return 1 if the received data is a data byte, 0 if it's an address byte.
  */
-uint8_t IsI2cDataOrAddress(i2c_config_t config);
+uint8_t IsDataOrAddressI2c.{port}.();
 
 /**
  * @brief Checks if overflow is detected in the I2C receive buffer.
@@ -142,7 +142,7 @@ uint8_t IsI2cDataOrAddress(i2c_config_t config);
  * @param config The configuration structure for the I2C module.
  * @return 1 if overflow is detected, 0 otherwise.
  */
-uint8_t IsI2cReceiveOverflow(i2c_config_t config);
+uint8_t IsReceiveOverflowI2c.{port}.();
 
 extern void ISR_I2C.{port}._CALLBACK_SLAVE(void);
 extern void ISR_I2C.{port}._CALLBACK_MASTER(void);

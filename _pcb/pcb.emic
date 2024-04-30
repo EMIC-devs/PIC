@@ -1,7 +1,4 @@
 
-
-EMIC:setOutput(TARGET:inc\.{pcb}..h)
-	EMIC:setInput(inc\.{pcb}..h)
-EMIC:restoreOutput
+EMIC:copy(inc\.{pcb}..h > TARGET:inc\.{pcb}..h)
 
 EMIC:define(main_includes..{pcb}.,.{pcb}.)

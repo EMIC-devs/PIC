@@ -68,47 +68,47 @@ void Init_I2C(i2c_config_t config)
     }
 }
 
-void CollisionReset_I2C(i2c_config_t config)
+void CollisionReset_I2C.{port}.()
 {
     I2C.{port}.STATbits.BCL = 0;
 }
 
-void OverflowReset_I2C(i2c_config_t config)
+void OverflowReset_I2C.{port}.()
 {
     I2C.{port}.STATbits.I2COV = 0;
 }
 
-uint8_t IsI2cStart(i2c_config_t config)
+uint8_t IsStartI2c.{port}.()
 {
     return I2C.{port}.STATbits.S;
 }
 
-uint8_t IsI2cCollisionDetect(i2c_config_t config)
+uint8_t IsCollisionDetectI2c.{port}.()
 {
     return I2C.{port}.STATbits.BCL;
 }
 
-uint8_t IsI2cStop(i2c_config_t config)
+uint8_t IsStopI2c.{port}.()
 {
     return I2C.{port}.STATbits.P;
 }
 
-uint8_t IsI2cReceiveBufferFull(i2c_config_t config)
+uint8_t IsReceiveBufferFullI2c.{port}.()
 {
     return I2C.{port}.STATbits.RBF;
 }
 
-uint8_t IsI2cDataOrAddress(i2c_config_t config)
+uint8_t IsDataOrAddressI2c.{port}.()
 {
     return I2C.{port}.STATbits.D_A;
 }
 
-uint8_t IsI2cReceiveOverflow(i2c_config_t config)
+uint8_t IsReceiveOverflowI2c.{port}.()
 {
     return I2C.{port}.STATbits.I2COV;
 }
 
-void Start_I2C(i2c_config_t config)
+void Start_I2C.{port}.()
 {
 	//This function generates an I2C start condition and returns status
 	//of the Start.
@@ -117,14 +117,14 @@ void Start_I2C(i2c_config_t config)
 
 }
 
-void Stop_I2C(i2c_config_t config)
+void Stop_I2C.{port}.()
 {
 	//This function generates an I2C stop condition and returns status
 	//of the Stop.
 	I2C.{port}.CONbits.PEN = 1;     //Generate Stop Condition
 	while (I2C.{port}.CONbits.PEN);
 }
-void Write_I2C(unsigned char byte, i2c_config_t config)
+void Write_I2C.{port}.(unsigned char byte)
 {
 	//This function transmits the byte passed to the function
 	//while (I2C.{port}.STATbits.TBF);		//wait for data transmission
@@ -135,7 +135,7 @@ void Write_I2C(unsigned char byte, i2c_config_t config)
     }
 }
 
-uint8_t Read_I2C(i2c_config_t config, uint8_t Ack)
+uint8_t Read_I2C.{port}.(uint8_t Ack)
 {
 	uint8_t data = 0;
     if (config.en_interrupt == 0)
