@@ -37,10 +37,10 @@ Los volúmenes lógicos son:
 
 | Volumen | Referencia.|
 |---------|------------|
-|`DEV:`   |Se encuentran los archivos del repositorio.|
-|`TARGET:`|Se van almacenando los archivos generados en el proceso de compilación.|
-|`SYS:`   |Se crean los archivos de configuración de cada aplicación.|
-|`USER:`  |Archivos del usuario (integrador)|
+|`DEV:`   |Volumen donde se encuentran los archivos del repositorio.|
+|`TARGET:`|Volumen donde se van almacenando los archivos generados en el proceso de compilación.|
+|`SYS:`   |Volumen donde se crean los archivos de configuración de cada aplicación.|
+|`USER:`  |Volumen don se ubican los archivos del usuario (integrador)|
 
 
 ### Comandos EMIC Codify:
@@ -91,10 +91,17 @@ Restablece es archivo de salida al destino anterior.
 `EMIC:restoreOutput`
 
 ----------------------
-#### copy
+#### copy 
+
+Indica al sistema que se debe procesar un archivo y enviar el texto generado durante el procesamiento a un archivo de salida especificado, si el archivo no existe se creará en el momento que se intente escribir en él.
+Al ejecutar el comando, se pueden definir mediante pares de clave-valor un conjunto de ***macros*** que serán usada como texto variable durante el procesamiento.
 
 #### Sintaxis:
-`EMIC:copy([origin:][dir1/]file1,[target:][dir2/]file2[[,key=value]])`
+```
+EMIC:copy([origin:][dir1/]file1,[target:][dir2/]file2[[,key=value]])
+```
+
+#### Definiciones: 
 
 - `origin` (opcional) : volumen en el que se ubica el archivo. Si se omite se usará el volumen actual.
 
@@ -104,21 +111,57 @@ Restablece es archivo de salida al destino anterior.
 
 - `target` (opcional) : volumen en el que se encuentra el archivo de salida. Si se omite se usará el volumen de salida actual.
 
-- `dir`    (opcional) : ruta del archivo. Si no existe, se crea. Si se omite, se usará la ruta de salida actual.
+- `dir2`    (opcional) : ruta del archivo. Si no existe, se crea. Si se omite, se usará la ruta de salida actual.
 
-- `file`   : nombre del archivo. Si el archivo no existe, lo crea
+- `file2`   : nombre del archivo. Si el archivo no existe, lo crea
 
 - `key` (opcional) : nombre de cada parámetro que será utilizado en la interpretación del archivo. 
 
 - `value` (opcional) : valor tomará el parámetro que reemplaza a la clave en la interpretación del archivo.
 
+....................................
+#### Sintaxis:
+### if
+```
+EMIC:if(condicion)
+```
+#### Definiciones:
 
-#### EMIC:if
-#### EMIC:elif
-#### EMIC:ifdef
-#### EMIC:ifndef
-#### EMIC:else
-#### EMIC:endif
+....................................
+#### Sintaxis:
+```
+EMIC:elif
+```
+#### Definiciones:
+
+....................................
+#### Sintaxis:
+```
+EMIC:ifdef
+```
+#### Definiciones:
+
+...................................
+#### Sintaxis:
+```
+EMIC:ifndef
+```
+#### Definiciones:
+
+....................................
+#### Sintaxis:
+```
+EMIC:else
+```
+#### Definiciones:
+
+....................................
+#### Sintaxis:
+```
+EMIC:endif
+```
+#### Definiciones:
+
 -----------------------------------
 ### define
 
