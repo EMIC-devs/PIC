@@ -44,32 +44,33 @@ Los volúmenes lógicos son:
 
 
 ### Comandos EMIC Codify:
+
+> Nota: Los términos entre corchetes son opcionales y entre dobles corchetes se pueden repetir varias veces. 
+
 ---------------------------------------------
 ### setImput
 
-Indica al sistema que se debe procesar un archivo. Luego el sistema continua ejecutando las lineas restantes del archivo que se estaba procesando.
-Al ejecutar el comando para procesar un archivo, se pueden definir mediante pares de clave-valor un conjunto de ***macros*** que serán usada como texto variable durante el procesamiento.
+Inicializa el procesamiento de un archivo. Cuando finaliza se continuará procesando el archivo actual.
+Al ejecutar el comando, se pueden definir pares de clave-valor  ***macros*** que serán usada como texto variable durante el procesamiento.
 
 #### Sintaxis:
 ```
 EMIC:setInput([origin:][dir/]file[[,key=value]])
 ```
 
-
 ##### Definiciones: 
-`origin` (opcional) : volumen en el que se ubica el archivo. Si se omite se usará el volumen actual.
-
-`dir`    (opcional) : ruta del archivo.
-
-`file`   : nombre del archivo.
-
-`key` (opcional) : nombre de cada parámetro que será utilizado en la interpretación del archivo. 
-
-`value` (opcional) : valor tomará el parametro que reemplaza a la clave en la interpretación del archivo.
+|Nombre   | Opcional| Descripción|
+|---------|:-------:|-----------------|
+|`origin` |SI       | volumen en el que se ubica el archivo. Si se omite se usará el volumen actual.|
+|`dir`    |SI       | ruta del archivo.|
+|`file`   |NO       | nombre del archivo.|
+|`key`    |SI       | nombre de cada parámetro que será utilizado en la interpretación del archivo.|
+|`value`  |SI       | valor tomará el parámetro que reemplaza a la clave en la interpretación del archivo.|
 
 --------------
+
 ### setOutput
-Establece el archivo de salida. Todo el texto generado durante el procesamiento será enviado al archivo seleccionado, si el archivo no existe se creará en el momento que se intente escribir en él. Cada vez que se ejecuta este comando la salida actual se almacena para ser restablecida posteriormente. 
+Establece el archivo de salida. Todo el texto generado durante el procesamiento siguiente al comando será enviado al archivo indicado, si el archivo no existe se creará en el momento que se intente escribir en él. Cada vez que se ejecuta este comando la salida actual se almacena para ser restablecida posteriormente. 
 
 #### Sintaxis:
 ```
@@ -77,11 +78,11 @@ EMIC:setOutput([target:][dir/]file)
 ```
 
 ##### Definiciones: 
-`target` (opcional) : volumen en el que se encuentra el archivo de salida. Si se omite se usará el volumen de salida actual.
-
-`dir`    (opcional) : ruta del archivo. Si no existe, se crea. Si se omite, se usará la ruta de salida actual.
-
-`file`   : nombre del archivo. Si el archivo no existe, lo crea
+|Nombre   | Opcional| Descripción|
+|---------|:-------:|-----------------|
+|`target` |SI       | volumen en el que se encuentra el archivo de salida. Si se omite se usará el volumen de salida actual.|
+|`dir`    |SI       | ruta del archivo. Si no existe, se crea. Si se omite, se usará la ruta de salida actual.|
+|`file`   |NO       | nombre del archivo. Si el archivo no existe, lo crea|
 
 ----------
 ### restoreOutput
@@ -102,51 +103,109 @@ EMIC:copy([origin:][dir1/]file1,[target:][dir2/]file2[[,key=value]])
 ```
 
 #### Definiciones: 
-
-- `origin` (opcional) : volumen en el que se ubica el archivo. Si se omite se usará el volumen actual.
-
-- `dir1`    (opcional) : ruta del archivo.
-
-- `file1`   : nombre del archivo.
-
-- `target` (opcional) : volumen en el que se encuentra el archivo de salida. Si se omite se usará el volumen de salida actual.
-
-- `dir2`    (opcional) : ruta del archivo. Si no existe, se crea. Si se omite, se usará la ruta de salida actual.
-
-- `file2`   : nombre del archivo. Si el archivo no existe, lo crea
-
-- `key` (opcional) : nombre de cada parámetro que será utilizado en la interpretación del archivo. 
-
-- `value` (opcional) : valor tomará el parámetro que reemplaza a la clave en la interpretación del archivo.
+|Nombre   | Opcional| Descripción|
+|---------|:-------:|-----------------|
+|`origin` |SI       | volumen en el que se encuentra el archivo de entrada. Si se omite se usará el volumen.|
+|`dir1`   |SI       | ruta del archivo de entrada. Si se omite, se usará la ruta del archivo procesado actualmente.|
+|`file`   |NO       | nombre del archivo de entrada. |
+|`origin` |SI       | volumen en el que se encuentra el archivo de salida. Si se omite se usará el volumen de salida actual.|
+|`dir1`   |SI       | ruta del archivo. Si no existe, se crea. Si se omite, se usará la ruta de salida actual.|
+|`file`   |NO       | nombre del archivo se salida. Si el archivo no existe, se crea |
+|`key`    |SI       | nombre de cada parámetro que será utilizado en la interpretación del archivo.|
+|`value`  |SI       | valor tomará el parámetro que reemplaza a la clave en la interpretación del archivo.|
 
 ....................................
+### define
+
+Define una nueva ***macro*** formada por una clave y un valor, que sera almacenada para su posterior utilización.
+
+#### Sintaxis:
+```
+EMIC:define([group.]key,value)
+```
+
+#### Definiciones:
+|Nombre   | Opcional | Descripción     |
+|---------|:--------:|-----------------|
+| `group` | SI       | Nombre del grupo en que se define la macro, si se omite se usa el grupo por defecto ***global*** |
+| `key`   | NO       | Clave que identifica a la ***macro***.  |
+|`value`  | NO       | Texto se guarda  de la ***macro**** |
+
+
+--------------------------------
+### unDefine
+Borra una ***macro***.
+
+#### Sintaxis:
+
+```
+EMIC:unDefine([group.]key)
+```
+
+#### Definiciones:
+|Nombre   | Opcional| Descripción     |
+|---------|:-------:|-----------------|
+| `group` | SI      | Nombre del grupo en que se define la macro, si se omite se usa el grupo por defecto ***global*** |
+| `key`   | NO      | Clave que identifica a la ***macro***.  |
+
+--------------------------------------
+### .{group.key}.
+
+Es comando se usa en las partes del texto que queremos que sean sustituidos por otro texto definido previamente  
+
+Reemplaza .{[**group**.]**key**}. por el valor asignado con EMIC:define([**group**.]**key**,**value**).
+
+### EMIC:foreach(**group**)    .{Item}.     EMIC:endfor
+
+----------------------------------------------------------------------------------
 #### Sintaxis:
 ### if
 ```
-EMIC:if(condicion)
+EMIC:if(condition)
+```
+#### Definiciones:
+|Nombre   | Opcional| Descripción     |
+|---------|:-------:|-----------------|
+|``|  |  |
+|``|  |  |
+|``|  |  |
+|``|  |  |
+|``|  |  |
+
+....................................
+#### Sintaxis:
+```
+EMIC:elif(condition)
 ```
 #### Definiciones:
 
 ....................................
 #### Sintaxis:
 ```
-EMIC:elif
+EMIC:ifdef(macro)
 ```
 #### Definiciones:
-
-....................................
-#### Sintaxis:
-```
-EMIC:ifdef
-```
-#### Definiciones:
+|Nombre   | Opcional| Descripción     |
+|---------|:-------:|-----------------|
+|``|  |  |
+|``|  |  |
+|``|  |  |
+|``|  |  |
+|``|  |  |
 
 ...................................
 #### Sintaxis:
 ```
-EMIC:ifndef
+EMIC:ifndef(macro)
 ```
 #### Definiciones:
+|Nombre   | Opcional| Descripción     |
+|---------|:-------:|-----------------|
+|``|  |  |
+|``|  |  |
+|``|  |  |
+|``|  |  |
+|``|  |  |
 
 ....................................
 #### Sintaxis:
@@ -163,160 +222,8 @@ EMIC:endif
 #### Definiciones:
 
 -----------------------------------
-### define
-
-Define una nueva ***macro*** formada por una clave y un valor, que sera almacenada para su posterior utilización.
-
-#### Sintaxis:
-`EMIC:define([group.]key,value)`
-
-##### Definiciones: 
-`group` (opcional) : Define el grupo en el que se almacena la ***macro***.
-
-`key` : Clave para referenciar a la ***macro***.
-
-`value` : Texto de la ***macro****
-
---------------------------------
-### unDefine
-Borra una ***macro***.
-
-#### Sintaxis:
-
-`EMIC:unDefine(key)`
-
-#### Definiciones:
-`key` : Clave para referenciar a la ***macro***.
-
---------------------------------------
-#### .{**key**}.
-
-Reemplaza .{[**group**.]**key**}. por el valor asignado con EMIC:define([**group**.]**key**,**value**).
-
-### EMIC:foreach(**group**)    .{Item}.     EMIC:endfor
 
 
-
-
-
-
-
-#### #insertFile(**dir**/**file**[,param=value][, ......])
-
-Procesa el archivo llamado **file** ubicado en el directorio **dir**, el orden de búsqueda es el siguiente:
-
-Salida
-
-target
-
-/DEV
-
-/USER
-
-
-#### #newRFIcode(dir/file[,param=value][, ......])
-##### #setFile dir/file
-##### #reSetFile dir/file
-##### #unSetFile
-##### #define
-##### #undef
-##### #copy
-##### ##include
-##### #addToMacro
-##### -{  }-
-##### _{  }_
-##### .{  }.
-##### //No RFI scan   
-##### #else
-##### #ifdef
-##### #ifndef
-##### #elif
-##### 
-##### #if
-##### #endif
-##### 
-##### #aplyUsingDriver
-
-
-
-  
-#addToList
-#using
-#useDriver
-#include
-doCMDejec
-doCMDf
-doCMD
-doInit
-doPoll
-doStream
-/**<   */
-/*RFI ModuloReferencia
-//RFI TAG:driverName=
-/*RFI
-
-
--------------------------------------------------------------
-
-
-
-### Comandos EMIC Codify:
-
-#### EMIC:setInput([**origin**:][**dir**/]**file**[,**key**=**value**][, ......])
-
-Procesa el archivo llamado **file** ubicado en el directorio **dir**, a ubicado en **origin**. Ademas se crea un diccionario temporal con un conjunto de claves y 
-
-#### EMIC:setOutput([**target**:][**dir**/]**file**)
-
-Redirige la salida al archivo llamado **file** ubicado en el directorio **dir**, a ubicado en **origin**.
-
-#### EMIC:reSetOutput
-
-Redirige la salida al destino anterior.
-
-#### EMIC:define([**group**.]**key**,**value**)
-
-Define una nueva entrada al diccionario con el nombre **key** y cuyo valor sera **value**, en el caso que la clave este precedida por el nombre de un grupo, asigna la entrada al grupo, si el grupo no existe lo crea.
-
-#### EMIC:unDefine(**key**)
-
-Borra la entrada con el nombre **key** del diccionario.
-
-#### .{**key**}.
-
-Reemplaza .{[**group**.]**key**}. por el valor asignado con EMIC:define([**group**.]**key**,**value**).
-
-### EMIC:foreach(**group**)    .{Item}.     EMIC:endfor
-
-
-
-#### EMIC:copy([**origin**:][**dir**/]**file**,[**target**:][**dir**/]**file**)
-
-Copia el contenido del documento ubicado en [**origin**:][**dir**/]**file**, en [**target**:][**dir**/]**file**.
-
-
-
-#### EMIC:if
-#### EMIC:elif
-#### EMIC:ifdef
-#### EMIC:ifndef
-#### EMIC:else
-#### EMIC:endif
-
-
-
-
-  
-#addToList
-#using
-#useDriver
-#include
-doCMDejec
-doCMDf
-doCMD
-doInit
-doPoll
-doStream
 /**<   */
 /*RFI ModuloReferencia
 //RFI TAG:driverName=
