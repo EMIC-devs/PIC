@@ -1,7 +1,25 @@
-# Bienvenido al repo de desarrollo colaborativo - EMIC
-## Una iniciativa para compartir experiencias y mejorar la productividad de programadores de sistemas embebidos.
+# EMIC 
+- [1. Una iniciativa para compartir experiencias y mejorar la productividad de programadores de sistemas embebidos.](#1-una-iniciativa-para-compartir-experiencias-y-mejorar-la-productividad-de-programadores-de-sistemas-embebidos)
+  - [1.1. ¿Que es EMIC?](#11-que-es-emic)
+  - [1.2. Breve historia:](#12-breve-historia)
+  - [1.3. Estado actual de EMIC.](#13-estado-actual-de-emic)
+  - [1.4. El futuro de EMIC:](#14-el-futuro-de-emic)
+  - [1.5. ¿Quienes pueden pertencer a la comunidad EMIC?](#15-quienes-pueden-pertencer-a-la-comunidad-emic)
+  - [1.6. ¿Cómo se usa EMIC?](#16-cómo-se-usa-emic)
+- [2. Generación de Aplicaciones y documentos.](#2-generación-de-aplicaciones-y-documentos)
+- [3. Modulos.](#3-modulos)
+- [4. Bibliotecas.](#4-bibliotecas)
+- [5. Organización de archivos y carpetas en **SOURCE Documents:**.](#5-organización-de-archivos-y-carpetas-en-source-documents)
+  - [5.1. \_api.](#51-_api)
+  - [5.2. \_drivers, \_hard, \_hal \_util, \_pcb, \_OS, \_main, \_interprete, \_templates.](#52-_drivers-_hard-_hal-_util-_pcb-_os-_main-_interprete-_templates)
+  - [5.3. \_modulos.](#53-_modulos)
+  - [5.4. Funcionamiento.](#54-funcionamiento)
 
-### ¿Que es EMIC?
+<div style="page-break-after: always;"></div>
+
+## 1. Una iniciativa para compartir experiencias y mejorar la productividad de programadores de sistemas embebidos.
+
+### 1.1. ¿Que es EMIC?
 
 EMIC significa Electrónica Modular Inteligente Colaborativa. Está compuesto por: un conjunto de funciones y drivers, un editor de script simple e intuitivo que junto con un sistema de integración, puede crear código listo para compilar o ejecutar.
 
@@ -9,7 +27,7 @@ En un principio EMIC fué creado para crear programas en lenguaje C, pero en el 
 
 Además, EMIC es agnóstico respecto a la arquitectura, familia de microcontroladores y compiladores. Y se busca que las funciones y drivers aportados por los usuarios también lo sean.
 
-### Breve historia: 
+### 1.2. Breve historia: 
 
 Todo comenzó cuándo un grupo de programadores intercambiaba código con el fin de mejorar la productividad y calidad de sus desarrollos.
 
@@ -25,23 +43,53 @@ Se creó un entorno de desarrollo en la nube, que incluye un editor, un generado
 
 Posteriormente se diseñó un protocolo para comunicar microcontroladores, esto permite modularizar los desarrollos, de forma que cada parte de un dispositivo electrónico puede recombinarse. Este sistema modular permite crear nuevos dispositivos en pocos minutos combinando módulos de hardware existentes. EMIC está pensado para que el desarrollador de sistemas embebidos viva una experiencia única. Logrando productos robustos y confiables en tiempo record.
 
-### Convocatoria:
-
-Cómo el sistema sigue evolucionando, y para acelerar el crecimiento convocamos a todos los interesados a participar de esta gran experiencia de desarrollo colaborativo. La invitación va dirigida tanto a personas que tienen un camino recorrido en el mundo de los embebidos, como a quienes están dando sus primeros pasos, las contribuciones esperadas pueden ser: simples comentarios, validación de código, aporte de ideas, funciones, drivers, diseño de hardware etc.
-
-Si bien, el aporte de más desarrolladores y usuarios que validen cada pieza de la plataforma es importante para la comunidad. No es necesario compartir todo el código creado, cada usuario puede trabajar en forma privada y luego decidir que quiere compartir con el resto. 
-
-### Estado actual de EMIC.
+### 1.3. Estado actual de EMIC.
 
 El proyecto EMIC es dinámico, semana tras semana se crean nuevas funciones, drivers completos y nuevo hardware, es por eso que las posibilidades de aplicaciones crecen.
 
-Hoy EMIC cuenta con 50 módulos de hardware. Entre los que se encuentran los módulos de conectividad (WiFi, Bluetooth, LoRa WAN, radios con modulación FSK y LoRa, RS485, RS232); Módulos de display (siete segmentos y gráficos); sensores (temperatura, humedad, corriente, tensión, celdas de cargas, gases, etc); actuadores (relés, motores paso a paso, triacs, salidas PWM, etc ); entradas y salidas digitales y analógicas; entre otros.
+Hoy EMIC cuenta con 50 módulos de hardware desarrollados por distintos miembros de la comunidad. Entre los que se encuentran los módulos de conectividad (WiFi, Bluetooth, LoRa WAN, radios con modulación FSK y LoRa, RS485, RS232); Módulos de display (siete segmentos y gráficos); sensores (temperatura, humedad, corriente, tensión, celdas de cargas, gases, etc); actuadores (relés, motores paso a paso, triacs, salidas PWM, etc ); entradas y salidas digitales y analógicas; entre otros.
 
 Respecto al firmware, podemos nombrar: comunicación SPI, I2C, Uart; Timers, salidas PWM, contadores, interrupciones, conversores AD, protocolos: MQTT, HTTP, JSON parser; controladores para ESP8266, sensores DHT22, DHT11, ADS1231, motores PXP, seven segment; MQ14 
 
+### 1.4. El futuro de EMIC:
+
+El sistema sigue evolucionando, estamos incorporando nuevas funciones, experimentando con procesamiento de datos con inteligencia artificial, y despliegue de dockers para servivios web. Además estamos desarrollando un asistente para el desarrollo de hardware.
+Para acelerar el crecimiento convocamos a todos los interesados a participar de esta gran experiencia de desarrollo colaborativo. La invitación va dirigida tanto a personas que tienen un camino recorrido en el mundo de los embebidos, desarrollo web y modelos de IA, como a quienes están dando sus primeros pasos, las contribuciones esperadas pueden ser: simples comentarios, validación de código, aporte de ideas, desarrollo de funciones y drivers, diseño de hardware, desarrollo de dockers para servidores backend, modelos de IA, etc.
+
+Si bien, el aporte de más desarrolladores y usuarios que validen cada pieza de la plataforma es importante para la comunidad. No es necesario compartir todo el código creado, cada usuario puede trabajar en forma privada y luego decidir que quiere compartir con el resto. 
+
+### 1.5. ¿Quienes pueden pertencer a la comunidad EMIC?
+
+No hay resticciones para pertenecer a la comunidad, el requisito mas importante el ser un apacionado por la electrónica, los sistemas embebidos, el desarrollo web, la IA o las otras tecnologias que impulsan la cuarta revolución industrial o "industria 4.0", tambien se valora el espiritu colaborativo.
+Cada miembro puede disponer libremente del resultado logrado por el uso de la plataforma, pero es importante mantener informado a la comunidad sobre los resultados técnicos utilizando los canales oficiales.
+No es obligatorio compartir todos los desarrollos con la comunidad, cada uno decide libremente qué y cuando compartir, pero es deseable que los miembros hagan aportes de forma regular.
+Tipos de aportes que se esperan:
+
+- Desarrollo circuitos de hardware (esquemáticos y PCB)
+- Desarrollo de software (funciones, drivers, widgets basados en webComponents, APIS en dockers, modelos de IA, etc)
+- Testeo y validación en campo.
+- Publicaciones en redes y difución.
+- Propuestas de ideas para desarrollos colaborativos.
+- Otros aportes valorados por la comunidad.
 
 
-## Generación de Aplicaciones y documentos.
+### 1.6. ¿Cómo se usa EMIC? 
+
+Para utilizar la plataforma con todos sus beneficios debe ser miembro oficial de la comunidad, para ello tiene que enviar un correo a comunidad@emic.io solicitarlo formalmente.
+Hay dos maneras de utilizar la plataforma EMIC:
+
+1) **Modo Integración de soluciones 4.0:** 
+   Pensado para aquellas personas que necesiten desarrollar una aplicación basada en hardware, firmware, modelos de IA, contenedores dockers o widgwets web existentes con el objetivo de resolver un problema específico.
+   Todos los miembros de la comunidad pueden usar la plataforma en este modo ingresando en [*editor.emic.io*](https://editor.emic.io), allí encontrará los recursos que fueron desarrollados por él y otros miembros.
+   Si necesita utilizar algún módulo de hardware desarrollado por otro miembro, puede solicitarlo en forma directa o por medio de los canales oficiales. En ese caso, el precio del módulo es pactado entre el desarrollador y el integrador. También se puede utilizar el hardware que algunos desarrolladores deciden ceder a la comunidad y por lo tanto su valor es muy conveniente.
+   
+
+   
+    sea en un ábito industrial, académico o recreativo, 
+1) **Modo Desarrollo:**
+   Quienes tienen conocimientos en algunas de las areas que intervienen en 
+
+## 2. Generación de Aplicaciones y documentos.
 
 En la etapa de integración, se crea el *script* mediante un proceso de edición utilizando la herramienta disponible en la web editor.emic.io. Es decir el sistema toma el documento creado en el proceso de edición del *script* y los transforma en código para un lenguaje de programación específico, como por ejemplo C, LaTex, Javascript  o HTML (Tutorial de edición de *script*).
 
@@ -55,7 +103,7 @@ EL proceso de creación de drivers, bibliotecas y módulos que realiza un desarr
 
 La única deferencia entre una api y las otras bibliotecas es que algunos fragmentos de código de las apis tienen asociado metatexto, es decir una descripción para que un proceso del sistema EMIC, llamado Discovery reconozca el metatexto para presentar la entrada a la librería como un recurso disponible para ser usado en el *Script* por el integrador.
 
-## Modulos.
+## 3. Modulos.
 
 Los módulos EMIC son el elemento central del sistema, es para el desarrollador el objetivo final y para el integrador el comienzo. En decir que es la interface entre los dos mundos.
 Existen distintos tipos de módulos, los que representan a un hardware específico y sus capacidades o funciones, los que definen a una interface visual en la nube, los que definen una aplicación para teléfonos móviles o tablets y PC, y los que definen un proceso alojado en un servidor como bases de datos; procesos backends; e instancias modelos de inteligencia artificial.
@@ -93,14 +141,14 @@ En el documento que define el módulo se pueden observar las lineas con comandos
 Como se ve en el ejemplo la definición de los módulos consiste en un simple documento de texto plano compuesto por comandos pertencientes al lenguaje EMIC CODIFY que se ejecutan de forma secuencial al momento que el integrador selecciona el módulo para incluirlo en la solución.
 
 
-## Bibliotecas.
+## 4. Bibliotecas.
 
 LLamamos biblitotecas a todos los archivos que el sistema EMIC incluye en la generacion de un resultado por medio del comando  **#insertFile(dir/file.emic)**, es decir una biblitoca es procesada por el sistema EMIC, cuando es referencida por un módulo o por otra biblioteca.
  Las biblitecas tambien estan formadas por comandos [EMIC CODIFY](EMICCodify.md), aunque normalmente tienen además, fragmentos de téxto que no es interpretado por el sistema y simplemente es transcripto desde la biblioteca al documento generado como salida del sistema.
 
 
 
-## Organización de archivos y carpetas en **SOURCE Documents:**.
+## 5. Organización de archivos y carpetas en **SOURCE Documents:**.
 
 
 EMIC </br>
@@ -117,7 +165,7 @@ EMIC </br>
   
 
 
-### _api.
+### 5.1. _api.
 
 En la carpeta [_api](_api) están contenidos las funciones que tienen conexión con la lógica de negocio, es decir, puede tener funciones o variables que pueden ser accedidas desde el *script*.
 
@@ -125,16 +173,16 @@ Los recursos almacenados (funciones y variables, en el caso de la creación de c
 
 
 
-### _drivers, _hard, _hal _util, _pcb, _OS, _main, _interprete, _templates.
+### 5.2. _drivers, _hard, _hal _util, _pcb, _OS, _main, _interprete, _templates.
 
 En estas carpetas hay código que si bien cumplen distintas funciones (en correspondencia con su nombre) no recibe ningún tratamiento especial por parte del sistema. Para que un archivo almacenado en esta carpeta forme parte de una aplicación, deberá ser invocada por un recurso de nivel superior.
 
-### _modulos.
+### 5.3. _modulos.
 
 En esta carpeta se almacena la descripción de los recursos de mayor nivel llamdos módulos. Que a su vez están compuestos por otros recursos definidos en la carpeta _api
 
 
-### Funcionamiento.
+### 5.4. Funcionamiento.
 
 Como plataforma colaborativa, el propósito principal de EMIC es generar distintos tipos de documentos, como programas ejecutables por los módulos electrónicos, aplicaciones de teléfonos inteligentes o tablets y páginas webs.
 

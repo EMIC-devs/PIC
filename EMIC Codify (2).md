@@ -1,5 +1,3 @@
-Claro, he corregido y mejorado el texto para que siga las mejores prácticas de Markdown:
-
 # EMIC CODIFY
 
 ### Introducción
