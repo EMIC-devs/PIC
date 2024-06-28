@@ -1,0 +1,30 @@
+/*****************************************************************************
+  @file     Rele.emic
+
+  @brief    API Library to use RELE
+
+  @author   Pentacolo Tomas
+
+  @date     12/07/2023
+
+  @version  1.0.2 
+ ******************************************************************************/
+//RFI TAG:driverName=RELAY
+
+
+/**
+* @fn void relay_.{local.name}.(uint8_t stateRelay);
+* @alias setStatus.{name}.
+* @brief Modifies Relay .{local.name}. status (0-off 1-on 2-toggle)
+* @return Nothing
+* @param stateRelay 0-off, 1-on, 2-toggle
+*/
+
+
+EMIC:copy(inc/relay.h > TARGET:inc/relay_.{local.name}..h,name=.{name}.,pin=.{pin}.)
+
+EMIC:copy(src/relay.c > TARGET:relay_.{local.name}..c,name=.{name}.,pin=.{pin}.)
+
+EMIC:define(main_includes.relay_.{name}.,relay_.{name}.)
+EMIC:define(c_modules.relay_.{name}.,relay_.{name}.)
+

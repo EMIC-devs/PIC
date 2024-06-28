@@ -14,9 +14,8 @@
 * @return Nothing
 */
 
-EMIC:setOutput(TARGET:main.c)
-    EMIC:setInput(main.c)
-EMIC:restoreOutput
+EMIC:setInput(DEV:_hal/System/system.emic)
+EMIC:copy(main.c > TARGET:main.c)
 
-EMIC:define(c_modules.main,main.c)
+EMIC:define(c_modules.main,main)
 

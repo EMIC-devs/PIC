@@ -84,14 +84,6 @@ stream_t i2c.{port}.OutStream =
 	.frame_idx_mask = FrameQty-1
 };
 
-const i2c_config_t i2c_init_structure = {
-    .mode = 1,                  //master mode
-    .frec = 400,                //400 KHz
-    .address = 'M',             //Own address
-    .i2c_channel = .{port}.,    //i2c_channel
-    .en_interrupt = 1,          //enable interrupt
-    .pull_up = 0                //disable pull up
-};
 
 char i2crfi_estado = I2C_ESTADO_IDLE;
 char i2crfi_estado_rcv = I2C_ESTADO_RCV_IDLE;
@@ -113,7 +105,7 @@ const streamOut_t streamOut_I2C = {setI2cStreamOut,getAvailable_out_count}; //Co
  */
 void Init_I2C_Driver(void)
 {
-	Init_I2C(i2c_init_structure);
+	Init_Master_I2C.{port}.(400,'M');
 }
 
 /**
@@ -182,13 +174,13 @@ void setI2cStreamOut(char data)
  */
 void I2C_Begin_Transmision(void)
 {
-	if (!IsI2cStart(i2c_init_structure))
+	if (!IsStartI2c.{port}.())
 	{
 		{
 			streamOpenReadFrame(&i2c.{port}.OutStream);
 			i2crfi_indice = -2;// pongo el indice en -2 para mandar los 2 bytes del id del modulo
 			i2crfi_estado = I2C_ESTADO_SENDING;
-			Start_I2C(i2c_init_structure);
+			Start_I2C.{port}.();
 		}
 	}
 }
@@ -403,14 +395,14 @@ void i2cOpenReadFrame(stream_t* stream)
  *
  * @return None
  */
-void ISR_I2C.{port}._CALLBACK_SLAVE(void)
+inline void I2c_driver_callback_slave(void)
 {
 	uint8_t d;
-	if (IsI2cReceiveBufferFull(i2c_init_structure))
+	if (IsReceiveBufferFullI2c.{port}.())
 	{
-		d = Read_I2C(i2c_init_structure,0);
+		d = Read_I2C.{port}.(0);
 
-		if (!IsI2cDataOrAddress(i2c_init_structure))
+		if (!IsDataOrAddressI2c.{port}.())
 		{
 			i2crfi_estado_rcv = I2C_ESTADO_RCV_ID; //I2C_ESTADO_PKT_ID;
 			return;
@@ -442,33 +434,34 @@ void ISR_I2C.{port}._CALLBACK_SLAVE(void)
  *
  * @return None
  */
-void ISR_I2C.{port}._CALLBACK_MASTER(void)
+
+inline void I2c_driver_callback_master(void)
 {
-	if (IsI2cCollisionDetect(i2c_init_structure))
+	if (IsCollisionDetectI2c.{port}.())
 	{
-		CollisionReset_I2C(i2c_init_structure);
+		CollisionReset_I2C.{port}.();
 		i2crfi_estado = I2C_ESTADO_IDLE;
 		reset_I2C_FRAME();
 		return;
 	}	
 
-	if (IsI2cStop(i2c_init_structure))
+	if (IsStopI2c.{port}.())
 	{
 		i2crfi_estado= I2C_ESTADO_IDLE;
 		return;
 	}
-	if (IsI2cStart(i2c_init_structure))
+	if (IsStartI2c.{port}.())
 	{
 		if (i2crfi_estado == I2C_ESTADO_SENDING)
 		{
 			if (i2crfi_indice == -2) //-3)
 			{
-				Write_I2C(0,i2c_init_structure);
+				Write_I2C.{port}.(0);
 				i2crfi_indice++;
 			}	
 			else if (i2crfi_indice == -1)
 			{
-				Write_I2C(I2C_ID,i2c_init_structure);
+				Write_I2C.{port}.(I2C_ID);
 				i2crfi_indice++;
 			}	
 			else
@@ -479,14 +472,14 @@ void ISR_I2C.{port}._CALLBACK_MASTER(void)
 				{
 					i2crfi_estado = I2C_ESTADO_END;
 				}
-				Write_I2C(d,i2c_init_structure);
+				Write_I2C.{port}.(d);
 			}				
 		}
 		else if (i2crfi_estado == I2C_ESTADO_END)
 		{
 			i2crfi_estado = I2C_ESTADO_IDLE;
 			stopflag=1;
-			Stop_I2C(i2c_init_structure);
+			Stop_I2C.{port}.();
 		}
 	}		
 }	

@@ -1,35 +1,30 @@
 EMIC:setOutput(TARGET:generate.txt)
 
-    //--------------Hardware Config---------------------
+    //-------------- Hardware Config ---------------------
     EMIC:setInput(DEV:_pcb/pcb.emic,pcb=HRD_USB V1.1)
 
-    EMIC:setInput(TARGET:usedFunction.emic)
-    EMIC:setInput(TARGET:usedEvent.emic)
+    //------------------- Process generate files ----------------
+    EMIC:setInput(SYS:usedFunction.emic)
+    EMIC:setInput(SYS:usedEvent.emic)
 
-    //------------- Driver Config -----------------------
-    EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=ledAzul,pin=Led1)
-
+    //------------------- APIs -----------------------
+    EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=led,pin=Led1)
+    
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
-    EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=2)
     EMIC:setInput(DEV:_api/Wired_Communication/USB/USB_API.emic,driver=MCP2200,port=1,BufferSize=512,baud=9600,frameLf=\n,name=MCP2200)
     EMIC:setInput(DEV:_api/Wired_Communication/EMICBus/EMICBus.emic,port=2,frameID=0)
 
-    //------------- Driver Config -----------------------
+    //-------------------- main  -----------------------
     EMIC:setInput(DEV:_main/baremetal/main.emic)
 
-    EMIC:setOutput(TARGET:inc/userFncFile.h)
-        EMIC:setInput(SYS:inc/userFncFile.h)
-    EMIC:restoreOutput
+    //------------------- Copy generate files ----------------
+    EMIC:copy(SYS:inc/userFncFile.h > TARGET:inc/userFncFile.h)
+    EMIC:copy(SYS:userFncFile.c >TARGET:userFncFile.c)
 
-    EMIC:setOutput(TARGET:userFncFile.c)
-        EMIC:setInput(SYS:userFncFile.c)
-    EMIC:restoreOutput
+    //------------------- Set userFncFile.c as a copiler module ----------------
+    EMIC:define(c_modules.userFncFile,userFncFile)
 
-    EMIC:define(c_modules.userFncFile,userFncFile.c)
-
-    EMIC:setOutput(TARGET:nbproject/configurations.xml)
-        EMIC:setInput(DEV:_modules\ModuleCategory\module1\target\nbproject\configurations.xml)
-    EMIC:restoreOutput
-
+    //------------------- Add all compiler modules to the project. ----------------
+    EMIC:copy(DEV:_templates\projects\mplabx > TARGET:)
 
 EMIC:restoreOutput

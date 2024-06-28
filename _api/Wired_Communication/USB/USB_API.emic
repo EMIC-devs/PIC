@@ -68,7 +68,7 @@ EMIC:setOutput(TARGET:USB_API.c)
 EMIC:restoreOutput
 
 EMIC:define(main_includes.USB_API,USB_API)
-EMIC:define(c_modules.USB_API,USB_API.c)
+EMIC:define(c_modules.USB_API,USB_API)
 
 /*==================[end of file]============================================*/
 EMIC:endif

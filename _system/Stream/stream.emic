@@ -9,5 +9,5 @@ EMIC:setOutput(TARGET:stream.c)
 	EMIC:setInput(src/stream.c)
 EMIC:restoreOutput
 
-EMIC:define(c_modules.stream,stream.c)
+EMIC:define(c_modules.stream,stream)
 EMIC:endif

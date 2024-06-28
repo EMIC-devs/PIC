@@ -19,15 +19,10 @@
 
 EMIC:setInput(DEV:_drivers/SystemTimer/systemTimer.emic)
 
-EMIC:setOutput(TARGET:inc/timer_api.{name}..h)
-	EMIC:setInput(inc/timer_api.h,name=.{name}.)
-EMIC:restoreOutput
-
-EMIC:setOutput(TARGET:timer_api.{name}..c)
-	EMIC:setInput(src/timer_api.c,name=.{name}.)
-EMIC:restoreOutput
+EMIC:copy(inc/timer_api.h > TARGET:inc/timer_api.{name}..h,name=.{name}.)
+EMIC:copy(src/timer_api.c > TARGET:timer_api.{name}..c,name=.{name}.)
 
 EMIC:define(main_includes.timer_api.{name}.,timer_api.{name}.)
-EMIC:define(c_modules.timer_api.{name}.,timer_api.{name}..c)
+EMIC:define(c_modules.timer_api.{name}.,timer_api.{name}.)
 
 

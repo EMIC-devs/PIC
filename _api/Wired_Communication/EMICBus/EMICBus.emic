@@ -35,6 +35,6 @@ EMIC:setOutput(TARGET:EMICBus.c)
 EMIC:restoreOutput
 
 EMIC:define(main_includes.EmicBus,EMICBus)
-EMIC:define(c_modules.EmicBus,EMICBus.c)
+EMIC:define(c_modules.EmicBus,EMICBus)
 
 EMIC:endif

@@ -35,7 +35,6 @@ enum{
 };
 extern stream_t i2c.{port}.InStream;
 extern stream_t i2c.{port}.OutStream;
-extern const i2c_config_t i2c_init_structure;
 extern uint8_t stopflag;
 
 extern const streamIn_t  streamIn_I2C;
@@ -43,8 +42,8 @@ extern const streamOut_t streamOut_I2C; //Count not tested
 
 /*==================[internal functions declaration]===========================*/
 
-void ISR_I2C.{port}._CALLBACK_SLAVE(void);
-void ISR_I2C.{port}._CALLBACK_MASTER(void);
+inline void I2c_driver_callback_slave(void);
+inline void I2c_driver_callback_master(void);
 
 void 		Init_I2C_Driver(void);
 void 		ini_I2C_IN(void);

@@ -12,7 +12,7 @@ EMIC:setOutput(TARGET:MCP2200.c)
 	EMIC:setInput(src/mcp2200.c,port=.{port}.)
 EMIC:restoreOutput
 
-EMIC:define(c_modules.MCP2200,MCP2200.c)
+EMIC:define(c_modules.MCP2200,MCP2200)
 /*==================[end of file]============================================*/
 EMIC:endif
 

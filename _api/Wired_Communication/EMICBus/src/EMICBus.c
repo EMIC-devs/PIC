@@ -58,9 +58,9 @@ void emicBus_init()
 void poll_emicBus(void)
 {
 	char d;
-	if(IsI2cReceiveOverflow(i2c_init_structure))//si hay un overflow lo resetea
+	if(IsReceiveOverflowI2c.{port}.())//si hay un overflow lo resetea
 	{
-		OverflowReset_I2C(i2c_init_structure);
+		OverflowReset_I2C.{port}.();
 	}
 
 	if (i2c.{port}.InStream.frame_count)
@@ -118,12 +118,12 @@ void poll_emicBus(void)
 		}	
 	}
 	
-	if(stopflag==1 && IsI2cStop(i2c_init_structure) )
+	if(stopflag==1 && IsStopI2c.{port}.() )
 	{
 		stopflag=0;
 		pop_I2C_OUT_FM();
 	}
-	if (i2c.{port}.OutStream.frame_count && (!IsI2cStart(i2c_init_structure)))
+	if (i2c.{port}.OutStream.frame_count && (!IsStartI2c.{port}.()))
 	{
 		if(stopflag == 1)
 		{

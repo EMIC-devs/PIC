@@ -9,6 +9,6 @@ EMIC:setOutput(TARGET:timer.c)
 	EMIC:setInput(src/timer.c)
 EMIC:restoreOutput
 
-EMIC:define(c_modules.timer,timer.c)
+EMIC:define(c_modules.timer,timer)
 
 EMIC:endif
