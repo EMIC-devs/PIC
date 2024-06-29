@@ -120,8 +120,9 @@ La integración se realiza por medio de un editor visual, arrastrando las etique
 
 Una vez que el usuario ingrese al editor con su cuenta de gmail, se verán varias carpetas
 
+<div>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/o6HerU3PRl8" frameborder="0" allowfullscreen></iframe>
-
+</div>
 
 > Falta completar este punto.
 
