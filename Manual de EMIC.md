@@ -116,17 +116,17 @@ Los módulos son las piezas fundamentales de un proyecto EMIC y pueden ser sitio
 
 La integración se realiza por medio de un editor visual, arrastrando las etiquetas o íconos que representan cada una de los módulos y soltando sobre el area del proyecto. De la misma manera se van agregando otros recursos como páginas web, widgets, funciones, variables, eventos, etc.
 
+<img src="img/EdiciónDeScript.png" alt="Diagrama de Funcionamiento" width="600" height="300">
+
+<a href="https://www.youtube.com/embed/o6HerU3PRl8">
+  <img src="img/demo.png" alt="Video demostración" width="600" height="300">
+</a>
+
+---------------------------------------------------
 ![Diagrama de Funcionamiento](img/EdiciónDeScript.png)
 
-Una vez que el usuario ingrese al editor con su cuenta de gmail, se verán varias carpetas
+[![Video demostración](img/demo.png)](https://www.youtube.com/embed/o6HerU3PRl8)
 
-[Aplicación con EMIC](https://www.youtube.com/embed/o6HerU3PRl8)
-
-[![Video demostración](img/demo.png)]([URL_DEL_ENLACE](https://www.youtube.com/embed/o6HerU3PRl8))
-
-<div>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/o6HerU3PRl8" frameborder="0" allowfullscreen></iframe>
-</div>
 
 > Falta completar este punto.
 
