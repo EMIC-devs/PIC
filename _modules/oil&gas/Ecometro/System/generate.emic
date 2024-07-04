@@ -1,0 +1,29 @@
+EMIC:setOutput(TARGET:generate.txt)
+
+    //-------------- Hardware Config ---------------------
+    EMIC:setInput(DEV:_pcb/pcb.emic,pcb=HRD_USB V1.1)
+
+    //------------------- Process generate files ----------------
+    EMIC:setInput(SYS:usedFunction.emic)
+    EMIC:setInput(SYS:usedEvent.emic)
+
+    //------------------- APIs -----------------------
+    //EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=led,pin=Led1)
+    //EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
+    
+    //EMIC:setInput(DEV:_api/Wired_Communication/EMICBus/EMICBus.emic,port=2,frameID=0)
+
+    //-------------------- main  -----------------------
+    EMIC:setInput(DEV:_main/baremetal/main.emic)
+
+    //------------------- Copy generate files ----------------
+    EMIC:copy(SYS:inc/userFncFile.h > TARGET:inc/userFncFile.h)
+    EMIC:copy(SYS:userFncFile.c >TARGET:userFncFile.c)
+
+    //------------------- Set userFncFile.c as a copiler module ----------------
+    EMIC:define(c_modules.userFncFile,userFncFile)
+
+    //------------------- Add all compiler modules to the project. ----------------
+    EMIC:copy(DEV:_templates\projects\mplabx > TARGET:)
+
+EMIC:restoreOutput
