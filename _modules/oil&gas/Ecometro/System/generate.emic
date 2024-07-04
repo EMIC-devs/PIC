@@ -1,7 +1,7 @@
 EMIC:setOutput(TARGET:generate.txt)
 
     //-------------- Hardware Config ---------------------
-    EMIC:setInput(DEV:_pcb/pcb.emic,pcb=HRD_USB V1.1)
+    EMIC:setInput(DEV:_pcb/pcb.emic,pcb=HRD_Ecometro V0.1)
 
     //------------------- Process generate files ----------------
     EMIC:setInput(SYS:usedFunction.emic)
