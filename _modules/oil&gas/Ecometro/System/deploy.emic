@@ -1,0 +1,11 @@
+EMIC:setOutput(TARGET:deploy.txt)
+    //------------------- Copy generate files ----------------
+    EMIC:setOutput(SYS:inc/userFncFile.h)
+    // file: userFncFile.h
+    EMIC:restoreOutput
+
+    EMIC:setOutput(SYS:userFncFile.c)
+    // file: userFncFile.c
+    EMIC:restoreOutput
+
+EMIC:restoreOutput
