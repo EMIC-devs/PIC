@@ -1,0 +1,24 @@
+/*****************************************************************************
+
+  @file     APS6404L.emic
+
+  @brief    Driver for RAM modules based on APS6404L chipset.
+
+  @author   Ramiro Alarcon Lasagno
+
+  @date     04/07/2024
+
+  @version  v0.0.1 - Initial release.
+  
+*******************************************************************************/
+
+EMIC:ifndef APS6404L_DRIVER_EMIC_
+EMIC:define(APS6404L_DRIVER_EMIC_,true)
+
+EMIC:setInput(DEV:_hal/APS6404L/APS6404L.emic,port=.{port}.,client=APS6404L_driver)
+
+EMIC:copy(inc/APS6404L_driver.h > TARGET:inc/APS6404L.{port}._driver.h,port=.{port}.)
+EMIC:copy(src/APS6404L_driver.c > TARGET:APS6404L.{port}._driver.c,port=.{port}.,frameID=.{frameID}.)
+
+EMIC:define(c_modules.APS6404L.{port}._driver,APS6404L.{port}._driver)
+EMIC:endif

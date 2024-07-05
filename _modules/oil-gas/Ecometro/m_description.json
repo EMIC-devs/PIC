@@ -1,7 +1,7 @@
 {
 "type":"gcc",
 "toolTip":"Ecometro",
-"description":"Communication module with USB port. It is used to connect the created device to a Host PC and it has a direct connection to the EMIC bus.",
+"description":"Echo meter board designed to generate a variable sinusoidal pulse, capture its echo, store it in RAM, compute the sum of the data collected, and transmit the result via GPRS.",
 "Sizes":"TBD",
 "ImageFile":"blz1.gif",
 "IconFile":"TBD",
