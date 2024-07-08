@@ -1,0 +1,14 @@
+EMIC:ifndef _PIC_TIMER_EMIC_
+EMIC:define(_PIC_TIMER_EMIC_,true)
+
+EMIC:setOutput(TARGET:inc/timer.h)
+	EMIC:setInput(inc/timer.h)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:timer.c)
+	EMIC:setInput(src/timer.c)
+EMIC:restoreOutput
+
+EMIC:define(c_modules.timer,timer)
+
+EMIC:endif

@@ -56,7 +56,7 @@ EMIC:setOutput(TARGET:inc/pins.h)
 #include <xc.h>
 #include <libpic30.h>
 
-EMIC:define(system.ucName,dspic33EP512MC806)
+EMIC:define(system.ucName,dsPIC33EP512MC806)
 EMIC:define(system.i2c,2)
 
 //PROG
@@ -92,10 +92,10 @@ EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=F1,name=CLK_PWM_1)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=E0,name=CLK_PWM_2)
 
 //AMP IND
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=,name=PGA_SDO)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=,name=PGA_SDI)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=,name=PGA_SCLK)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=,name=PGA_CS)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D2,name=PGA_SDO)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D3,name=PGA_SDI)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D4,name=PGA_SCLK)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D5,name=PGA_CS)
 
 //ADC
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B8,name=ADC_RDLa)

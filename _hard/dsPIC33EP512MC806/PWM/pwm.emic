@@ -1,0 +1,29 @@
+/*************************************************************************//**
+
+  @file     pwm.emic
+
+  @brief    Hardware Library to use PWM
+
+  @author   Francisco Martinez
+
+  @version  v0.0.1  
+
+  @date		02/07/2024    
+
+ ******************************************************************************/
+
+EMIC:ifndef _PIC_PWM.{pwm_generator_number}._EMIC
+EMIC:define(_PIC_PWM.{pwm_generator_number}._EMIC,true)
+
+EMIC:setInput(DEV:_hal/PWM/pwm.emic)
+
+EMIC:setOutput(TARGET:inc/pwm.{pwm_generator_number}..h)
+	EMIC:setInput(inc/pwm.h,pwm_generator_number=.{pwm_generator_number}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:pwm.{pwm_generator_number}..c)
+	EMIC:setInput(src/pwm.c,pwm_generator_number=.{pwm_generator_number}.)
+EMIC:restoreOutput
+
+EMIC:define(c_modules.pwm.{pwm_generator_number}.,pwm.{pwm_generator_number}.)
+EMIC:endif
