@@ -1,0 +1,9 @@
+EMIC:ifndef _PIC_GPIO_EMIC_
+EMIC:define(_PIC_GPIO_EMIC_,true)
+
+    EMIC:setOutput(inc/gpio.h)
+        EMIC:setInput(inc\gpio.h)
+    EMIC:restoreOutput
+
+
+EMIC:endif
