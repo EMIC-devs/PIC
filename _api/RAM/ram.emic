@@ -1,0 +1,57 @@
+//RFI TAG:driverName=RAM
+
+/*****************************************************************************
+
+  @file     ram.emic
+
+  @brief    API for RAM modules.
+
+  @author   Ramiro Alarcon Lasagno
+
+  @date     25/10/2023
+
+  @version  v0.0.1 - Initial release.
+  
+*******************************************************************************/
+
+#ifndef RAM_EMIC
+#define RAM_EMIC
+
+/**
+* @fn void FIFO_Push(uint8_t half, char *data, uint8_t length);
+* @alias PushRAM
+* @brief Usado para leer la cola circular
+* @param *buffer Valores a leer
+* @param length Tamaño de valores
+* @return Nothing
+*/
+
+/**
+* void FIFO_Pull(uint8_t half, char *buffer, uint8_t length);
+* @alias PullRAM
+* @brief Usado para guardar datos en la cola circular
+* @param *text Valores a guardar
+* @param length Tamaño de valores
+* @return Nothing
+*/
+
+/**
+* @fn void RAM_Reset(void);
+* @alias ResetearRAM
+* @brief Usado para resetear la memoria FIFO en la ram
+* @return Nothing
+*/
+
+
+#newRFIcode(_drivers/RAM/APS6404L/APS6404L.emic)
+
+#setFile codigo.c
+  ##include(inc\RAM_api.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\RAM_api.c)
+#unSetFile
+
+/*==================[end of file]============================================*/
+#endif
