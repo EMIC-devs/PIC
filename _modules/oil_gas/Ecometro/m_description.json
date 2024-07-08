@@ -1,6 +1,6 @@
 {
 "type":"gcc",
-"toolTip":"Ecometro",
+"toolTip":"Communication with USB port",
 "description":"Communication module with USB port. It is used to connect the created device to a Host PC and it has a direct connection to the EMIC bus.",
 "Sizes":"TBD",
 "ImageFile":"blz1.gif",
