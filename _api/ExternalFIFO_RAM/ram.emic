@@ -14,8 +14,7 @@
   
 *******************************************************************************/
 
-#ifndef RAM_EMIC
-#define RAM_EMIC
+
 
 /**
 * @fn void FIFO_Push(uint8_t half, char *data, uint8_t length);
@@ -43,15 +42,13 @@
 */
 
 
-#newRFIcode(_drivers/RAM/APS6404L/APS6404L.emic)
 
-#setFile codigo.c
-  ##include(inc\RAM_api.h)
-#unSetFile
+EMIC:setInput(DEV:_drivers/RAM/APS6404L/APS6404L.emic)
 
-#setFile src.c
-	##include(src\RAM_api.c)
-#unSetFile
+EMIC:copy(inc\RAM_api.h > TARGET:inc\RAM_api.h)
 
+EMIC:copy(inc\RAM_api.c > TARGET:inc\RAM_api.c)
+
+EMIC:define(main_includes.ram_api,ram_api)
+EMIC:define(c_modules.ram_api,ram_api)
 /*==================[end of file]============================================*/
-#endif

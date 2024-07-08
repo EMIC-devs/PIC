@@ -31,12 +31,8 @@
 
 // Funciones de inicialización
 void RAM_api_Init(void);
-#setFile temp/EMICinits.c
-	RAM_api_Init(); // Funcion que se ejecuta en el main
-  //Aqui se agregan las funciones iniciales y las variables iniciales se crean
-#unSetFile
 
-
+EMIC:define(inits.RAM_api_Init,RAM_api_Init)
 
 // Funciones de escritura y lectura en la cola circular
 void FIFO_Push(uint8_t half, char *data, uint8_t length);

@@ -16,9 +16,7 @@
 /*==================[inclusions]=============================================*/
 #include <xc.h>
 #include "spi.{port}.h"
-#include "stream.h"
-#include "streamOut.h"
-#include "streamIn.h"
+#include "GPIO.h"
 
 /*==================[internal functions implementations]======================*/
 /***********************************************************************************************************************/

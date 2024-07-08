@@ -12,6 +12,8 @@
   
  ******************************************************************************/
 //#include <stdint.h>
+#include <xc.h>
+#include "inc/ram_api.h"
 
 //##################################################################################//
 // Punteros de FIFO para cada mitad
@@ -47,7 +49,7 @@ void FIFO_Push(uint8_t half, char *data, uint8_t length) {
 
 }
 //##################################################################################//
-void FIFO_Pull(uint8_t half, char *buffer, uint8_t length) {
+void FIFO_Pop(uint8_t half, char *buffer, uint8_t length) {
     if (half != 1 && half != 2) {
         return 0;  // Retorna 0 si el número de mitad es inválido
     }

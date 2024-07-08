@@ -9,21 +9,19 @@
 
   @version  v0.0.1 - Initial release.
  ******************************************************************************/
-#ifndef _APS6404L_H_.{port}._H__
-#define _APS6404L_H_.{port}._H__
+#ifndef _APS6404L_H_
+#define _APS6404L_H_
 
 /*==================[inclusions]=============================================*/
 #include <xc.h>
 #include "spi.{port}.h"
-#include "stream.h"
-#include "streamOut.h"
-#include "streamIn.h"
+
 /*==================[typedef]================================================*/
 /* Spi driver name adaptation */
 // @{
 #define RPOUT_RAM_MOSI    RPOUT_RAM_SIO0 //46
 #define RPOUT_RAM_CLK     RPOUT_RAM_SCK //49
-#define RPOUT_CSB1        RPOUT_SRAM_CS //44
+#define RPOUT_CSB1        RPOUT_SRAM_CS1 //44
 #define RPOUT_CSB2        RPOUT_SRAM_CS2 //45
 #define RPOUT_RAM_MISO    RPIN_RAM_SIO1 //47
 
