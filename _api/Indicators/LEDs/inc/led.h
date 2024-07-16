@@ -1,7 +1,7 @@
 #include <xc.h>
 
 void LEDs_.{name}._init (void);
-EMIC:define(inits.LEDs_,LEDs_.{name}._init)
+EMIC:define(inits.LEDs_.{name}.,LEDs_.{name}._init)
 
 EMIC:ifdef usedFunction.LEDs_.{name}._blink
 void LEDs_.{name}._poll (void);
