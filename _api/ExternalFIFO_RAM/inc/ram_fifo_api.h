@@ -34,9 +34,9 @@ void RAM_api_Init(void);
 EMIC:define(inits.RAM_api_Init,RAM_api_Init)
 
 // Funciones de escritura y lectura en la cola circular
-void FIFO_Push(uint8_t ram_id, char *data, uint32_t length);
+void FIFO_Push(uint8_t cs, char *data, uint8_t length);
 
-void FIFO_Pop(uint8_t ram_id, char *buffer, uint32_t length);
+void FIFO_Pop(uint8_t cs, char *buffer, uint8_t length);
 
 void RAM_Reset(void);
 

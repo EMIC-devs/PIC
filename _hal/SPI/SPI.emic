@@ -1,2 +1,2 @@
-EMIC:setInput(DEV:_hard/.{system.ucName}./SPI/spi.emic, configuracion = .{configuracion}., port = .{port}. , pin=.{pin}.)	
+EMIC:setInput(DEV:_hard/.{system.ucName}./SPI/spi.emic,configuracion=Master,port=.{port}.,pin=MEM)	
 

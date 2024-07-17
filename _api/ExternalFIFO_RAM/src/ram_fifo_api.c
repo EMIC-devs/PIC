@@ -31,7 +31,7 @@ void RAM_api_Init(void) {
 }
 //##################################################################################//
 // Función para añadir datos al FIFO
-void FIFO_Push(uint8_t cs, char *data, uint32_t length) {
+void FIFO_Push(uint8_t cs, char *data, uint8_t length) {
     if (cs != 1 && cs != 2) {
         // Manejo de error: cs no es válido
         return;
@@ -50,7 +50,7 @@ void FIFO_Push(uint8_t cs, char *data, uint32_t length) {
 }
 //##################################################################################//
 // Función para retirar datos del FIFO
-void FIFO_Pop(uint8_t cs, char *buffer, uint32_t length) {
+void FIFO_Pop(uint8_t cs, char *buffer, uint8_t length) {
     if (cs != 1 && cs != 2) {
         // Manejo de error: cs no es válido
         return;
