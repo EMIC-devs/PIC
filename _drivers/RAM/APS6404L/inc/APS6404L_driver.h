@@ -19,11 +19,12 @@
 /*==================[typedef]================================================*/
 /* Spi driver name adaptation */
 // @{
-#define RPOUT_RAM_MOSI    RPOUT_RAM_SIO0 //46
-#define RPOUT_RAM_CLK     RPOUT_RAM_SCK //49
 #define RPOUT_CSB1        RPOUT_SRAM_CS1 //44
 #define RPOUT_CSB2        RPOUT_SRAM_CS2 //45
+#define RPOUT_RAM_MOSI    RPOUT_RAM_SIO0 //46
 #define RPOUT_RAM_MISO    RPIN_RAM_SIO1 //47
+#define RPOUT_RAM_CLK     RPOUT_RAM_SCK //49
+
 
 #define TRIS_RAM_MOSI     TRIS_RAM_SIO0
 #define TRIS_RAM_CLK      TRIS_RAM_SCK

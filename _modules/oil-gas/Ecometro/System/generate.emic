@@ -9,9 +9,13 @@ EMIC:setOutput(TARGET:generate.txt)
 
     //------------------- APIs -----------------------
     //EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=led,pin=Led1)
-    //EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
     
-    //EMIC:setInput(DEV:_api/Wired_Communication/EMICBus/EMICBus.emic,port=2,frameID=0)
+    EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
+    EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=2)
+    EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=3)
+    EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=4)
+    EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=5)
+    EMIC:setInput(DEV:_api/ExternalFIFO_RAM/ram_fifo_api.emic)
 
     //-------------------- main  -----------------------
     EMIC:setInput(DEV:_main/baremetal/main.emic)

@@ -1,7 +1,7 @@
 //RFI TAG:driverName=LEDs
 
 /**
-* @fn void LEDs_.{local.name}._state(uint8_t state);
+* @fn void LEDs_.{name}._state(uint8_t state);
 * @alias .{name}..state
 * @brief Change the state of the led, 1-on, 0-off, 2-toggle. 
 * @param state 1-on 0-off 2-toggle
