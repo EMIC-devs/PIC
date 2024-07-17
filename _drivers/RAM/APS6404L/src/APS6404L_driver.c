@@ -3,7 +3,7 @@
 
   @brief    Biblioteca de controlador para utilizar RAM
 
-  @author   Ramiro Alarcón Lasagno basado en "Ram memory driver" de Rottoli Luciano Gabriel
+  @autor    Ramiro Alarcón Lasagno basado en "Ram memory driver" de Rottoli Luciano Gabriel
 
   @date     22/10/2023
 
@@ -17,6 +17,29 @@
 #include <xc.h>
 #include "spi.{port}.h"
 #include "GPIO.h"
+
+/* Spi driver name adaptation */
+// @{
+#define RPOUT_MEM_CS_RAM1     RPOUT_MEM_CS_RAM1 //44
+#define RPOUT_MEM_CS_RAM2     RPOUT_MEM_CS_RAM2 //45
+#define RPOUT_RAM_MOSI    RPOUT_MEM_SIO0 //46
+#define RPOUT_RAM_MISO    RPIN_MEM_SIO1 //47
+#define RPOUT_RAM_CLK     RPOUT_MEM_SCK //49
+
+#define TRIS_RAM_MOSI     TRIS_MEM_SIO0
+#define TRIS_RAM_CLK      TRIS_MEM_SCK
+#define TRIS_MEM_CS_RAM1      TRIS_MEM_CS_RAM1
+#define TRIS_MEM_CS_RAM2      TRIS_MEM_CS_RAM2
+#define TRIS_RAM_MISO     TRIS_MEM_SIO1
+#define PIN_MEM_CS_RAM1       PIN_MEM_CS_RAM1
+#define PIN_MEM_CS_RAM2       PIN_MEM_CS_RAM2
+// }
+
+/* SPI Ram macros */
+#define RAM_RSTEN         0x66    // Habilita el reinicio del dispositivo (Reset Enable)
+#define RAM_RST           0x99    // Reinicia la memoria RAM (Reset Memory)
+#define RAM_READ_CMD      0x03    // Lee datos de la memoria (Read Memory)
+#define RAM_WRITE_CMD     0x02    // Habilita las operaciones de escritura (Write Enable)
 
 /*==================[internal functions implementations]======================*/
 /***********************************************************************************************************************/
@@ -39,36 +62,45 @@ void RAM_Driver_Init(void)
     HAL_GPIO_PinCfg(nHOLD, GPIO_OUTPUT);
     HAL_GPIO_PinSet(nHOLD, GPIO_HIGH);
 
-    // Configura RAM_SIO0 como salida GPIO (MOSI)
-    HAL_GPIO_PinCfg(RAM_SIO0, GPIO_INPUT);     // MOSI
-    // Configura RAM_SIO1 como entrada GPIO (MISO)
-    HAL_GPIO_PinCfg(RAM_SIO1, GPIO_OUTPUT);      // MISO
-    // Configura RAM_CS como salida GPIO
-    HAL_GPIO_PinCfg(RAM_CS, GPIO_OUTPUT);
-    HAL_GPIO_PinSet(RAM_CS, GPIO_HIGTH);         // Establece RAM_CS en alto
+    // Configura MEM_SIO0 como salida GPIO (MOSI)
+    HAL_GPIO_PinCfg(MEM_SIO0, GPIO_INPUT);     // MOSI
+    // Configura MEM_SIO1 como entrada GPIO (MISO)
+    HAL_GPIO_PinCfg(MEM_SIO1, GPIO_OUTPUT);      // MISO
+    // Configura MEM_CS_RAM1 y MEM_CS_RAM2 como salida GPIO
+    HAL_GPIO_PinCfg(MEM_CS_RAM1, GPIO_OUTPUT);
+    HAL_GPIO_PinCfg(MEM_CS_RAM2, GPIO_OUTPUT);
+    HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);         // Establece MEM_CS_RAM1 en alto
+    HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);         // Establece MEM_CS_RAM2 en alto
 
-    // Configura RAM_SCK como salida GPIO
-    HAL_GPIO_PinCfg(RAM_SCK, GPIO_OUTPUT);
+    // Configura MEM_SCK como salida GPIO
+    HAL_GPIO_PinCfg(MEM_SCK, GPIO_OUTPUT);
 
     // Inicializa el módulo SPI4 en modo de 8 bits, sin estructura de trama y sin interrupciones
     SPI4_init(0, 0);
 
     // Espera 1 milisegundo para asegurar que las configuraciones previas se completen
     __delay_ms(1);
-
 }
 /***********************************************************************************************************************/
 // Escribe datos en la RAM
 /***********************************************************************************************************************/
 /**
  * @brief Writes data to the Ram memory.
+ * @param cs Chip select (1 o 2).
  * @param address Memory address to write to.
  * @param data Pointer to the data buffer.
  * @param length Number of bytes to write.
  */
-void RAM_Driver_writeData(uint32_t address, const uint8_t *data, uint16_t length)
+void RAM_Driver_writeData(uint8_t cs, uint32_t address, const uint32_t *data, uint16_t length)
 {
-    HAL_GPIO_PinSet(RAM_CS, GPIO_LOW);  // Activar la selección del chip
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);  // Activar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_LOW);  // Activar la selección del chip 2
+    } else {
+        // Manejo de error: cs no es válido
+        return;
+    }
 
     xchangeSPI4b_8(RAM_WRITE_CMD);  // Enviar comando de escritura
     xchangeSPI4b_8((address >> 16) & 0xFF);  // Parte alta de la dirección
@@ -80,20 +112,32 @@ void RAM_Driver_writeData(uint32_t address, const uint8_t *data, uint16_t length
         xchangeSPI4b_8(data[i]);  // Enviar datos
     }
 
-    HAL_GPIO_PinSet(RAM_CS, GPIO_HIGH);  // Desactivar la selección del chip
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);  // Desactivar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);  // Desactivar la selección del chip 2
+    }
 }
 /***********************************************************************************************************************/
 // Lee datos de la RAM
 /***********************************************************************************************************************/
 /**
  * @brief Reads data from the Ram memory.
+ * @param cs Chip select (1 o 2).
  * @param address Memory address to read from.
  * @param buffer Pointer to the buffer to store the read data.
  * @param length Number of bytes to read.
  */
-void RAM_Driver_readData(uint32_t address, uint8_t *buffer, uint16_t length)
+void RAM_Driver_readData(uint8_t cs, uint32_t address, uint32_t *buffer, uint16_t length)
 {
-    HAL_GPIO_PinSet(RAM_CS, GPIO_LOW);  // Activar la selección del chip
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);  // Activar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_LOW);  // Activar la selección del chip 2
+    } else {
+        // Manejo de error: cs no es válido
+        return;
+    }
 
     xchangeSPI4b_8(RAM_READ_CMD);  // Enviar comando de lectura
 
@@ -106,7 +150,11 @@ void RAM_Driver_readData(uint32_t address, uint8_t *buffer, uint16_t length)
         buffer[i] = xchangeSPI4b_8(0);  // Leer datos
     }
 
-    HAL_GPIO_PinSet(RAM_CS, GPIO_HIGH);  // Desactivar la selección del chip
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);  // Desactivar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);  // Desactivar la selección del chip 2
+    }
 }
 /***********************************************************************************************************************/
 // Resetea la RAM
@@ -116,13 +164,17 @@ void RAM_Driver_readData(uint32_t address, uint8_t *buffer, uint16_t length)
  */
 void RAM_Driver_reset(void)
 {
-    HAL_GPIO_PinSet(RAM_CS, GPIO_LOW);     // Chip select activo
+    HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);     // Chip select activo
+    HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_LOW);     // Chip select activo
     
     xchangeSPI4b_8(RAM_RSTEN);             // Envía comando de habilitación de reset
     // Según la especificación, los comandos deben enviarse rápidamente uno tras otro
     xchangeSPI4b_8(RAM_RST);               // Envía comando de reset
 
-    HAL_GPIO_PinSet(RAM_CS, GPIO_HIGH);    // Chip select inactivo
+    HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);    // Chip select inactivo
+    HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);    // Chip select inactivo
 
     __delay_us(50);                        // Espera un tiempo suficiente para que el reset se complete
 }
+
+#endif // _APS6404L_H_.{port}._C__

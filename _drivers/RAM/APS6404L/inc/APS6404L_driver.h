@@ -52,22 +52,24 @@ void RAM_Driver_Init(void);
 
 /**
  * @brief Writes data to the Ram memory.
+ * @param cs Chip select (1 o 2).
  * @param address Memory address to write to.
  * @param data Pointer to the data buffer.
  * @param length Number of bytes to write.
  */
 /*-------------------------------------------------*/
-void RAM_Driver_writeData(uint32_t address, char *data, uint16_t length);
+void RAM_Driver_writeData(uint8_t cs, uint32_t address, const uint32_t *data, uint16_t length);
 /*-------------------------------------------------*/
 
 /**
  * @brief Reads data from the Ram memory.
+ * @param cs Chip select (1 o 2).
  * @param address Memory address to read from.
  * @param buffer Pointer to the buffer to store the read data.
  * @param length Number of bytes to read.
  */
 /*-------------------------------------------------*/
-void RAM_Driver_readData(uint32_t address, char *buffer, uint16_t length);
+void RAM_Driver_readData(uint8_t cs, uint32_t address, uint32_t *buffer, uint16_t length);
 /*-------------------------------------------------*/
 
 /**

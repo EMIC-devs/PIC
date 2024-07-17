@@ -44,7 +44,7 @@ void FIFO_Push(uint8_t cs, char *data, uint8_t length) {
         if (*write_pointer > end_address) {
             break;  // Detiene la escritura si el buffer está lleno
         }
-        RAM_Driver_writeData(cs, *write_pointer, (const uint8_t*)&data[i], 1);
+        RAM_Driver_writeData(cs, *write_pointer, (const uint32_t*)&data[i], 1);
         (*write_pointer)++;
     }
 }
@@ -61,7 +61,7 @@ void FIFO_Pop(uint8_t cs, char *buffer, uint8_t length) {
     uint32_t bytes_read = 0;
 
     while (bytes_read < length && *read_pointer < write_pointer) {
-        RAM_Driver_readData(cs, *read_pointer, (uint8_t*)&buffer[bytes_read], 1);
+        RAM_Driver_readData(cs, *read_pointer, (uint32_t*)&buffer[bytes_read], 1);
         (*read_pointer)++;
         bytes_read++;
     }
