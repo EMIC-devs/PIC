@@ -17,18 +17,18 @@
  * 
  * To include and use the SPI driver, use the following syntax:
  * 
- * EMIC:setInput(DEV:_hal/SPI/spi.emic, port=.{port}., configuracion=.{configuracion}, pin=.{pin}.)           //No RFI scan    
+ // EMIC:setInput(DEV:_hal/SPI/spi.emic, port=.{port}., configuracion=.{configuracion}, pin=.{pin}.)           //No RFI scan    
  * Replace the placeholders:
  * - {port}: Specify the desired port for the SPI communication.
  * - {configuracion}: Specify the desired configuration for the SPI.
  * - {pin}: Specify the pin names for the SPI communication.
  * 
  * Note: In the hardware configuration file, pins should be defined as PIN_MISO, PIN_MOSI, PIN_CLK.
- * Use the defined name (PIN) in place of .{pin}..                                                            //No RFI scan            
+ // Use the defined name (PIN) in place of .{pin}..                                                            //No RFI scan            
  * 
  * Example:
  * 
- * EMIC:setInput(DEV:_hal/SPI/spi.emic, port=1, configuracion=Master, pin=RF)                                //No RFI scan           
+ // EMIC:setInput(DEV:_hal/SPI/spi.emic, port=1, configuracion=Master, pin=RF)                                //No RFI scan           
  * 
  * This example includes the SPI driver using port 1,
  * configured as a master, and with the SPI communication on the RF pins.
@@ -53,7 +53,7 @@
  *
  * Example Usage:
  * @code
- * SPI.{port}._init(1, 0); // Initialize SPI with 16-bit communication, Mode 0                                              //No RFI scan
+ // SPI.{port}._init(1, 0); // Initialize SPI with 16-bit communication, Mode 0                                              //No RFI scan
  * @endcode
  *
  * @warning The function assumes that the hardware configuration and pin names are
@@ -77,7 +77,7 @@ uint8_t SPI.{port}._send_async(uint8_t * new_data, uint8_t package_size, uint8_t
  *
  * Example Usage:
  * @code
- * uint8_t receivedByte = xchangeSPI.{port}.b_8(0xAA);                                                    //No RFI scan
+ // uint8_t receivedByte = xchangeSPI.{port}.b_8(0xAA);                                                    //No RFI scan
  * @endcode
  *
  * @warning This function assumes that the SPI module is initialized and configured
@@ -97,7 +97,7 @@ uint8_t xchangeSPI.{port}.b_8(uint8_t data);
  *
  * Example Usage:
  * @code
- * uint16_t receivedValue = xchangeSPI.{port}.b_16(0x55AA);                                             //No RFI scan
+ // uint16_t receivedValue = xchangeSPI.{port}.b_16(0x55AA);                                             //No RFI scan
  * @endcode
  *
  * @warning This function assumes that the SPI module is initialized and configured
@@ -113,8 +113,7 @@ uint16_t xchangeSPI.{port}.b_16(uint16_t data);
  * communications.
  *
  * Example Usage:
- * @code
- * SPI.{port}._clr();                                                                                         //No RFI scan
+ // @code SPI.{port}._clr();                                             //No RFI scan
  * @endcode
  *
  * @warning This function assumes that the SPI module is initialized and configured

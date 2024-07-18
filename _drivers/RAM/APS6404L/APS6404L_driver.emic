@@ -15,7 +15,7 @@
 EMIC:ifndef APS6404L_DRIVER_EMIC_
 EMIC:define(APS6404L_DRIVER_EMIC_,true)
 
-EMIC:setInput(DEV:_hal/SPI/SPI.emic,port=1)
+EMIC:setInput(DEV:_hal/SPI/SPI.emic,configuracion=Master,port=1,pin=MEM)
 
 EMIC:copy(inc/APS6404L_driver.h > TARGET:inc/APS6404L_driver.h,port=1)
 EMIC:copy(src/APS6404L_driver.c > TARGET:APS6404L_driver.c,port=1)

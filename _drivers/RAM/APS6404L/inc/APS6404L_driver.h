@@ -14,12 +14,13 @@
 
 /*==================[inclusions]=============================================*/
 #include <xc.h>
-#include "spi.{port}.h"
+#include "inc/spi.{port}..h"
+#include "inc/GPIO.h"
 
 /*==================[typedef]================================================*/
 /* Spi driver name adaptation */
 // @{
-#define RPOUT_CSB1        RPOUT_SRAM_CS1 //44
+/* #define RPOUT_CSB1        RPOUT_SRAM_CS1 //44
 #define RPOUT_CSB2        RPOUT_SRAM_CS2 //45
 #define RPOUT_RAM_MOSI    RPOUT_RAM_SIO0 //46
 #define RPOUT_RAM_MISO    RPIN_RAM_SIO1 //47
@@ -32,7 +33,7 @@
 #define TRIS_CSB2         TRIS_SRAM_CS2
 #define TRIS_RAM_MISO     TRIS_RAM_SIO1
 #define PIN_CSB1          PIN_SRAM_CS
-#define PIN_CSB2          PIN_SRAM_CS2
+#define PIN_CSB2          PIN_SRAM_CS2 */
 // }
 
 /* SPI Ram macros */

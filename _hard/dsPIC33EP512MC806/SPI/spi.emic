@@ -23,5 +23,5 @@ EMIC:setOutput(TARGET:spi.{port}..c)
 	EMIC:setInput(.{configuracion}./src/spi.c,port=.{port}.,pin=.{pin}.)
 EMIC:restoreOutput
 
-EMIC:define(c_modules.spi.{port}.,spi.{port}..c)
+EMIC:define(c_modules.spi.{port}.,spi.{port}.)
 EMIC:endif

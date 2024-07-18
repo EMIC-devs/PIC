@@ -37,7 +37,7 @@ void SPI.{port}._init (uint8_t mode16, uint8_t spi_mode)
 	__builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
 
 	RPOUT_.{pin}._MOSI	= _RPOUT_SDO.{port}.;
-	RPOUT_.{pin}._CLK	= _RPOUT_SCK.{port}.OUT;
+	RPOUT_.{pin}._CLK	= _RPOUT_SCK.{port}.;
 	_SDI.{port}.R = RPIN_.{pin}._MISO;
 
 	__builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS

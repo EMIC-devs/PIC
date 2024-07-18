@@ -15,24 +15,25 @@
 
 /*==================[inclusions]=============================================*/
 #include <xc.h>
-#include "spi.{port}.h"
-#include "GPIO.h"
+#include "inc/spi.{port}..h"
+#include "inc/GPIO.h"
+#include <libpic30.h>
 
 /* Spi driver name adaptation */
 // @{
-#define RPOUT_MEM_CS_RAM1     RPOUT_MEM_CS_RAM1 //44
+/* #define RPOUT_MEM_CS_RAM1     RPOUT_MEM_CS_RAM1 //44
 #define RPOUT_MEM_CS_RAM2     RPOUT_MEM_CS_RAM2 //45
-#define RPOUT_RAM_MOSI    RPOUT_MEM_SIO0 //46
-#define RPOUT_RAM_MISO    RPIN_MEM_SIO1 //47
-#define RPOUT_RAM_CLK     RPOUT_MEM_SCK //49
+#define RPOUT_RAM_MOSI    RPOUT_MEM_MOSI //46
+#define RPOUT_RAM_MISO    RPIN_MEM_MISO //47
+#define RPOUT_RAM_CLK     RPOUT_MEM_CLK //49
 
-#define TRIS_RAM_MOSI     TRIS_MEM_SIO0
-#define TRIS_RAM_CLK      TRIS_MEM_SCK
+#define TRIS_RAM_MOSI     TRIS_MEM_MOSI
+#define TRIS_RAM_CLK      TRIS_MEM_CLK
 #define TRIS_MEM_CS_RAM1      TRIS_MEM_CS_RAM1
 #define TRIS_MEM_CS_RAM2      TRIS_MEM_CS_RAM2
-#define TRIS_RAM_MISO     TRIS_MEM_SIO1
+#define TRIS_RAM_MISO     TRIS_MEM_MISO
 #define PIN_MEM_CS_RAM1       PIN_MEM_CS_RAM1
-#define PIN_MEM_CS_RAM2       PIN_MEM_CS_RAM2
+#define PIN_MEM_CS_RAM2       PIN_MEM_CS_RAM2 */
 // }
 
 /* SPI Ram macros */
@@ -55,28 +56,28 @@ void RAM_Driver_Init(void)
     //_ANSC13 = 0x00;
 
     // Configura SIO2 como salida GPIO (actualmente no se usa para bloqueo de escritura)
-    HAL_GPIO_PinCfg(RAM_SIO2, GPIO_OUTPUT);     // SIO2 IS WRITE LOCK, currently not in use, **CHANGE THIS IF OTHERWISE**
-    HAL_GPIO_PinSet(RAM_SIO2, GPIO_HIGH);       // Establece SIO2 en alto
+    HAL_GPIO_PinCfg(MEM_SIO2, GPIO_OUTPUT);     // SIO2 IS WRITE LOCK, currently not in use, **CHANGE THIS IF OTHERWISE**
+    HAL_GPIO_PinSet(MEM_SIO2, GPIO_HIGH);       // Establece SIO2 en alto
 
-    // Configura nHOLD como salida GPIO y lo establece en alto
-    HAL_GPIO_PinCfg(nHOLD, GPIO_OUTPUT);
-    HAL_GPIO_PinSet(nHOLD, GPIO_HIGH);
+    // Configura MEM_HOLD como salida GPIO y lo establece en alto
+    HAL_GPIO_PinCfg(MEM_HOLD, GPIO_OUTPUT);
+    HAL_GPIO_PinSet(MEM_HOLD, GPIO_HIGH);
 
-    // Configura MEM_SIO0 como salida GPIO (MOSI)
-    HAL_GPIO_PinCfg(MEM_SIO0, GPIO_INPUT);     // MOSI
-    // Configura MEM_SIO1 como entrada GPIO (MISO)
-    HAL_GPIO_PinCfg(MEM_SIO1, GPIO_OUTPUT);      // MISO
+    // Configura MEM_MOSI como salida GPIO (MOSI)
+    HAL_GPIO_PinCfg(MEM_MOSI, GPIO_INPUT);     // MOSI
+    // Configura MEM_MISO como entrada GPIO (MISO)
+    HAL_GPIO_PinCfg(MEM_MISO, GPIO_OUTPUT);      // MISO
     // Configura MEM_CS_RAM1 y MEM_CS_RAM2 como salida GPIO
     HAL_GPIO_PinCfg(MEM_CS_RAM1, GPIO_OUTPUT);
     HAL_GPIO_PinCfg(MEM_CS_RAM2, GPIO_OUTPUT);
     HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);         // Establece MEM_CS_RAM1 en alto
     HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);         // Establece MEM_CS_RAM2 en alto
 
-    // Configura MEM_SCK como salida GPIO
-    HAL_GPIO_PinCfg(MEM_SCK, GPIO_OUTPUT);
+    // Configura MEM_CLK como salida GPIO
+    HAL_GPIO_PinCfg(MEM_CLK, GPIO_OUTPUT);
 
     // Inicializa el módulo SPI4 en modo de 8 bits, sin estructura de trama y sin interrupciones
-    SPI4_init(0, 0);
+    SPI.{port}._init(0, 0);
 
     // Espera 1 milisegundo para asegurar que las configuraciones previas se completen
     __delay_ms(1);
@@ -102,14 +103,14 @@ void RAM_Driver_writeData(uint8_t cs, uint32_t address, const uint32_t *data, ui
         return;
     }
 
-    xchangeSPI4b_8(RAM_WRITE_CMD);  // Enviar comando de escritura
-    xchangeSPI4b_8((address >> 16) & 0xFF);  // Parte alta de la dirección
-    xchangeSPI4b_8((address >> 8) & 0xFF);   // Parte media de la dirección
-    xchangeSPI4b_8(address & 0xFF);          // Parte baja de la dirección
+    xchangeSPI.{port}.b_8(RAM_WRITE_CMD);  // Enviar comando de escritura
+    xchangeSPI.{port}.b_8((address >> 16) & 0xFF);  // Parte alta de la dirección
+    xchangeSPI.{port}.b_8((address >> 8) & 0xFF);   // Parte media de la dirección
+    xchangeSPI.{port}.b_8(address & 0xFF);          // Parte baja de la dirección
 
     for (uint16_t i = 0; i < length; i++)
     {
-        xchangeSPI4b_8(data[i]);  // Enviar datos
+        xchangeSPI.{port}.b_8(data[i]);  // Enviar datos
     }
 
     if (cs == 1) {
@@ -139,15 +140,15 @@ void RAM_Driver_readData(uint8_t cs, uint32_t address, uint32_t *buffer, uint16_
         return;
     }
 
-    xchangeSPI4b_8(RAM_READ_CMD);  // Enviar comando de lectura
+    xchangeSPI.{port}.b_8(RAM_READ_CMD);  // Enviar comando de lectura
 
-    xchangeSPI4b_8((address >> 16) & 0xFF);  // Parte alta de la dirección
-    xchangeSPI4b_8((address >> 8) & 0xFF);   // Parte media de la dirección
-    xchangeSPI4b_8(address & 0xFF);          // Parte baja de la dirección
+    xchangeSPI.{port}.b_8((address >> 16) & 0xFF);  // Parte alta de la dirección
+    xchangeSPI.{port}.b_8((address >> 8) & 0xFF);   // Parte media de la dirección
+    xchangeSPI.{port}.b_8(address & 0xFF);          // Parte baja de la dirección
 
     for (uint16_t i = 0; i < length; i++)
     {
-        buffer[i] = xchangeSPI4b_8(0);  // Leer datos
+        buffer[i] = xchangeSPI.{port}.b_8(0);  // Leer datos
     }
 
     if (cs == 1) {
@@ -167,9 +168,9 @@ void RAM_Driver_reset(void)
     HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);     // Chip select activo
     HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_LOW);     // Chip select activo
     
-    xchangeSPI4b_8(RAM_RSTEN);             // Envía comando de habilitación de reset
+    xchangeSPI.{port}.b_8(RAM_RSTEN);             // Envía comando de habilitación de reset
     // Según la especificación, los comandos deben enviarse rápidamente uno tras otro
-    xchangeSPI4b_8(RAM_RST);               // Envía comando de reset
+    xchangeSPI.{port}.b_8(RAM_RST);               // Envía comando de reset
 
     HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);    // Chip select inactivo
     HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);    // Chip select inactivo
