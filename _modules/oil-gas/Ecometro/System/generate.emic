@@ -8,7 +8,7 @@ EMIC:setOutput(TARGET:generate.txt)
     EMIC:setInput(SYS:usedEvent.emic)
 
     //------------------- APIs -----------------------
-    //EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=led,pin=Led1)
+    EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=led,pin=Led1)
     
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=2)

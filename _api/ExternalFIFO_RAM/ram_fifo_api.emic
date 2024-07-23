@@ -14,31 +14,48 @@
 
 //RFI TAG:driverName=FIFO_RAM
 
+/**
+ * @fn void FIFO_Push_Single(uint8_t cs, char data);
+ * @alias PushSingleRAM
+ * @brief Almacena un único valor de tipo char en la cola circular FIFO de la RAM. 
+ * @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+ * @param data Valor de tipo char que se desea agregar a la RAM.
+ * @return Nothing
+ */
+
+/**
+ * @fn char FIFO_Pop_Single(uint8_t cs);
+ * @alias PopSingleRAM
+ * @brief Lee un único valor de la cola circular FIFO de la RAM y lo retorna.
+ * @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+ * @return temp_data El valor leído de tipo char desde la RAM.
+ */
+
 
 /**
 * @fn void FIFO_Push(uint8_t cs, char *data, uint8_t length);
 * @alias PushRAM
-* @brief Usado para guardar o agregar datos en la cola circular
-* @param cs Selección de RAM 1 o 2
-* @param *data Valores a agregar
-* @param length Tamaño de valores
+* @brief Almacena o agrega datos en la cola circular FIFO de la RAM.
+* @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+* @param *data Puntero a los valores que se desean agregar a la RAM.
+* @param length Cantidad de valores que se desean grabar en la RAM.
 * @return Nothing
 */
 
 /**
 * @fn void FIFO_Pop(uint8_t cs, char *buffer, uint8_t length);
 * @alias PullRAM
-* @brief Usado para extraer datos de la cola circular
-* @param cs Selección de RAM 1 o 2
-* @param *buffer Valores a extraer
-* @param length Tamaño de valores
+* @brief Extrae datos de la cola circular FIFO de la RAM.
+* @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+* @param *buffer Puntero al buffer donde se almacenarán los valores extraídos de la RAM.
+* @param length Cantidad de valores que se desean leer de la RAM.
 * @return Nothing
 */
 
 /**
 * @fn void RAM_Reset(void);
 * @alias ResetearRAM
-* @brief Usado para resetear la memoria FIFO en la RAM
+* @brief Resetea los punteros FIFO en la RAM a sus posiciones iniciales.
 * @return Nothing
 */
 

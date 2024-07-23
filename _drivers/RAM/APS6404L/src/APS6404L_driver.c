@@ -15,9 +15,10 @@
 
 /*==================[inclusions]=============================================*/
 #include <xc.h>
+//#include <libpic30.h>
 #include "inc/spi.{port}..h"
 #include "inc/GPIO.h"
-#include <libpic30.h>
+
 
 /* Spi driver name adaptation */
 // @{
@@ -80,7 +81,7 @@ void RAM_Driver_Init(void)
     SPI.{port}._init(0, 0);
 
     // Espera 1 milisegundo para asegurar que las configuraciones previas se completen
-    __delay_ms(1);
+    //__delay_ms(1);
 }
 /***********************************************************************************************************************/
 // Escribe datos en la RAM
@@ -175,7 +176,7 @@ void RAM_Driver_reset(void)
     HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);    // Chip select inactivo
     HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);    // Chip select inactivo
 
-    __delay_us(50);                        // Espera un tiempo suficiente para que el reset se complete
+    //__delay_us(50);                        // Espera un tiempo suficiente para que el reset se complete
 }
 
 #endif // _APS6404L_H_.{port}._C__

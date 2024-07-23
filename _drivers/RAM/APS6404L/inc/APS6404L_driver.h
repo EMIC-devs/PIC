@@ -14,6 +14,7 @@
 
 /*==================[inclusions]=============================================*/
 #include <xc.h>
+#include <libpic30.h>
 #include "inc/spi.{port}..h"
 #include "inc/GPIO.h"
 
