@@ -42,6 +42,11 @@ void timer4_init (Timer4_Callbak_t callback)
 {
 	timer4_Callbak = callback;
 
+	#if FOSC==120000000
+		T4CON = TMR_INTERNAL | TMR_DIV_BY_64;			//Interrupcion cada 0.001 Seg a CLK = 120 MH	
+		PR4 = 938; 										
+	#endif
+	
 	#if FOSC<=8000000
 		T4CON = TMR_INTERNAL | TMR_DIV_BY_8;	        //Interrupcion cada 0.001 Seg a CLK = 8 MH
 		PR4 = ((FOSC/2)/8)/1000 ;	//500;				// PR = (tick*FOSC/2)/(cycles_per_intruction*prescale) 0,001 * (8.000.000 / 2) / 8

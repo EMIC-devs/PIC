@@ -1,0 +1,60 @@
+/*************************************************************************//**
+  @file     ecometer.c
+
+  @brief    API Library to use Ecometer
+
+  @authors  Francisco Martinez, Ramiro Alarcon, Luciano Rottoli
+
+  @version  v0.0.1  
+
+  @date		04/07/2024  
+ ******************************************************************************/
+//RFI TAG:driverName=ECOMETER
+
+/**
+* @fn void PWM.{pwm_generator_number}._Start(void);
+* @alias PWM.{pwm_generator_number}._Start
+* @brief Turn ON PWM .{pwm_generator_number}.
+* @return Nothing
+*/
+
+/**
+* @fn void PWM.{pwm_generator_number}._Stop(void);
+* @alias PWM.{pwm_generator_number}._Stop
+* @brief Turn OFF PWM .{pwm_generator_number}.
+* @return Nothing
+*/
+
+/**
+* @fn void PWM.{pwm_generator_number}._set_frequency(uint32_t frequency);
+* @alias PWM.{pwm_generator_number}._set_frequency
+* @brief Set PWM .{pwm_generator_number}. frequency 
+* @return Nothing
+* @param frequency PWM .{pwm_generator_number}. frequency
+*/
+
+/**
+* @fn void PWM.{pwm_generator_number}._set_duty(uint8_t duty);
+* @alias PWM.{pwm_generator_number}._set_duty
+* @brief Set PWM .{pwm_generator_number}. duty
+* @return Nothing
+* @param duty PWM .{pwm_generator_number}. duty
+*/
+
+/**
+* @fn void PWM.{pwm_generator_number}._set_prescaler(uint8_t prescaler);
+* @alias PWM.{pwm_generator_number}._set_prescaler
+* @brief Set PWM .{pwm_generator_number}. prescaler 
+* @return Nothing
+* @param prescaler PWM .{pwm_generator_number}. prescaler
+*/
+
+EMIC:setInput(DEV:_hal/PWM/pwm.emic,pwm_generator_number=.{pwm_generator_number}.,PWMH_State=.{PWMH_State}.,PWML_State=.{PWML_State}.)
+
+	EMIC:copy(inc/ecometer.h > TARGET:inc/ecometer.{pwm_generator_number}..h,pwm_generator_number=.{pwm_generator_number}.)
+	EMIC:define(main_includes.ecometer.{pwm_generator_number}.,ecometer.{pwm_generator_number}.)
+
+	EMIC:copy(src/ecometer.c > TARGET:ecometer.{pwm_generator_number}..c,pwm_generator_number=.{pwm_generator_number}.)
+	EMIC:define(c_modules.ecometer.{pwm_generator_number}.,ecometer.{pwm_generator_number}.)
+/*==================[end of file]============================================*/
+EMIC:endif

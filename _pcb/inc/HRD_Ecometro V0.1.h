@@ -3,18 +3,18 @@ EMIC:setOutput(TARGET:inc/systemConfig.h)
 // CONFIGURACIONES DEL MICROCONTROLADOR
 // FGS
 #pragma config GWRP = OFF               // General Segment Write-Protect bit (General Segment may be written)
-#pragma config GSS = OFF                // General Segment Code-Protect bit (General Segment Code protect is disabled)
-#pragma config GSSK = OFF               // General Segment Key bits (General Segment Write Protection and Code Protection is Disabled)
+#pragma config GSS = ON                // General Segment Code-Protect bit (General Segment Code protect is disabled)
+#pragma config GSSK = ON               // General Segment Key bits (General Segment Write Protection and Code Protection is Disabled)
 
 // FOSCSEL
-#pragma config FNOSC = FRCPLL           // Initial Oscillator Source Selection bits (Internal Fast RC with PLL (FRCPLL))
+#pragma config FNOSC = FRC           // Initial Oscillator Source Selection bits (Internal Fast RC with PLL (FRCPLL))
 #pragma config IESO = ON                // Two-speed Oscillator Start-up Enable bit (Start up device with FRC, then switch to user-selected oscillator source)
 
 // FOSC
 #pragma config POSCMD = NONE            // Primary Oscillator Mode Select bits (Primary Oscillator disabled)
 #pragma config OSCIOFNC = OFF           // OSC2 Pin Function bit (OSC2 is clock output)
 #pragma config IOL1WAY = OFF            // Peripheral pin select configuration (Allow only one reconfiguration)
-#pragma config FCKSM = CSDCMD           // Clock Switching Mode bits (Both Clock switching and Fail-safe Clock Monitor are disabled)
+#pragma config FCKSM = CSECMD           // Clock Switching Mode bits (Both Clock switching and Fail-safe Clock Monitor are disabled)
 
 // FWDT
 #pragma config WDTPOST = PS16           // Watchdog Timer Postscaler bits (1:16)
@@ -35,8 +35,8 @@ EMIC:setOutput(TARGET:inc/systemConfig.h)
 
 // FAS
 #pragma config AWRP = OFF               // Auxiliary Segment Write-protect bit (Aux Flash may be written)
-#pragma config APL = OFF                // Auxiliary Segment Code-protect bit (Aux Flash Code protect is disabled)
-#pragma config APLK = OFF   
+#pragma config APL = ON                // Auxiliary Segment Code-protect bit (Aux Flash Code protect is disabled)
+#pragma config APLK = ON   
 
 EMIC:restoreOutput
 
@@ -44,7 +44,7 @@ EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:inc/system.h)
 
-#define FOSC 46062500  //TODO: se cambio a mano por error de baud en la compu 
+#define FOSC 120000000  //120 MHz
 #define FCY (FOSC/2)
 
 EMIC:restoreOutput
