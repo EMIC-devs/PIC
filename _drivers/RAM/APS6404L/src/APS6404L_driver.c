@@ -7,7 +7,7 @@
 
   @date     22/10/2023
 
-  @version  v0.0.1 - Versión inicial.
+  @version  v0.0.2 - Añadidas funciones para lectura y escritura de 16 bits.
 
  ******************************************************************************/
 #ifndef _APS6404L_H_.{port}._C__
@@ -16,26 +16,9 @@
 /*==================[inclusions]=============================================*/
 #include <xc.h>
 //#include <libpic30.h>
+#include "inc/APS6404L_driver.h"
 #include "inc/spi.{port}..h"
 #include "inc/GPIO.h"
-
-
-/* Spi driver name adaptation */
-// @{
-/* #define RPOUT_MEM_CS_RAM1     RPOUT_MEM_CS_RAM1 //44
-#define RPOUT_MEM_CS_RAM2     RPOUT_MEM_CS_RAM2 //45
-#define RPOUT_RAM_MOSI    RPOUT_MEM_MOSI //46
-#define RPOUT_RAM_MISO    RPIN_MEM_MISO //47
-#define RPOUT_RAM_CLK     RPOUT_MEM_CLK //49
-
-#define TRIS_RAM_MOSI     TRIS_MEM_MOSI
-#define TRIS_RAM_CLK      TRIS_MEM_CLK
-#define TRIS_MEM_CS_RAM1      TRIS_MEM_CS_RAM1
-#define TRIS_MEM_CS_RAM2      TRIS_MEM_CS_RAM2
-#define TRIS_RAM_MISO     TRIS_MEM_MISO
-#define PIN_MEM_CS_RAM1       PIN_MEM_CS_RAM1
-#define PIN_MEM_CS_RAM2       PIN_MEM_CS_RAM2 */
-// }
 
 /* SPI Ram macros */
 #define RAM_RSTEN         0x66    // Habilita el reinicio del dispositivo (Reset Enable)
@@ -84,16 +67,175 @@ void RAM_Driver_Init(void)
     //__delay_ms(1);
 }
 /***********************************************************************************************************************/
-// Escribe datos en la RAM
+// Escribe datos de 32 bits en la RAM
 /***********************************************************************************************************************/
 /**
- * @brief Writes data to the Ram memory.
+ * @brief Writes 32-bit data to the Ram memory.
  * @param cs Chip select (1 o 2).
  * @param address Memory address to write to.
- * @param data Pointer to the data buffer.
- * @param length Number of bytes to write.
+ * @param data Pointer to the 32-bit data buffer.
+ * @param length Number of 32-bit words to write.
  */
-void RAM_Driver_writeData(uint8_t cs, uint32_t address, const uint32_t *data, uint16_t length)
+void RAM_Driver_writeData32(uint8_t cs, uint32_t address, const uint32_t *data, uint16_t length)
+{
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);  // Activar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_LOW);  // Activar la selección del chip 2
+    } else {
+        // Manejo de error: cs no es válido
+        return;
+    }
+
+    xchangeSPI.{port}.b_8(RAM_WRITE_CMD);  // Enviar comando de escritura
+    xchangeSPI.{port}.b_8((address >> 16) & 0xFF);  // Parte alta de la dirección
+    xchangeSPI.{port}.b_8((address >> 8) & 0xFF);   // Parte media de la dirección
+    xchangeSPI.{port}.b_8(address & 0xFF);          // Parte baja de la dirección
+
+    for (uint16_t i = 0; i < length; i++)
+    {
+        xchangeSPI.{port}.b_8((data[i] >> 24) & 0xFF);
+        xchangeSPI.{port}.b_8((data[i] >> 16) & 0xFF);
+        xchangeSPI.{port}.b_8((data[i] >> 8) & 0xFF);
+        xchangeSPI.{port}.b_8(data[i] & 0xFF);  // Enviar datos
+    }
+
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);  // Desactivar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);  // Desactivar la selección del chip 2
+    }
+}
+/***********************************************************************************************************************/
+// Lee datos de 32 bits de la RAM
+/***********************************************************************************************************************/
+/**
+ * @brief Reads 32-bit data from the Ram memory.
+ * @param cs Chip select (1 o 2).
+ * @param address Memory address to read from.
+ * @param buffer Pointer to the 32-bit data buffer.
+ * @param length Number of 32-bit words to read.
+ */
+void RAM_Driver_readData32(uint8_t cs, uint32_t address, uint32_t *buffer, uint16_t length)
+{
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);  // Activar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_LOW);  // Activar la selección del chip 2
+    } else {
+        // Manejo de error: cs no es válido
+        return;
+    }
+
+    xchangeSPI.{port}.b_8(RAM_READ_CMD);  // Enviar comando de lectura
+
+    xchangeSPI.{port}.b_8((address >> 16) & 0xFF);  // Parte alta de la dirección
+    xchangeSPI.{port}.b_8((address >> 8) & 0xFF);   // Parte media de la dirección
+    xchangeSPI.{port}.b_8(address & 0xFF);          // Parte baja de la dirección
+
+    for (uint16_t i = 0; i < length; i++)
+    {
+        buffer[i] = (xchangeSPI.{port}.b_8(0) << 24);
+        buffer[i] |= (xchangeSPI.{port}.b_8(0) << 16);
+        buffer[i] |= (xchangeSPI.{port}.b_8(0) << 8);
+        buffer[i] |= xchangeSPI.{port}.b_8(0);  // Leer datos
+    }
+
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);  // Desactivar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);  // Desactivar la selección del chip 2
+    }
+}
+/***********************************************************************************************************************/
+// Escribe datos de 16 bits en la RAM
+/***********************************************************************************************************************/
+/**
+ * @brief Writes 16-bit data to the Ram memory.
+ * @param cs Chip select (1 o 2).
+ * @param address Memory address to write to.
+ * @param data Pointer to the 16-bit data buffer.
+ * @param length Number of 16-bit words to write.
+ */
+void RAM_Driver_writeData16(uint8_t cs, uint32_t address, const uint16_t *data, uint16_t length)
+{
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);  // Activar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_LOW);  // Activar la selección del chip 2
+    } else {
+        // Manejo de error: cs no es válido
+        return;
+    }
+
+    xchangeSPI.{port}.b_8(RAM_WRITE_CMD);  // Enviar comando de escritura
+    xchangeSPI.{port}.b_8((address >> 16) & 0xFF);  // Parte alta de la dirección
+    xchangeSPI.{port}.b_8((address >> 8) & 0xFF);   // Parte media de la dirección
+    xchangeSPI.{port}.b_8(address & 0xFF);          // Parte baja de la dirección
+
+    for (uint16_t i = 0; i < length; i++)
+    {
+        xchangeSPI.{port}.b_8((data[i] >> 8) & 0xFF);
+        xchangeSPI.{port}.b_8(data[i] & 0xFF);  // Enviar datos
+    }
+
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);  // Desactivar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);  // Desactivar la selección del chip 2
+    }
+}
+/***********************************************************************************************************************/
+// Lee datos de 16 bits de la RAM
+/***********************************************************************************************************************/
+/**
+ * @brief Reads 16-bit data from the Ram memory.
+ * @param cs Chip select (1 o 2).
+ * @param address Memory address to read from.
+ * @param buffer Pointer to the 16-bit data buffer.
+ * @param length Number of 16-bit words to read.
+ */
+void RAM_Driver_readData16(uint8_t cs, uint32_t address, uint16_t *buffer, uint16_t length)
+{
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);  // Activar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_LOW);  // Activar la selección del chip 2
+    } else {
+        // Manejo de error: cs no es válido
+        return;
+    }
+
+    xchangeSPI.{port}.b_8(RAM_READ_CMD);  // Enviar comando de lectura
+
+    xchangeSPI.{port}.b_8((address >> 16) & 0xFF);  // Parte alta de la dirección
+    xchangeSPI.{port}.b_8((address >> 8) & 0xFF);   // Parte media de la dirección
+    xchangeSPI.{port}.b_8(address & 0xFF);          // Parte baja de la dirección
+
+    for (uint16_t i = 0; i < length; i++)
+    {
+        buffer[i] = (xchangeSPI.{port}.b_8(0) << 8);
+        buffer[i] |= xchangeSPI.{port}.b_8(0);  // Leer datos
+    }
+
+    if (cs == 1) {
+        HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_HIGH);  // Desactivar la selección del chip 1
+    } else if (cs == 2) {
+        HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);  // Desactivar la selección del chip 2
+    }
+}
+
+/***********************************************************************************************************************/
+// Escribe datos de 8 bits en la RAM
+/***********************************************************************************************************************/
+/**
+ * @brief Writes 8-bit data to the Ram memory.
+ * @param cs Chip select (1 o 2).
+ * @param address Memory address to write to.
+ * @param data Pointer to the 8-bit data buffer.
+ * @param length Number of 8-bit words to write.
+ */
+void RAM_Driver_writeData8(uint8_t cs, uint32_t address, const uint8_t *data, uint16_t length)
 {
     if (cs == 1) {
         HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);  // Activar la selección del chip 1
@@ -120,17 +262,18 @@ void RAM_Driver_writeData(uint8_t cs, uint32_t address, const uint32_t *data, ui
         HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);  // Desactivar la selección del chip 2
     }
 }
+
 /***********************************************************************************************************************/
-// Lee datos de la RAM
+// Lee datos de 8 bits de la RAM
 /***********************************************************************************************************************/
 /**
- * @brief Reads data from the Ram memory.
+ * @brief Reads 8-bit data from the Ram memory.
  * @param cs Chip select (1 o 2).
  * @param address Memory address to read from.
- * @param buffer Pointer to the buffer to store the read data.
- * @param length Number of bytes to read.
+ * @param buffer Pointer to the 8-bit data buffer.
+ * @param length Number of 8-bit words to read.
  */
-void RAM_Driver_readData(uint8_t cs, uint32_t address, uint32_t *buffer, uint16_t length)
+void RAM_Driver_readData8(uint8_t cs, uint32_t address, uint8_t *buffer, uint16_t length)
 {
     if (cs == 1) {
         HAL_GPIO_PinSet(MEM_CS_RAM1, GPIO_LOW);  // Activar la selección del chip 1
@@ -158,6 +301,7 @@ void RAM_Driver_readData(uint8_t cs, uint32_t address, uint32_t *buffer, uint16_
         HAL_GPIO_PinSet(MEM_CS_RAM2, GPIO_HIGH);  // Desactivar la selección del chip 2
     }
 }
+
 /***********************************************************************************************************************/
 // Resetea la RAM
 /***********************************************************************************************************************/

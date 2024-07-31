@@ -15,8 +15,8 @@
 #ifndef _RAM_API_H_
 #define _RAM_API_H_
 
+/*==================[inclusions]=============================================*/
 #include <xc.h>
-//#include <stdint.h>
 
 // Definiciones para el tamaño del buffer y las direcciones de inicio en la RAM
 #define TOTAL_PAGES 8192
@@ -28,20 +28,32 @@
 #define RAM2_START 0x0000  // Asumiendo que RAM2 tiene la misma configuración que RAM1
 #define RAM2_END (RAM2_START + (TOTAL_PAGES * PAGE_SIZE) - 1)
 
-// Funciones de inicialización
-void RAM_api_Init(void);
-
 EMIC:define(inits.RAM_api_Init,RAM_api_Init)
 
-// Funciones de escritura y lectura en la cola circular
-void FIFO_Push_Single(uint8_t cs, char data);
+/* // Declaraciones de funciones para el RAM driver
+void RAM_Driver_writeUInt16_RAM1(uint16_t data);
+void RAM_Driver_writeUInt16_RAM2(uint16_t data);
+uint16_t RAM_Driver_readUInt16_RAM1(void);
+uint16_t RAM_Driver_readUInt16_RAM2(void);
+uint16_t RAM_Driver_dataCount_RAM1(void);
+uint16_t RAM_Driver_dataCount_RAM2(void);
 
-char FIFO_Pop_Single(uint8_t cs);
+// Declaraciones de funciones para FIFO
+void FIFO_Push_Format(uint8_t cs, char* format_, ...);
+void FIFO_Push_Single(uint8_t cs, uint16_t data);
+uint16_t FIFO_Pop_Single(uint8_t cs); */
 
-void FIFO_Push(uint8_t cs, uint32_t *data, uint8_t length);
+/*==================[internal functions declaration]===========================*/
+void FIFO_Push_Single_8(uint8_t cs, uint8_t data);
+uint8_t FIFO_Pop_Single_8(uint8_t cs);
+void FIFO_Push_Single_16(uint8_t cs, uint16_t data);
+uint16_t FIFO_Pop_Single_16(uint8_t cs);
+void FIFO_Push_Single_32(uint8_t cs, uint32_t data);
+uint32_t FIFO_Pop_Single_32(uint8_t cs);
 
-void FIFO_Pop(uint8_t cs, uint32_t *buffer, uint8_t length);
+// Declaraciones de funciones de inicialización y reseteo
 
 void RAM_Reset(void);
+void RAM_api_Init(void);
 
-#endif
+#endif // _RAM_API_H_
