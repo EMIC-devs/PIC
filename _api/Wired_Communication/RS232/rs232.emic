@@ -1,0 +1,114 @@
+//RFI TAG:driverName=RS232
+
+/*****************************************************************************
+
+  @file     rs232.emic
+
+  @brief    RS232 interface
+
+  @author   Francisco Martinez (based on Tomas Pentacolo and Rottoli Luciano)
+
+  @version  v0.0.1  
+
+  @date		02/08/2024   
+
+ ******************************************************************************/
+EMIC:ifndef _RS232_API_EMIC
+EMIC:define(_RS232_API_EMIC,true)
+
+//EMIC:define(RS232prot,EMIC_message)
+EMIC:define(UART.{port}._CALLBACK_RX,true)
+
+/*RFI JSon
+{
+	'Nombre': 'RS232prot',
+	'Tipo' : 'Configurator',
+	'subtype' : 'str',
+	'title': 'RS232 Protocol',
+	"InnerHTML":"
+	<fieldset>
+		<legend>Select RS232 Protocol:</legend>
+		<div title='Send and receive EMIC messages'><input type='radio' required name='RS232prot' id='RS232prot_1' value='`EMIC_message`' checked ><label for='RS232prot_1'>EMIC message</label></input></div>
+		<div title='Send and receive lines of text that end with a special character'><input type='radio' required name='RS232prot' id='RS232prot_2' value='`TEXT_line`'><label for='RS232prot_2'>TEXT line</label></input></div>
+	</fieldset>
+	"
+}
+*/
+
+
+EMIC:if(.{config.RS232prot}.=="EMIC_message")
+/**
+* @fn printf pRS232(concat tag,concat msg);
+* @alias Send
+* @brief Send a EMIC message through the RS232 port
+* @return Nothing
+* @param tag Etiqueta que identifica el mensaje
+* @param msg Contenido del mensaje
+*/
+
+
+/**
+* @fn extern void eRS232(char* tag,const streamIn_t* const msg);
+* @alias Reception
+* @brief When it receives a EMIC message through the RS232 port
+* @return Nothing
+* @param tag Tag to identify the message
+* @param msg message payload
+*/
+EMIC:endif
+
+EMIC:if(.{config.RS232prot}.=="TEXT_line")
+/**
+* @fn printf pRS232(concat msg);
+* @alias Send
+* @brief Send a message through the RS232 port
+* @return Nothing
+* @param msg Contenido del mensaje
+*/
+
+
+/**
+* @fn extern void eRS232(const streamIn_t* const msg);
+* @alias Reception
+* @brief When it receives a string through the RS232 port
+* @return Nothing
+* @param msg message payload
+*/
+EMIC:endif
+
+
+/*RFI JSon
+{
+	'Nombre': 'eBeRS232',
+	'NombreToolBox': 'endSend',
+	'Tipo' : 'SistemEvt',
+	'title': 'When finish send data by RS232 port',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox": "Event.RS232.endSend",
+		"definir":"event_eBeRS232_active",
+		"parametros": []
+		}'
+}
+*/
+
+EMIC:setInput(DEV:_system/Stream/stream.emic)
+EMIC:setInput(DEV:_system/Stream/streamOut.emic)
+EMIC:setInput(DEV:_system/Stream/streamIn.emic)
+EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
+EMIC:setInput(DEV:_hal/UART/UART.emic,port=.{port}.,BufferSize=.{BufferSize}.,baud=.{baud}.,name=.{name}.)
+
+EMIC:setOutput(TARGET:inc/rs232.h)
+	EMIC:setInput(inc/rs232.h,port=.{port}.,frameLf=.{frameLf}.)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:rs232.c)
+	EMIC:setInput(src/rs232.c,port=.{port}.,frameLf=.{frameLf}.)
+EMIC:restoreOutput
+
+EMIC:define(main_includes.rs232,rs232)
+EMIC:define(c_modules.rs232,rs232)
+
+/*==================[end of file]============================================*/
+EMIC:endif

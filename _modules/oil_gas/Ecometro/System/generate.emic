@@ -16,9 +16,8 @@ EMIC:setOutput(TARGET:generate.txt)
     EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=Led5,pin=Led5)
     EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=Led6,pin=Led6)
 
-    //Tone Output
-    EMIC:setInput(DEV:_api/Oil_Gas/Ecometer/ecometer.emic,pwm_generator_number=2,PWMH_State=OFF,PWML_State=ON)
-    EMIC:setInput(DEV:_api/Oil_Gas/Tones/tones.emic,tone_number=1,pwm_generator_number=2,PWMH_State=OFF,PWML_State=ON)
+    //RS232
+    EMIC:setInput(DEV:_api/Wired_Communication/RS232/rs232.emic,port=1,BufferSize=512,baud=9600,frameLf=\n,name=RS232_TTL)
 
     //TIMERs
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
