@@ -1,1 +1,1 @@
-C:setInput(DEV:_hard/.{system.ucName}./PWM/pwm.emic,pwm_generator_number=.{pwm_generator_number}.)
+EMIC:setInput(DEV:_hard/.{system.ucName}./PWM/pwm.emic,pwm_generator_number=.{pwm_generator_number}.,PWMH_State=.{PWMH_State}.,PWML_State=.{PWML_State}.)

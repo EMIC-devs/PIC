@@ -1,0 +1,32 @@
+/*************************************************************************//**
+  @file     tones.emic
+
+  @brief    API library to produce a variable tone based on an initial frequency,
+            a frequency transition step and a number of periods to be produced 
+
+  @authors  Francisco Martinez
+
+  @version  v0.0.1  
+
+  @date		04/07/2024  
+ ******************************************************************************/
+//RFI TAG:driverName=TONES
+
+/**
+* @fn void Tone.{tone_number}._play_tone(uint32_t initial_frequency, uint32_t step, uint32_t periods_number);
+* @alias Tone.{tone_number}._play_tone
+* @brief Play a tone with an initial frequency that changes with one step per period, for a number of periods 
+* @return Nothing
+* @param initial_frequency Tone .{tone_number}. initial frequency 
+* @param step Tone .{tone_number}. frequency change step
+* @param periods_number Number of periods that tone .{tone_number}. lasts
+*/
+EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
+EMIC:setInput(DEV:_hal/PWM/pwm.emic,pwm_generator_number=.{pwm_generator_number}.,PWMH_State=.{PWMH_State}.,PWML_State=.{PWML_State}.)
+
+	EMIC:copy(inc/tones.h > TARGET:inc/tones.{tone_number}..h,tone_number=.{tone_number}.,pwm_generator_number=.{pwm_generator_number}.)
+	EMIC:define(main_includes.tones.{tone_number}.,tones.{tone_number}.)
+
+	EMIC:copy(src/tones.c > TARGET:tones.{tone_number}..c,tone_number=.{tone_number}.,pwm_generator_number=.{pwm_generator_number}.)
+	EMIC:define(c_modules.tones.{tone_number}.,tones.{tone_number}.)
+/*==================[end of file]============================================*/

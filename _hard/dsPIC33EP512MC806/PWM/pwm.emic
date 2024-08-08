@@ -15,15 +15,10 @@
 EMIC:ifndef _PIC_PWM.{pwm_generator_number}._EMIC
 EMIC:define(_PIC_PWM.{pwm_generator_number}._EMIC,true)
 
-EMIC:setInput(DEV:_hal/PWM/pwm.emic)
+EMIC:copy(inc/pwm.h > TARGET:inc/pwm.{pwm_generator_number}..h,pwm_generator_number=.{pwm_generator_number}.,PWMH_State=.{PWMH_State}.,PWML_State=.{PWML_State}.)
+EMIC:copy(src/pwm.c > TARGET:pwm.{pwm_generator_number}..c,pwm_generator_number=.{pwm_generator_number}.,PWMH_State=.{PWMH_State}.,PWML_State=.{PWML_State}.)
 
-EMIC:setOutput(TARGET:inc/pwm.{pwm_generator_number}..h)
-	EMIC:setInput(inc/pwm.h,pwm_generator_number=.{pwm_generator_number}.)
-EMIC:restoreOutput
-
-EMIC:setOutput(TARGET:pwm.{pwm_generator_number}..c)
-	EMIC:setInput(src/pwm.c,pwm_generator_number=.{pwm_generator_number}.)
-EMIC:restoreOutput
-
+EMIC:define(main_includes.pwm.{pwm_generator_number}.,pwm.{pwm_generator_number}.)
 EMIC:define(c_modules.pwm.{pwm_generator_number}.,pwm.{pwm_generator_number}.)
+
 EMIC:endif
