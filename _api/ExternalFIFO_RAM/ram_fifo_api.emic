@@ -1,0 +1,87 @@
+/*****************************************************************************
+
+  @file     ram.emic
+
+  @brief    API for RAM modules.
+
+  @author   Ramiro Alarcon Lasagno
+
+  @date     25/10/2023
+
+  @version  v0.0.1 - Initial release.
+  
+*******************************************************************************/
+
+//RFI TAG:driverName=FIFO_RAM
+
+/**
+ * @fn void FIFO_Push_Single_8(uint8_t cs, uint8_t data);
+ * @alias PushSingleRAM_8
+ * @brief Almacena un único valor de tipo char en la cola circular FIFO de la RAM. 
+ * @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+ * @param data Valor de tipo char que se desea agregar a la RAM.
+ * @return Nothing
+ */
+
+/**
+ * @fn char FIFO_Pop_Single_8(uint8_t cs);
+ * @alias PopSingleRAM_8
+ * @brief Lee un único valor de la cola circular FIFO de la RAM y lo retorna.
+ * @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+ * @return temp_data El valor leído de tipo char desde la RAM.
+ */
+
+/**
+ * @fn void FIFO_Push_Single_16(uint8_t cs, uint16_t data);
+ * @alias PushSingleRAM_16
+ * @brief Almacena un único valor de tipo char en la cola circular FIFO de la RAM. 
+ * @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+ * @param data Valor de tipo char que se desea agregar a la RAM.
+ * @return Nothing
+ */
+
+/**
+ * @fn char FIFO_Pop_Single_16(uint8_t cs);
+ * @alias PopSingleRAM_16
+ * @brief Lee un único valor de la cola circular FIFO de la RAM y lo retorna.
+ * @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+ * @return temp_data El valor leído de tipo char desde la RAM.
+ */
+
+ /**
+ * @fn void FIFO_Push_Single_32(uint8_t cs, uint32_t data);
+ * @alias PushSingleRAM_32
+ * @brief Almacena un único valor de tipo char en la cola circular FIFO de la RAM. 
+ * @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+ * @param data Valor de tipo char que se desea agregar a la RAM.
+ * @return Nothing
+ */
+
+/**
+ * @fn char FIFO_Pop_Single_32(uint8_t cs);
+ * @alias PopSingleRAM_32
+ * @brief Lee un único valor de la cola circular FIFO de la RAM y lo retorna.
+ * @param cs Chip select de RAM (1 o 2) para seleccionar el banco de memoria.
+ * @return temp_data El valor leído de tipo char desde la RAM.
+ */
+
+/**
+* @fn void RAM_Reset(void);
+* @alias ResetearRAM
+* @brief Resetea los punteros FIFO en la RAM a sus posiciones iniciales.
+* @return Nothing
+*/
+
+EMIC:setInput(DEV:_drivers/RAM/APS6404L/APS6404L_driver.emic)
+
+EMIC:setInput(DEV:_system/Stream/stream.emic)
+EMIC:setInput(DEV:_system/Stream/streamOut.emic)
+EMIC:setInput(DEV:_system/Stream/streamIn.emic)
+
+EMIC:copy(inc/ram_fifo_api.h > TARGET:inc/ram_fifo_api.h)
+
+EMIC:copy(src/ram_fifo_api.c > TARGET:ram_fifo_api.c)
+
+EMIC:define(main_includes.ram_fifo_api,ram_fifo_api)
+EMIC:define(c_modules.ram_fifo_api,ram_fifo_api)
+/*==================[end of file]============================================*/

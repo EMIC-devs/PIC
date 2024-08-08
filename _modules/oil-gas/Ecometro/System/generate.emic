@@ -8,6 +8,7 @@ EMIC:setOutput(TARGET:generate.txt)
     EMIC:setInput(SYS:usedEvent.emic)
 
     //------------------- APIs -----------------------
+<<<<<<< HEAD:_modules/oil_gas/Ecometro/System/generate.emic
     //LEDs
     EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=Led1,pin=Led1)
     EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=Led2,pin=Led2)
@@ -20,12 +21,16 @@ EMIC:setOutput(TARGET:generate.txt)
     EMIC:setInput(DEV:_api/Wired_Communication/RS232/rs232.emic,port=1,BufferSize=512,baud=9600,frameLf=\n,name=RS232_TTL)
 
     //TIMERs
+=======
+    EMIC:setInput(DEV:_api/Indicators/LEDs/led.emic,name=led,pin=Led1)
+    
+>>>>>>> origin/feature/Driver_Seial_RAM:_modules/oil-gas/Ecometro/System/generate.emic
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=1)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=2)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=3)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=4)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=5)
-    
+    EMIC:setInput(DEV:_api/ExternalFIFO_RAM/ram_fifo_api.emic)
 
     //-------------------- main  -----------------------
     EMIC:setInput(DEV:_main/baremetal/main.emic)

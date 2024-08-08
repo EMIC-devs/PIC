@@ -72,10 +72,10 @@ EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B2,name=Led5)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B6,name=Led6)
 
 //MEMORIAS
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D0,name=MEM_SIO0)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=C13,name=MEM_SIO1)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D0,name=MEM_MOSI)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=C13,name=MEM_MISO)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=C14,name=MEM_SIO2)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D1,name=MEM_SCK)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D1,name=MEM_CLK)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D8,name=MEM_HOLD)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D9,name=MEM_CS_FLASH)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=D10,name=MEM_CS_RAM1)
