@@ -1,0 +1,1 @@
+uint16_t length(char* text);

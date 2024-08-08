@@ -1,0 +1,25 @@
+/*RFI JSon
+{
+	'Nombre': 'compare',
+	'NombreToolBox': 'compare',
+	'Tipo' : 'SistemFnc',
+	'title': 'Return 0 if both string are equals, return 1 if the first string is greater than the second one, and return -1 in the opposite case.',
+	'returnInfo': {'type':'int8_t','tooltip':'Position.'},
+	'parameters': [{'name': 'First string',
+					'tooltip': 'First string',
+					'required': 'true"',
+					'type': 'char*'},
+                    {'name': 'Second string',
+					'tooltip': 'Second string',
+					'required': 'true"',
+					'type': 'char*'}],
+	'InnerHTML':"
+		<div type='int8_t' originalclass='funcion' class='lineaDeCodigo' definir='usecompareV1' originalid='compare' draggable='true' ondragstart='drag_linea(event)'>
+			Text.Compare(<div type='char*' title='First string.' class='parametroDiv'></div>,<div type='char*' title='Second string.' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+EMIC:copy(inc/compare.h > TARGET:inc/compare.h)
+
+EMIC:copy(src/compare.c > TARGET:src/compare.c)
