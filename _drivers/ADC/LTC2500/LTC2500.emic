@@ -1,0 +1,19 @@
+EMIC:ifndef LTC2500_EMIC_
+EMIC:define(LTC2500_EMIC_,true)
+
+EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
+//EMIC:setInput(DEV:_hal/SPI/SPI.emic,configuracion=.{configuracion}.,port=.{port}.,pin=.{pin}.)
+
+
+EMIC:setOutput(TARGET:inc/LTC2500.h)
+	EMIC:setInput(inc/LTC2500.h)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:LTC2500.c)
+	EMIC:setInput(src/LTC2500.c)
+EMIC:restoreOutput
+
+EMIC:define(c_modules.LTC2500,LTC2500)
+
+/*==================[end of file]============================================*/
+EMIC:endif

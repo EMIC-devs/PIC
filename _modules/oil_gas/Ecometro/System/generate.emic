@@ -27,6 +27,8 @@ EMIC:setOutput(TARGET:generate.txt)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=3)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=4)
     EMIC:setInput(DEV:_api/Timers/timer_api.emic,name=5)
+
+    EMIC:setInput(DEV:_api/ADC/ADC.emic,configuracion=Master,port=3,pin=ADC_A,PinName=ADC_MCLK)
     
 
     //-------------------- main  -----------------------

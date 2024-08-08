@@ -7,14 +7,16 @@ EMIC:setOutput(TARGET:inc/systemConfig.h)
 #pragma config GSSK = OFF               // General Segment Key bits (General Segment Write Protection and Code Protection is Disabled)
 
 // FOSCSEL
-#pragma config FNOSC = FRCPLL           // Initial Oscillator Source Selection bits (Internal Fast RC with PLL (FRCPLL))
+//#pragma config FNOSC = FRCPLL           // Initial Oscillator Source Selection bits (Internal Fast RC with PLL (FRCPLL))
+#pragma config FNOSC = FRC
 #pragma config IESO = ON                // Two-speed Oscillator Start-up Enable bit (Start up device with FRC, then switch to user-selected oscillator source)
 
 // FOSC
 #pragma config POSCMD = NONE            // Primary Oscillator Mode Select bits (Primary Oscillator disabled)
 #pragma config OSCIOFNC = OFF           // OSC2 Pin Function bit (OSC2 is clock output)
 #pragma config IOL1WAY = OFF            // Peripheral pin select configuration (Allow only one reconfiguration)
-#pragma config FCKSM = CSDCMD           // Clock Switching Mode bits (Both Clock switching and Fail-safe Clock Monitor are disabled)
+//#pragma config FCKSM = CSDCMD           // Clock Switching Mode bits (Both Clock switching and Fail-safe Clock Monitor are disabled)
+#pragma config FCKSM = CSECMD
 
 // FWDT
 #pragma config WDTPOST = PS16           // Watchdog Timer Postscaler bits (1:16)
@@ -44,7 +46,8 @@ EMIC:restoreOutput
 
 EMIC:setOutput(TARGET:inc/system.h)
 
-#define FOSC 46062500  //TODO: se cambio a mano por error de baud en la compu 
+//#define FOSC 46062500  //TODO: se cambio a mano por error de baud en la compu 
+#define FOSC 120000000
 #define FCY (FOSC/2)
 
 EMIC:restoreOutput
@@ -102,11 +105,16 @@ EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B8,name=ADC_RDLa)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B7,name=ADC_RDLb)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=F3,name=ADC_PRE)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B9,name=ADC_Busy)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B10,name=ADC_SDO_B)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B11,name=ADC_SCLK_B)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B12,name=ADC_SCLK_A)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B13,name=ADC_SDO_A)
-EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B14,name=ADC_SDI_A)
+//EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B10,name=ADC_SDO_B)
+//EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B11,name=ADC_SCLK_B)
+//EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B12,name=ADC_SCLK_A)
+//EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B13,name=ADC_SDO_A)
+//EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B14,name=ADC_SDI_A)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B10,name=ADC_B_MISO)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B11,name=ADC_B_SCLK)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B12,name=ADC_A_SCLK)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B13,name=ADC_A_MISO)
+EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B14,name=ADC_A_MOSI)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=B15,name=ADC_DRL)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=F4,name=ADC_SYNC)
 EMIC:setInput(DEV:_hal/pins/setPin.emic,pin=F5,name=ADC_MCLK)

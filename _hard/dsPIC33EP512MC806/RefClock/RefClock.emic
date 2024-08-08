@@ -1,0 +1,17 @@
+EMIC:ifndef REFCLOCK_EMIC_
+EMIC:define(REFCLOCK_EMIC_,true)
+
+EMIC:setInput(DEV:_hal/GPIO/gpio.emic)
+
+EMIC:setOutput(TARGET:inc/RefClock.h)
+	EMIC:setInput(inc/RefClock.h)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:RefClock.c)
+	EMIC:setInput(src/RefClock.c,PinName=.{PinName}.)
+EMIC:restoreOutput
+
+EMIC:define(c_modules.RefClock,RefClock)
+
+/*==================[end of file]============================================*/
+EMIC:endif

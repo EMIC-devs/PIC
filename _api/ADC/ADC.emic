@@ -1,0 +1,46 @@
+//RFI TAG:driverName=ADC
+EMIC:ifndef ADC_EMIC_
+EMIC:define(ADC_EMIC_,true)
+
+/**
+* @fn void start_ADC(uint8_t Freq, uint32_t Quantity);
+* @alias StartADC
+* @brief Start ADC
+* @return Nothing
+* @param Freq 1 Maxima frecuencia, 13 Minima frecuencia
+* @param Quantity Cantidad de muestras a tomar
+*/
+
+
+/**
+* @fn extern void eADC(uint32_t Result);
+* @alias DataReady
+* @brief Dato del ADC listo
+* @return Nothing
+* @param Result Resultado de conversion
+*/
+
+/**
+* @fn extern void eADCEnd();
+* @alias EndADC
+* @brief Finalizo la adquisicion
+* @return Nothing
+*/
+
+EMIC:setInput(DEV:_drivers/ADC/LTC2500/LTC2500.emic,configuracion=.{configuracion}.,port=.{port}.,pin=.{pin}.)
+EMIC:setInput(DEV:_hal/RefCLK/RefCLK.emic,PinName=.{PinName}.)
+
+
+EMIC:setOutput(TARGET:inc/ADC.h)
+	EMIC:setInput(inc/ADC.h)
+EMIC:restoreOutput
+
+EMIC:setOutput(TARGET:ADC.c)
+	EMIC:setInput(src/ADC.c)
+EMIC:restoreOutput
+
+EMIC:define(main_includes.ADC,ADC)
+EMIC:define(c_modules.ADC,ADC)
+
+/*==================[end of file]============================================*/
+EMIC:endif
