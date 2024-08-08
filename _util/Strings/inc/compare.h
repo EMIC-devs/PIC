@@ -1,0 +1,1 @@
+int8_t compare(char* string_1, char* string_2);

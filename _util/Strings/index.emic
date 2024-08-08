@@ -1,0 +1,26 @@
+/*RFI JSon
+{
+	'Nombre': 'index',
+	'NombreToolBox': 'index',
+	'Tipo' : 'SistemFnc',
+	'title': 'Return the character positioned in the given index. The first character has the 0 index',
+	'returnInfo': {'type':'char','tooltip':'Character.'},
+	'parameters': [{'name': 'String',
+					'tooltip': 'String used to extract the character.',
+					'required': 'true"',
+					'type': 'char*'},
+                    {'name': 'Index',
+					'tooltip': 'Position of wished character.',
+					'required': 'true"',
+					'type': 'uint8_t'}],
+	'InnerHTML':"
+		<div type='char' originalclass='funcion' class='lineaDeCodigo' definir='useindexV1' originalid='index' draggable='true' ondragstart='drag_linea(event)'>
+			Text.Index(<div type='char*' title='String used to extract the character.' class='parametroDiv'></div>,<div type='uint8_t' title='Position of wished character.' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+
+EMIC:copy(inc/index.h > TARGET:inc/index.h)
+
+EMIC:copy(src/index.c > TARGET:src/index.c)

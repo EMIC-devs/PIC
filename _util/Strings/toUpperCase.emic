@@ -1,0 +1,22 @@
+/*RFI JSon
+{
+	'Nombre': 'toUpperCase',
+	'NombreToolBox': 'toUpperCase',
+	'Tipo' : 'SistemFnc',
+	'title': 'Modifies the string and set all alphabetic characters in upper case.',
+	'returnInfo': {'type':'void','tooltip':'Modifies the string given as parameter.'},
+	'parameters': [{'name': 'string',
+					'tooltip': 'Base string.',
+					'required': 'true"',
+					'type': 'char*'}],
+	'InnerHTML':"
+		<div type='void' originalclass='funcion' class='lineaDeCodigo' definir='usetoUpperCaseV1' originalid='toUpperCase' draggable='true' ondragstart='drag_linea(event)'>
+			Text.toUpperCase(<div type='char*' title='String to modify' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+
+EMIC:copy(inc/toLetterCase.h > TARGET:inc/toLetterCase.h)
+
+EMIC:copy(src/toLetterCase.c > TARGET:src/toLetterCase.c)
